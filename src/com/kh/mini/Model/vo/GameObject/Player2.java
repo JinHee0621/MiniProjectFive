@@ -16,7 +16,7 @@ public class Player2 extends GameObject {
 		// TODO Auto-generated method stub
 		img = new ImageClass();
 		
-		img.Init("images\\charImages\\Sprite-Mainup2.png", 70, 150, 11, 1, true);
+		img.Init("images\\charImages\\MainCharFront.png", 75, 140, 11, 1, true);
 		
 		img.setMagnification(1.0);
 		x = 0;
