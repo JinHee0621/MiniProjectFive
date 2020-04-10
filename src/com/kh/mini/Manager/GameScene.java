@@ -6,8 +6,8 @@ import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
 import com.kh.mini.Model.vo.GameObject.CameraClass;
+import com.kh.mini.Model.vo.GameObject.Monster;
 import com.kh.mini.Model.vo.GameObject.Player;
-import com.kh.mini.Model.vo.GameObject.Player2;
 import com.kh.mini.mapTool.MapTool;
 
 public class GameScene extends BaseScene {
@@ -26,7 +26,7 @@ public class GameScene extends BaseScene {
 	double bgY;
 	
 	Player p;
-	Player2 p2;
+	Monster[] mobs = new Monster[3];
 	
 	@Override
 	public void init() {
@@ -47,46 +47,61 @@ public class GameScene extends BaseScene {
 		
 		bgX = bg.getX();
 		bgY = bg.getY();
-		
-		
+		//p = new Player();
 		p = new Player();
+
 		p.setCam(cam);
+
+		
+		mobs[0] = new Monster(p);
+		mobs[0].setPosition(800, 800);
+		mobs[0].setCam(cam);
+		mobs[0].init();
+		
+		mobs[1] = new Monster(p);
+		mobs[1].setPosition(900, 100);
+		mobs[1].setCam(cam);
+		mobs[1].init();
+		
+		mobs[2] = new Monster(p);
+		mobs[2].setPosition(1000, 0);
+		mobs[2].setCam(cam);
+		mobs[2].init();
+		
+		for(int i = 0; i < mobs.length; i++) {
+			mobs[i].addObjs(mobs);
+		}
+		
+		
+		p.addObjs(mobs);
 		p.init();
-		
-		p2 = new Player2();
-		p2.setCam(cam);
-		p2.init();
-		
-		p.setP2(p2);
-		
 	}
 
 	@Override
 	public void release() {
 		// TODO Auto-generated method stub
 		p.release();
-		p2.release();
+		for (int i = 0; i < mobs.length; i++) {
+			mobs[i].release();
+		}
 	}
 
 	@Override
 	public void update() {
 		p.update();
-		p2.update();
+		for (int i = 0; i < mobs.length; i++) {
+			mobs[i].update();
+		}
 	}
 
 	@Override
 	public void render(Graphics g) {
 		// TODO Auto-generated method stub
-		//bg.setPosition(bgX - cam.getX(), bgY - cam.getY());
-		
-		//bg2.setPosition(500, 500);
-		
-		//bg.render(g);
-		//bg2.render(g);
 		
 		p.render(g);
-		p2.render(g);
-
+		for (int i = 0; i < mobs.length; i++) {
+			mobs[i].render(g);
+		}
 	}
 	
 	

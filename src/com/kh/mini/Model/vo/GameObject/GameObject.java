@@ -2,6 +2,7 @@ package com.kh.mini.Model.vo.GameObject;
 
 import java.awt.Graphics;
 import java.awt.geom.AffineTransform;
+import java.util.ArrayList;
 
 import com.kh.mini.Manager.KeyManager;
 
@@ -57,7 +58,7 @@ public abstract class GameObject {
 		
 		setRect((int)(x - radius), (int)(y - radius), (int)(x + radius), (int)(y + radius));
 	}
-	
+	//---------------------------------
 	public boolean isCollisionRectToRect(GameObject other) {
 		
 		if(left > other.right || right < other.left) {
@@ -67,10 +68,9 @@ public abstract class GameObject {
 		if(top > other.bottom || bottom < other.top) {
 			return false;
 		}
-		
 		return true;
 	}
-	
+	// -------------------------------------
 	public boolean isCollisionCirToRect(GameObject other) {		
 		if(isCollisionCirToCir(other)) {
 			if(isCollisionRectToRect(other)) {
@@ -79,7 +79,7 @@ public abstract class GameObject {
 		}		
 		return false;
 	}
-	
+	//----------------------------------------------------
 	public boolean isCollisionCirToCir(GameObject other) {
 		if(getDistacne(other) < radius + other.radius) {
 			return true;
@@ -91,7 +91,7 @@ public abstract class GameObject {
 		double x = this.x - other.getX();
 		double y = this.y - other.getY();
 		
-		double dist = Math.abs((x * x) + (y * y));
+		double dist = Math.sqrt((x * x) + (y * y));
 		
 		return dist;
 	}

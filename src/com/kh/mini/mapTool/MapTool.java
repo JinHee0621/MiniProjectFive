@@ -57,10 +57,12 @@ public class MapTool extends GameObject{
 	public void render(Graphics g) {
 		if (key.onceMouseClicked(MouseEvent.BUTTON1)) {
 			mc = new MapChip();
-			mc.init();
 			mc.setPosition(MapChip.getImgPosX(), MapChip.getImgPosY());
-			maps.add(mc);
-			mc.render(g);
+			if (mc.getX() < 800 && mc.getY() < 800) {
+				mc.init();
+				maps.add(mc);
+				mc.render(g);
+			}
 		}
 		for(int i = 0; i < maps.size(); i++) {
 			maps.get(i).getImg().render(g);

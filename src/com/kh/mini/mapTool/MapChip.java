@@ -3,12 +3,18 @@ package com.kh.mini.mapTool;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
+import java.io.Serializable;
 import java.util.Stack;
 
 import com.kh.mini.Manager.ImageClass;
 import com.kh.mini.Model.vo.GameObject.GameObject;
 
-public class MapChip extends GameObject{
+public class MapChip extends GameObject implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6122884571732384238L;
+	
 	private ImageClass img;
 	private static int imgPosX;
 	private static int imgPosY;
@@ -17,6 +23,7 @@ public class MapChip extends GameObject{
 	@Override
 	public void init() {
 		img = new ImageClass();
+		System.out.println("마우스 x: " + imgPosX + " 마우스 Y: " + imgPosY);
 		img.Init("images\\monsterImages\\Sprite-Mon5.png");
 		img.setIsOn(true);
 	}
