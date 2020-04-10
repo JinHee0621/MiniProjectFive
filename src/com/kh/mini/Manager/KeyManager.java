@@ -4,11 +4,12 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.util.HashMap;
 
 import com.kh.mini.mapTool.MapChip;
 
-public class KeyManager implements KeyListener, MouseListener {
+public class KeyManager implements KeyListener, MouseListener{
 
 	private static KeyManager inst;
 	
@@ -87,8 +88,6 @@ public class KeyManager implements KeyListener, MouseListener {
 		// TODO Auto-generated method stub
 		if(keyMap.containsKey(MouseEvent.BUTTON1) == false || keyMap.get(MouseEvent.BUTTON1) == false)
 		{
-			System.out.println("마우스 클릭됨");
-			
 			MapChip.setImgPosX(e.getX());
 			MapChip.setImgPosY(e.getY());
 			
@@ -102,7 +101,6 @@ public class KeyManager implements KeyListener, MouseListener {
 		// TODO Auto-generated method stub
 		if(keyMap.containsKey(MouseEvent.BUTTON1) == false || keyMap.get(MouseEvent.BUTTON1) == false)
 		{
-			System.out.println("마우스 클릭됨");
 			
 			MapChip.setImgPosX(e.getX());
 			MapChip.setImgPosY(e.getY());
@@ -151,6 +149,6 @@ public class KeyManager implements KeyListener, MouseListener {
 		
 		return isPressKey;
 	}
-	
+
 }
 

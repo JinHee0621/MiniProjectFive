@@ -31,7 +31,6 @@ public class ImageClass {
 	
 	boolean isRepeat;
 	boolean isOn;
-	
 	private int speed;
 	
 	private int maxSpeed;
@@ -62,6 +61,32 @@ public class ImageClass {
 		
 	}
 	
+	public void changeImage(String path, int width, int height, int maxCountX, int maxCountY, boolean isRepeat) {
+		
+		this.magnification = 1;
+		this.maxCountX = maxCountX;
+		this.maxCountY = maxCountY;
+		this.width = width;
+		this.height = height;
+		this.isRepeat = isRepeat;
+		
+		BufferedImage bigImg = null;
+		try {
+			bigImg = ImageIO.read(new File(path));		
+
+		} catch(IOException e) {
+			e.printStackTrace();
+		}		
+		
+		frameImg = new BufferedImage[maxCountX * maxCountY];
+		
+		for(int i = 0; i < maxCountY; i++) {
+			for(int j = 0; j < maxCountX; j++) {
+				frameImg[i * maxCountX + j] = bigImg.getSubimage(j * width, i * height, width, height);
+			}
+		}
+	}
+	
 	public void Init(String path, int width, int height, int maxCountX, int maxCountY, boolean isRepeat) {
 		this.magnification = 1;
 		this.maxCountX = maxCountX;
@@ -89,7 +114,7 @@ public class ImageClass {
 			}
 		}
 		
-		pt = new Point2D.Double(0 , 0);
+		pt = new Point2D.Double(0 ,0);
 		dp = new Point2D.Double(0, 0);
 	}
 	
@@ -180,6 +205,7 @@ public class ImageClass {
 
 		if(frameImg != null) {
 			g2D.drawImage(frameImg[frameY * maxCountX + frameX], t, null);
+			
 		} else {
 			g2D.drawImage(img, t, null);
 		}
@@ -213,4 +239,12 @@ public class ImageClass {
 		t.scale(magnification, magnification);
 	}
 	
+	public boolean isRepeat() {
+		return isRepeat;
+	}
+
+	public void setRepeat(boolean isRepeat) {
+		this.isRepeat = isRepeat;
+	}
+
 }
