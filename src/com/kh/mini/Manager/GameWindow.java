@@ -16,7 +16,7 @@ public class GameWindow extends JFrame {
 	//BufferedImage bImg;
 	
 	BufferStrategy bs;
-	MapTool mt = new MapTool();
+	//MapTool mt = new MapTool();
 	
 	ImageClass img;
 	

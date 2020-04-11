@@ -14,8 +14,6 @@ import com.kh.mini.mapTool.MapChip;
 import com.kh.mini.mapTool.MapTool;
 
 public class TestMain {
-
-	
 	@SuppressWarnings("deprecation")
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub			
@@ -24,11 +22,11 @@ public class TestMain {
 		
 		GameScene gs = new GameScene();
 		
-		MapTool mt = new MapTool();
+		//MapTool mt = new MapTool();
 		
 		gs.init();
 		
-		mt.init();
+		//mt.init();
 		
 		gw.setSize(1200, 760);		
 		
@@ -44,7 +42,7 @@ public class TestMain {
 		gw.createBufferStrategy(2);
 		
 		while(true) {		
-			gs.update(); //캐릭터의 위치를 확인하기 위해 계속 업데이트함
+	
 			
 			BufferStrategy bs = gw.getBufferStrategy();
 			
@@ -55,8 +53,8 @@ public class TestMain {
 			gw.repaint();
 			
 			gs.render(g);			
-	
-			mt.render(g);
+			gs.update(); //캐릭터의 위치를 확인하기 위해 계속 업데이트함
+			//mt.render(g);
 			
 			//mchips.render(g);
 			
