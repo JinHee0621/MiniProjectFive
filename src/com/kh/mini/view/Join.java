@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import com.kh.mini.controller.JoinManager;
+import com.kh.mini.controller.SendMailManager;
 import com.kh.mini.model.vo.UserInfo;
 
 public class Join extends JFrame { //마우스 리스너 해서 위치 잡음
@@ -38,7 +39,7 @@ public class Join extends JFrame { //마우스 리스너 해서 위치 잡음
 		this.add(btn);
 		
 		//인증번호보내기 버튼
-		JButton numBtn = new JButton("인증번호 전송");
+		JButton numBtn = new JButton(new ImageIcon("images\\titleImages\\jooin.png"));
 		numBtn.setLocation(624,520);
 		numBtn.setSize(200,70);
 		numBtn.setContentAreaFilled(false);
@@ -77,7 +78,7 @@ public class Join extends JFrame { //마우스 리스너 해서 위치 잡음
 		panel.add(tpw);
 		tpw.setOpaque(false);
 		tpw.setBorder(javax.swing.BorderFactory.createEmptyBorder());
-		tid.setFont(new Font("Sanscerif", Font.PLAIN, 30));
+		tpw.setFont(new Font("Sanscerif", Font.PLAIN, 30));
 
 		JTextField tname = new JTextField();
 		tname.setLocation(331,429);
@@ -85,7 +86,7 @@ public class Join extends JFrame { //마우스 리스너 해서 위치 잡음
 		panel.add(tname);
 		tname.setOpaque(false);
 		tname.setBorder(javax.swing.BorderFactory.createEmptyBorder());
-		tid.setFont(new Font("Sanscerif", Font.PLAIN, 30));
+		tname.setFont(new Font("Sanscerif", Font.PLAIN, 30));
 
 		JTextField temail = new JTextField();
 		temail.setLocation(331,532);
@@ -93,7 +94,7 @@ public class Join extends JFrame { //마우스 리스너 해서 위치 잡음
 		panel.add(temail);
 		temail.setOpaque(false);
 		temail.setBorder(javax.swing.BorderFactory.createEmptyBorder());
-		tid.setFont(new Font("Sanscerif", Font.PLAIN, 30));
+		temail.setFont(new Font("Sanscerif", Font.PLAIN, 30));
 
 		JTextField tkey = new JTextField();
 		tkey.setLocation(331,632);
@@ -101,13 +102,12 @@ public class Join extends JFrame { //마우스 리스너 해서 위치 잡음
 		panel.add(tkey);
 		tkey.setOpaque(false);
 		tkey.setBorder(javax.swing.BorderFactory.createEmptyBorder());
-		tid.setFont(new Font("Sanscerif", Font.PLAIN, 30));
+		tkey.setFont(new Font("Sanscerif", Font.PLAIN, 30));
 
 		numBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-			
-				System.out.println("인증번호를 전송합니다.");
+				new SendMailManager().gmailSend(temail.getText());
 			}
 		});
 		

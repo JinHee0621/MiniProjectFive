@@ -11,49 +11,62 @@ import javax.mail.Transport;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+
+import com.kh.mini.model.vo.Code;
+import com.kh.mini.view.ResultPrinter;
  
 public class SendMailManager {
+	final String user = "during14days@gmail.com";
+	final String password = "during1414";
 	
-	public static void gamilSend() {
-		final String user = "hjh9406@gmail.com";
-		final String password = "wlsgml12#$";
+	public void gmailSend(String temail) {
+		//메일을 보낼 사람의 메일 주소와, 메일 비밀번호 입력
+		//바꾸지 않을 거라서 final. 접근 제한은 default로 함.
+		//계정 새로 팠음.
+		//메일에서 팝업 모두 설정, IMAP 사용 설정.
+		//보안에서 알수 없는 앱 허용 개방
 
-		Properties prop = new Properties();
-		prop.put("mail.smtp.host", "smtp.gmail.com");
-		prop.put("mail.smtp.port", 465);
-		prop.put("mail.smtp.auth", "true");
-		prop.put("mail.smtp.ssl.enable", "true");
-		prop.put("mail.smtp.ssl.trust", "smtp.gmail.com");
 
-		Session session = Session.getDefaultInstance(prop, new Authenticator(){
+			//Property에 SMTP 서버 정보를 설정
+			//Map계열 구현 클래스
+			Properties prop = new Properties();
+			//이메일 발송을 처리해줄 STMP서버
+			prop.put("mail.smtp.host", "smtp.gmail.com");
+
+			//SMTP서버와 통신하는 포트 gmail은 465
+			prop.put("mail.smtp.port", 465); 
+			prop.put("mail.smtp.auth", "true"); 
+			prop.put("mail.smtp.ssl.enable", "true"); 
+			prop.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+
 			
+			
+		Session session = Session.getDefaultInstance(prop, new Authenticator(){
 			protected PasswordAuthentication getPasswordAuthentication() {
 				return new PasswordAuthentication(user, password);
 			}
 		});
 		
+		
 		MimeMessage message = new MimeMessage(session);
 		try {
 			message.setFrom(new InternetAddress(user));
+			
 			//수신자 메일주소
-			message.addRecipient(Message.RecipientType.TO, new InternetAddress("lsd0017@naver.com"));
-			
-			message.setSubject("인증번호를 테스트한다.");
-			
-			message.setText("인증번호: " + Math.random()*100);
+			message.addRecipient(Message.RecipientType.TO, new InternetAddress(temail));
+			message.setSubject("During14days 회원 가입 인증 메일");
+			message.setText("인증번호 : " + new Code().generate());
 			
 			Transport.send(message);
-			System.out.println("메세지 전송 성공");
+			new ResultPrinter().emailSuccess();
+			
+			
 		} catch(AddressException e) {
 			e.printStackTrace();
 		}
 		catch (MessagingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
-	public static void main(String[] args) {
-		gamilSend();
-	}
 }
