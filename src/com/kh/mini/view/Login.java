@@ -62,20 +62,12 @@ public class Login extends JFrame {
 		tid.setFont(new Font("Sanscerif", Font.PLAIN, 30));
 
 		JPasswordField tpw = new JPasswordField();
-		//JTextField tpw = new JTextField();
 		tpw.setLocation(292, 237);
 		tpw.setSize(277, 42);
 		panel.add(tpw);
 		tpw.setOpaque(false);
 		tpw.setBorder(javax.swing.BorderFactory.createEmptyBorder());
-		tid.setFont(new Font("Sanscerif", Font.PLAIN, 30));
-
-		//      JButton btn1 = new JButton(new ImageIcon("src/image/login.PNG"));
-		//      btn1.setBorderPainted(false);
-		//      btn1.setContentAreaFilled(false);
-		//      this.add(btn1);
-		//      btn1.setBounds(201, 472, 500, 300);
-
+		tid.setFont(new Font("Sanscerif", Font.PLAIN, 50));
 
 		//로그인 확인 버튼
 		btn.addActionListener(new ActionListener() {
@@ -85,7 +77,7 @@ public class Login extends JFrame {
 				JoinManager jm = new JoinManager();
 
 				if(tid.getText() == "" || tpw.getText() == "") {	
-					new ResultPrinter().checkList();	//???????????????????????
+					new ResultPrinter().checkList();	//수정 필요
 				}else {
 					jm.idPwCorrect(tid.getText(), tpw.getText());
 					setVisible(false);
@@ -94,7 +86,6 @@ public class Login extends JFrame {
 		});
 		
 		this.setVisible(true);
-		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
 }
