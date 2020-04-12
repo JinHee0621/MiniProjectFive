@@ -18,7 +18,7 @@ import com.kh.mini.view.ResultPrinter;
 public class SendMailManager {
 	final String user = "during14days@gmail.com";
 	final String password = "during1414";
-	
+	String key = "";
 	public void gmailSend(String temail) {
 		//메일을 보낼 사람의 메일 주소와, 메일 비밀번호 입력
 		//바꾸지 않을 거라서 final. 접근 제한은 default로 함.
@@ -55,7 +55,9 @@ public class SendMailManager {
 			//수신자 메일주소
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(temail));
 			message.setSubject("During14days 회원 가입 인증 메일");
-			message.setText("인증번호 : " + new Code().generate());
+			Code code = new Code();
+			key = code.generate(); //join에서 인증번호 대조할 때, 가져다 쓸 것.
+			message.setText("인증번호 : " + key);
 			
 			Transport.send(message);
 			new ResultPrinter().emailSuccess();
@@ -68,5 +70,12 @@ public class SendMailManager {
 			e.printStackTrace();
 		}
 	}
+	public String getKey() {
+		//join 메소드에서 키값 대조하려면 필요해서 getter 만듦.
+		return key;
+	}
+
+	
+	
 	
 }
