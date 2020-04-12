@@ -84,6 +84,22 @@ public class ResultPrinter extends JFrame{
 		this.add(panel);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
-	
-	
+	public void idEng() {
+		JLabel label = new JLabel(new ImageIcon(new ImageIcon("images\\titleImages\\id_eng.png")
+				.getImage().getScaledInstance(500,200, 0)));
+		label.setBounds(0, 0,500,200);
+		this.add(label);
+		JPanel panel = new JPanel();
+		this.add(panel);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+	}
+	public void pwEng() {
+		JLabel label = new JLabel(new ImageIcon(new ImageIcon("images\\titleImages\\id_eng.png")
+				.getImage().getScaledInstance(500,200, 0)));
+		label.setBounds(0, 0,500,200);
+		this.add(label);
+		JPanel panel = new JPanel();
+		this.add(panel);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+	}
 }
