@@ -1,11 +1,12 @@
-package com.kh.mini.Model.vo.GameObject;
+package com.kh.mini.model.gameObject;
 
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
-import com.kh.mini.Model.vo.Manager.GameScene;
-import com.kh.mini.Model.vo.Manager.ImageClass;
+import com.kh.mini.model.vo.CameraClass;
+import com.kh.mini.model.vo.GameObject;
+import com.kh.mini.model.vo.ImageClass;
 
 public class Player extends GameObject  implements Runnable{
 

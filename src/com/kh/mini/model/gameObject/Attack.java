@@ -1,10 +1,12 @@
-package com.kh.mini.Model.vo.GameObject;
+package com.kh.mini.model.gameObject;
 
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 
-import com.kh.mini.Model.vo.Manager.ImageClass;
 import com.kh.mini.controller.KeyManager;
+import com.kh.mini.model.vo.CameraClass;
+import com.kh.mini.model.vo.GameObject;
+import com.kh.mini.model.vo.ImageClass;
 
 public class Attack extends GameObject  implements Runnable{
 	private ImageClass img;

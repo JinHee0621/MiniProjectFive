@@ -9,10 +9,10 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.JFrame;
 
-import com.kh.mini.Model.vo.Manager.GameScene;
 import com.kh.mini.controller.KeyManager;
 import com.kh.mini.mapTool.MapChip;
 import com.kh.mini.mapTool.MapTool;
+import com.kh.mini.model.gameObject.GameScene;
 import com.kh.mini.view.GameWindow;
 
 public class TestMain {

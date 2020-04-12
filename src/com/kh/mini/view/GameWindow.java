@@ -5,8 +5,8 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JFrame;
 
-import com.kh.mini.Model.vo.Manager.ImageClass;
 import com.kh.mini.mapTool.MapTool;
+import com.kh.mini.model.vo.ImageClass;
 
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;

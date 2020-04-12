@@ -1,4 +1,4 @@
-package com.kh.mini.Model.vo.Manager;
+package com.kh.mini.model.gameObject;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
