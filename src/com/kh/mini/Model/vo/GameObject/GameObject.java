@@ -4,7 +4,7 @@ import java.awt.Graphics;
 import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 
-import com.kh.mini.Manager.KeyManager;
+import com.kh.mini.controller.KeyManager;
 
 public abstract class GameObject {
 

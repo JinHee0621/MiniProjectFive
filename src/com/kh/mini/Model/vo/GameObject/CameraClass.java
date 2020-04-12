@@ -3,7 +3,7 @@ package com.kh.mini.Model.vo.GameObject;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 
-import com.kh.mini.Manager.KeyManager;
+import com.kh.mini.controller.KeyManager;
 
 public class CameraClass extends GameObject {
 

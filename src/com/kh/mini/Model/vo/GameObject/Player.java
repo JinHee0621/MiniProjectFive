@@ -4,8 +4,8 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
-import com.kh.mini.Manager.GameScene;
-import com.kh.mini.Manager.ImageClass;
+import com.kh.mini.Model.vo.Manager.GameScene;
+import com.kh.mini.Model.vo.Manager.ImageClass;
 
 public class Player extends GameObject  implements Runnable{
 

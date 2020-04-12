@@ -3,9 +3,9 @@ package com.kh.mini.Model.vo.GameObject;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 
-import com.kh.mini.Manager.GameScene;
-import com.kh.mini.Manager.ImageClass;
-import com.kh.mini.Manager.KeyManager;
+import com.kh.mini.Model.vo.Manager.GameScene;
+import com.kh.mini.Model.vo.Manager.ImageClass;
+import com.kh.mini.controller.KeyManager;
 
 public class Monster extends GameObject implements Runnable{
 	private ImageClass img;
@@ -138,9 +138,10 @@ public class Monster extends GameObject implements Runnable{
 				if (this.isCollisionRectToRect(attack) == false) {
 				} else {
 					if (!getDamage) {
-						mobPattern = new Thread(this);
 						getDamage = true;
-						monsterHp -= 4;
+						monsterHp -= 1;
+						System.out.println(" " + this + ", "+ monsterHp);
+						mobPattern = new Thread(this);
 						mobPattern.start();
 					}
 					if (this.getX() < attack.getX()) {
@@ -183,10 +184,12 @@ public class Monster extends GameObject implements Runnable{
 		try {
 			if (getDamage) {
 				mobSpeed = 0;
-				Thread.sleep(5000);
-				mobSpeed = firstSpeed;
+				Thread.sleep(300);
 				getDamage = false;
+				Thread.sleep(4000);
+				mobSpeed = firstSpeed;
 				checkPattern = false;
+				
 			} else if(checkPattern && monsterHp > 0){
 				Thread.sleep(500);
 				int doPattern = (int) (Math.random() * 100) + 1;

@@ -9,9 +9,11 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.JFrame;
 
-import com.kh.mini.Manager.*;
+import com.kh.mini.Model.vo.Manager.GameScene;
+import com.kh.mini.controller.KeyManager;
 import com.kh.mini.mapTool.MapChip;
 import com.kh.mini.mapTool.MapTool;
+import com.kh.mini.view.GameWindow;
 
 public class TestMain {
 	@SuppressWarnings("deprecation")
@@ -22,11 +24,7 @@ public class TestMain {
 		
 		GameScene gs = new GameScene();
 		
-		//MapTool mt = new MapTool();
-		
-		gs.init();
-		
-		//mt.init();
+		gs.init();	
 		
 		gw.setSize(1200, 760);		
 		
@@ -42,8 +40,7 @@ public class TestMain {
 		gw.createBufferStrategy(2);
 		
 		while(true) {		
-	
-			
+		
 			BufferStrategy bs = gw.getBufferStrategy();
 			
 			Graphics g = bs.getDrawGraphics();
@@ -52,12 +49,10 @@ public class TestMain {
 			
 			gw.repaint();
 			
-			gs.render(g);			
+			gs.render(g);
+			
 			gs.update(); //캐릭터의 위치를 확인하기 위해 계속 업데이트함
-			//mt.render(g);
-			
-			//mchips.render(g);
-			
+
 			g.dispose();
 			
 			bs.show();
