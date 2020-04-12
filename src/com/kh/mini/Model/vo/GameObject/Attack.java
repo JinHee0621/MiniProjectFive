@@ -3,8 +3,8 @@ package com.kh.mini.Model.vo.GameObject;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 
-import com.kh.mini.Manager.ImageClass;
-import com.kh.mini.Manager.KeyManager;
+import com.kh.mini.Model.vo.Manager.ImageClass;
+import com.kh.mini.controller.KeyManager;
 
 public class Attack extends GameObject  implements Runnable{
 	private ImageClass img;
@@ -46,13 +46,14 @@ public class Attack extends GameObject  implements Runnable{
 		if(parent.isPlayerRight()) img.Init("images\\charImages\\AttackSideRight.png", 80, 90, 11, 1, true);
 		img.setMaxSpeed(100);
 		img.setMagnification(1.0);
+		
 		x = this.getX();
 		y = this.getY();
+		
 		img.setPosition(x, y);
 		
 		img.setIsOn(true);
 
-		
 		this.makeCenterRect(x, y,(int)rangeX,(int)rangeY);
 	}
 	
@@ -70,47 +71,6 @@ public class Attack extends GameObject  implements Runnable{
 			img.changeImage("images\\charImages\\AttackSideLeft.png", 80, 90, 11, 1, true);
 		if (parent.isPlayerRight())
 			img.changeImage("images\\charImages\\AttackSideRight.png", 80, 90, 11, 1, true);
-		
-//		for(int i = 0 ; i < target.length; i++) {
-//			if((this.getDistacne(target[i]) != 0 && distanceMin > this.getDistacne(target[i]))) {
-//				distanceMin = this.getDistacne(target[i]);
-//				nearest = i;
-//			}
-//		}
-//		
-//		distanceMin = 5000;
-//		
-//		if (this.isCollisionRectToRect(target[nearest]) == false) {
-//		} else {
-//			if (this.getX() < target[nearest].getX()) {
-//				this.setPosition(x - (Math.random() * 5), y -  (Math.random() * 5));
-//			} else {
-//				this.setPosition(x +  (Math.random() * 5), y + (Math.random() * 5));
-//			}
-//		}
-//		if (this.isCollisionRectToRect(target) == false) {
-///*			if (this.getX() > target.getX()) {
-//				if (this.getY() > target.getY()) {
-//					this.setPosition(this.getX() - mobSpeed, this.getY() - mobSpeed);
-//				} else {
-//					this.setPosition(this.getX() - mobSpeed, this.getY() + mobSpeed);
-//				}
-//			} else {
-//				if (this.getY() > target.getY()) {
-//					this.setPosition(this.getX() + mobSpeed, this.getY() - mobSpeed);
-//				} else {
-//					this.setPosition(this.getX() + mobSpeed, this.getY() + mobSpeed);
-//				}
-//			}*/
-//		} else {
-//			if (this.getX() < target.getX()) {
-//				this.setPosition(x - 2, y - 2);
-//			} else {
-//				this.setPosition(x + 2, y + 2);
-//			}
-//		}	
-		
-		
 	}
 
 	@Override

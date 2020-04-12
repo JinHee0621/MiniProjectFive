@@ -9,10 +9,10 @@ import java.awt.image.BufferStrategy;
 import java.util.ArrayList;
 import java.util.Stack;
 
-import com.kh.mini.Manager.BaseScene;
-import com.kh.mini.Manager.ImageClass;
-import com.kh.mini.Manager.KeyManager;
 import com.kh.mini.Model.vo.GameObject.GameObject;
+import com.kh.mini.Model.vo.Manager.BaseScene;
+import com.kh.mini.Model.vo.Manager.ImageClass;
+import com.kh.mini.controller.KeyManager;
 
 public class MapTool extends GameObject{
 

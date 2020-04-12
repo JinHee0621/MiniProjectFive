@@ -1,4 +1,4 @@
-package com.kh.mini.Manager;
+package com.kh.mini.controller;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;

@@ -1,10 +1,11 @@
-package com.kh.mini.Manager;
+package com.kh.mini.view;
 
 import java.awt.Graphics;
 import java.awt.event.MouseListener;
 
 import javax.swing.JFrame;
 
+import com.kh.mini.Model.vo.Manager.ImageClass;
 import com.kh.mini.mapTool.MapTool;
 
 import java.awt.image.BufferStrategy;
