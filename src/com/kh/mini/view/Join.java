@@ -21,7 +21,7 @@ import com.kh.mini.model.vo.UserInfo;
 public class Join extends JFrame { //마우스 리스너 해서 위치 잡음
 	private JFrame mf;
 	private JPanel panel;	
-
+	SendMailManager sm = new SendMailManager();
 	public Join(JFrame mf) {
 		//프레임
 		this.setSize(950,770);
@@ -107,7 +107,7 @@ public class Join extends JFrame { //마우스 리스너 해서 위치 잡음
 		numBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new SendMailManager().gmailSend(temail.getText());
+				sm.gmailSend(temail.getText());
 			}
 		});
 
@@ -121,7 +121,7 @@ public class Join extends JFrame { //마우스 리스너 해서 위치 잡음
 				if(jm.duplicateId(id) == 1) {
 					new ResultPrinter().idDuplicate();
 					return;
-				} else if(tkey.getText() != new SendMailManager().getKey()) {
+				} else if(!(tkey.getText().equals(sm.getKey()))) {
 					new ResultPrinter().codeFail();
 
 				}else if (tid.getText().equals("") || tpw.getText().equals("") || tname.getText().equals("")
