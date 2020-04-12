@@ -6,8 +6,8 @@ import java.awt.event.MouseEvent;
 import java.io.Serializable;
 import java.util.Stack;
 
-import com.kh.mini.Model.vo.GameObject.GameObject;
-import com.kh.mini.Model.vo.Manager.ImageClass;
+import com.kh.mini.model.vo.GameObject;
+import com.kh.mini.model.vo.ImageClass;
 
 public class MapChip extends GameObject implements Serializable{
 	/**

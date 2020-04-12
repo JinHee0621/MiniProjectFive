@@ -1,14 +1,12 @@
-package com.kh.mini.Model.vo.Manager;
+package com.kh.mini.model.gameObject;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
-import com.kh.mini.Model.vo.GameObject.CameraClass;
-import com.kh.mini.Model.vo.GameObject.Monster;
-import com.kh.mini.Model.vo.GameObject.Player;
-import com.kh.mini.mapTool.MapTool;
+import com.kh.mini.model.vo.CameraClass;
+import com.kh.mini.model.vo.ImageClass;
 
 public class GameScene extends BaseScene {
 	

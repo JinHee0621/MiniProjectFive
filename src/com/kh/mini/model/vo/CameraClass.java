@@ -1,4 +1,4 @@
-package com.kh.mini.Model.vo.GameObject;
+package com.kh.mini.model.vo;
 
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
