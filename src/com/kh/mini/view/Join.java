@@ -134,9 +134,7 @@ public class Join extends JFrame { //마우스 리스너 해서 위치 잡음
 					if(!((carr2[i] >= 'a' && carr2[i] <= 'z')||(carr2[i] >= '0' && carr2[i] <= '9'))) {
 					flag2 = true;
 					}
-
 				}
-				
 				JoinManager jm = new JoinManager();
 				String id = tid.getText();
 				if(jm.duplicateId(id) == 1) {
@@ -157,7 +155,8 @@ public class Join extends JFrame { //마우스 리스너 해서 위치 잡음
 					String name = tname.getText();
 					String email = temail.getText();
 					String key = tkey.getText();
-					UserInfo userinfo = new UserInfo(id,pw,name,email,key);
+					int point = 0;
+					UserInfo userinfo = new UserInfo(id,pw,name,email,key,point);
 					jm.insertMember(userinfo);
 					new ResultPrinter().joinSuccess();//이거 다시 써주기
 					setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

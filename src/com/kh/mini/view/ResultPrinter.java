@@ -1,6 +1,10 @@
 package com.kh.mini.view;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -17,13 +21,29 @@ public class ResultPrinter extends JFrame{
 	}
 
 	public void logSuccess() {
+		//확인버튼
+		JButton btn = new JButton(new ImageIcon("images\\titleImages\\oh_yes.png"));
+		btn.setLocation(160,110);
+		btn.setSize(185,65);
+		btn.setContentAreaFilled(false);
+		btn.setBorderPainted(false);
+		this.add(btn);
+		
+		//팝업 배경
 		JLabel label = new JLabel(new ImageIcon(new ImageIcon("images\\titleImages\\login_success.png")
 				.getImage().getScaledInstance(500,200, 0)));
 		label.setBounds(0, 0,500,200);
 		this.add(label);
-		JPanel panel = new JPanel();
-		this.add(panel);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		
+		btn.addActionListener(new ActionListener() {
+			//확인버튼 누르면 우선 팝업 프레임 안보이게 해야함.
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//게임 실행
+			}
+		});
 	}
 	
 	public void logFail() {
@@ -31,8 +51,6 @@ public class ResultPrinter extends JFrame{
 				.getImage().getScaledInstance(500,200, 0)));
 		label.setBounds(0, 0,500,200);
 		this.add(label);
-		JPanel panel = new JPanel();
-		this.add(panel);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
 	
@@ -41,8 +59,6 @@ public class ResultPrinter extends JFrame{
 				.getImage().getScaledInstance(500,200, 0)));
 		label.setBounds(0, 0,500,200);
 		this.add(label);
-		JPanel panel = new JPanel();
-		this.add(panel);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
 
@@ -51,8 +67,6 @@ public class ResultPrinter extends JFrame{
 				.getImage().getScaledInstance(500,200, 0)));
 		label.setBounds(0, 0,500,200);
 		this.add(label);
-		JPanel panel = new JPanel();
-		this.add(panel);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
 	
@@ -61,8 +75,6 @@ public class ResultPrinter extends JFrame{
 				.getImage().getScaledInstance(500,200, 0)));
 		label.setBounds(0, 0,500,200);
 		this.add(label);
-		JPanel panel = new JPanel();
-		this.add(panel);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
 
@@ -71,8 +83,6 @@ public class ResultPrinter extends JFrame{
 				.getImage().getScaledInstance(500,200, 0)));
 		label.setBounds(0, 0,500,200);
 		this.add(label);
-		JPanel panel = new JPanel();
-		this.add(panel);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
 	public void codeFail() {
@@ -80,8 +90,6 @@ public class ResultPrinter extends JFrame{
 				.getImage().getScaledInstance(500,200, 0)));
 		label.setBounds(0, 0,500,200);
 		this.add(label);
-		JPanel panel = new JPanel();
-		this.add(panel);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
 	public void idEng() {
@@ -89,8 +97,6 @@ public class ResultPrinter extends JFrame{
 				.getImage().getScaledInstance(500,200, 0)));
 		label.setBounds(0, 0,500,200);
 		this.add(label);
-		JPanel panel = new JPanel();
-		this.add(panel);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
 	public void pwEng() {
@@ -98,8 +104,6 @@ public class ResultPrinter extends JFrame{
 				.getImage().getScaledInstance(500,200, 0)));
 		label.setBounds(0, 0,500,200);
 		this.add(label);
-		JPanel panel = new JPanel();
-		this.add(panel);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
 }
