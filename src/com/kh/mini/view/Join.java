@@ -128,7 +128,7 @@ public class Join extends JFrame { //마우스 리스너 해서 위치 잡음
 					System.out.println(carr1[i]);
 				}
 				
-				//비밀번호 숫자와 영문 소문자만 입력받는 조건.
+				//비밀번호 숫자와 영문 소s문자만 입력받는 조건.
 				boolean flag2 = false;
 				char[]carr2 = tpw.getText().toCharArray();//아이디 한글자씩 배열에 넣음
 				for(int i = 0; i < carr2.length; i++) {
