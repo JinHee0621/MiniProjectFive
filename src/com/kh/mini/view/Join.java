@@ -125,7 +125,6 @@ public class Join extends JFrame { //마우스 리스너 해서 위치 잡음
 					if(!((carr1[i] >= 'a' && carr1[i] <= 'z')||(carr1[i] >= '0' && carr1[i] <= '9'))) {
 					flag1 = true;
 					}
-					System.out.println(carr1[i]);
 				}
 				
 				//비밀번호 숫자와 영문 소s문자만 입력받는 조건.
@@ -135,7 +134,6 @@ public class Join extends JFrame { //마우스 리스너 해서 위치 잡음
 					if(!((carr2[i] >= 'a' && carr2[i] <= 'z')||(carr2[i] >= '0' && carr2[i] <= '9'))) {
 					flag2 = true;
 					}
-					System.out.println(carr1[i]);
 
 				}
 				
