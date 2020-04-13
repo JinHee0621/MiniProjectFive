@@ -71,7 +71,7 @@ public class Monster extends GameObject implements Runnable{
 		img.setIsOn(true);
 		img.setMaxSpeed(100);
 		
-		this.makeCenterRect(x, y,80,80);
+		this.makeCenterRect(x, y,100,100);
 	}
 	public void addObjs(GameObject[] mobs) {
 		this.objs = mobs;
@@ -85,7 +85,7 @@ public class Monster extends GameObject implements Runnable{
 	public void update() {
 
 		if (monsterHp > 0) {
-			this.makeCenterRect(x, y, 80, 80);
+			this.makeCenterRect(x, y, 100, 100);
 			img.isFrameUpdate();
 
 			for (int i = 0; i <GameScene.monsterLength; i++) {

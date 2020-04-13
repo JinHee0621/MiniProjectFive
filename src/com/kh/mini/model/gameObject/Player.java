@@ -16,6 +16,7 @@ public class Player extends GameObject  implements Runnable{
 	
 	private boolean checkGetAttack = false;
 	boolean checkDoAttack = false;
+	
 	private GameObject[] objs;
 
 	private boolean playerFront = true;
@@ -33,7 +34,7 @@ public class Player extends GameObject  implements Runnable{
 	
 	private int playerMask = 5;
 
-	private UiScene uiScene;
+	private UiScene uiScene; //캐릭터의 체력이나 마스크 표시를 위한 UiScene
 	
 	@Override
 	public void init() {
