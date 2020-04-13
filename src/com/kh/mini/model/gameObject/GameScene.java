@@ -32,6 +32,7 @@ public class GameScene extends BaseScene {
 	
 	private boolean popItem = false;
 	
+
 	@Override
 	public void init() {
 		// TODO Auto-generated method stub
@@ -56,23 +57,25 @@ public class GameScene extends BaseScene {
 
 		p.setCam(cam);
 
+		//(int)(Math.random() * 1000);
+		
 		mobs[0] = new Monster(p,"images\\monsterImages\\Monster_Type_Blue.png",64,64,10,1,0.05);
-		mobs[0].setPosition(800, 800);
+		mobs[0].setPosition((int)(Math.random() * 1000), (int)(Math.random() * 1000));
 		mobs[0].setCam(cam);
 		mobs[0].init();
 		
 		mobs[1] =  new Monster(p,"images\\monsterImages\\Monster_Type_Blue.png",64,64,10,1,0.05);
-		mobs[1].setPosition(900, 100);
+		mobs[1].setPosition((int)(Math.random() * 1000), (int)(Math.random() * 1000));
 		mobs[1].setCam(cam);
 		mobs[1].init();
 		
 		mobs[2] =  new Monster(p,"images\\monsterImages\\Monster_Type_Green.png",128,128,17,2,0.03);
-		mobs[2].setPosition(1000, 0);
+		mobs[2].setPosition((int)(Math.random() * 1000), (int)(Math.random() * 1000));
 		mobs[2].setCam(cam);
 		mobs[2].init();
 		
 		mobs[3] =  new Monster(p,"images\\monsterImages\\Monster_Type_Purple.png",100,100,15,3,0.04);
-		mobs[3].setPosition(223, 700);
+		mobs[3].setPosition((int)(Math.random() * 1000), (int)(Math.random() * 1000));
 		mobs[3].setCam(cam);
 		mobs[3].init();
 		
@@ -90,6 +93,7 @@ public class GameScene extends BaseScene {
 		p.addUI(uiScene);
 	}
 
+	
 	@Override
 	public void release() {
 		// TODO Auto-generated method stub
@@ -143,9 +147,9 @@ public class GameScene extends BaseScene {
 		uiScene.render(g);
 		
 		if(popItem) {
-			System.out.println("아이탬 팝업");
 			item.render(g);
-		}
+			item.update();
+		} 
 	}
 	
 	
@@ -160,11 +164,42 @@ public class GameScene extends BaseScene {
 
 	public void popItem() {
 		if (!popItem) {
-			item = new GameItem("images\\ItemImage\\HandCleaner.png");
-			item.setPosition(500, 500);
+			item = new GameItem("images\\ItemImage\\HandCleaner.png",this,p);
 			item.init();
 			popItem = true;
 		}
 	}
 	
+	public void eatItem() {
+		popItem = false;
+		item = null;
+		monsterLength = 4;
+		
+		mobs[0] = new Monster(p,"images\\monsterImages\\Monster_Type_Blue.png",64,64,10,1,0.05);
+		mobs[0].setPosition((int)(Math.random() * 1000), (int)(Math.random() * 1000));
+		mobs[0].setCam(cam);
+		mobs[0].init();
+		
+		mobs[1] =  new Monster(p,"images\\monsterImages\\Monster_Type_Blue.png",64,64,10,1,0.05);
+		mobs[1].setPosition((int)(Math.random() * 1000), (int)(Math.random() * 1000));
+		mobs[1].setCam(cam);
+		mobs[1].init();
+		
+		mobs[2] =  new Monster(p,"images\\monsterImages\\Monster_Type_Green.png",128,128,17,2,0.03);
+		mobs[2].setPosition((int)(Math.random() * 1000), (int)(Math.random() * 1000));
+		mobs[2].setCam(cam);
+		mobs[2].init();
+		
+		mobs[3] =  new Monster(p,"images\\monsterImages\\Monster_Type_Purple.png",100,100,15,3,0.04);
+		mobs[3].setPosition((int)(Math.random() * 1000), (int)(Math.random() * 1000));
+		mobs[3].setCam(cam);
+		mobs[3].init();
+		
+		for(int i = 0; i < mobs.length; i++) {
+			mobs[i].addObjs(mobs);
+			//자기자신을 제외하고 가까운 오브젝트를 찾아야 할것
+		}
+		
+		p.addObjs(mobs);
+	}
 }

@@ -13,8 +13,12 @@ public class GameItem  extends GameObject {
 	
 	private String imgPath;
 	
-	public GameItem(String imgPath) {
+	private GameScene gameScene;
+	
+	public GameItem(String imgPath, GameScene gameScene, Player player) {
 		this.imgPath = imgPath;
+		this.gameScene = gameScene;
+		this.player = player;
 	}
 	
 	@Override
@@ -25,8 +29,8 @@ public class GameItem  extends GameObject {
 		
 		img.setMagnification(1.0);
 		
-		x = 200;
-		y = 200;
+		x = 800;
+		y = 500;
 		
 		img.setPosition(x, y);
 		this.makeCenterRect(x, y, 70, 70);
@@ -34,8 +38,12 @@ public class GameItem  extends GameObject {
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
-		
+		this.makeCenterRect(x, y, 70, 70);
+		if (player != null && this.isCollisionRectToRect(player) == false) {
+		} else {
+			gameScene.eatItem();
+			player.setPlayerClean(10);
+		}
 	}
 
 	@Override
