@@ -33,7 +33,7 @@ public class JoinDao {
 			}
 		}
 	}
-
+	
 	public ArrayList<UserInfo> fileOpen() {
 		ObjectInputStream ois = null;
 		ArrayList<UserInfo> list = null;

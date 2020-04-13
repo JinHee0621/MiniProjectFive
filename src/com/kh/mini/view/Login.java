@@ -28,22 +28,21 @@ public class Login extends JFrame {
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
 		this.setLayout(null);
-
+		
 		JButton btn = new JButton(new ImageIcon("images\\titleImages\\loggin.png"));
 		btn.setContentAreaFilled(false);
 		btn.setBorderPainted(false);
 		btn.setLocation(615, 223);
 		btn.setSize(185, 65);
 		this.add(btn);
-
+		
 		JLabel label = new JLabel(new ImageIcon(new ImageIcon("images\\titleImages\\login_pop.png").getImage().getScaledInstance(850, 350, 0)));
 		label.setBounds(0, 0, 850, 350);
 		this.add(label);
-
+		
 		JPanel panel = new JPanel();
 		panel.setSize(850, 350);
 		panel.setLayout(null);
-
 
 		try {
 			this.setIconImage(ImageIO.read(new File("images\\titleImages\\monsterLogo.png")));
@@ -67,7 +66,7 @@ public class Login extends JFrame {
 		panel.add(tpw);
 		tpw.setOpaque(false);
 		tpw.setBorder(javax.swing.BorderFactory.createEmptyBorder());
-		tid.setFont(new Font("Sanscerif", Font.PLAIN, 50));
+		tpw.setFont(new Font("Sanscerif", Font.PLAIN, 50));
 
 		//로그인 확인 버튼
 		btn.addActionListener(new ActionListener() {

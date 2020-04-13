@@ -8,20 +8,20 @@ public class UserInfo implements Serializable{
 	private String pw;
 	private String name;
 	private String email;
-	private String Key;
+	private String key;
+	private int point;
 	
 	public UserInfo() {}
 	
-	public UserInfo(String id, String pw, String name, String email, String key) {
+	public UserInfo(String id, String pw, String name, String email, String key, int point) {
 		super();
 		this.id = id;
 		this.pw = pw;
 		this.name = name;
 		this.email = email;
-		this.Key = key;
+		this.key = key;
+		this.point = point;
 	}
-	
-	
 	
 	public String getId() {
 		return id;
@@ -48,21 +48,21 @@ public class UserInfo implements Serializable{
 		this.email = email;
 	}
 	public String getKey() {
-		return Key;
+		return key;
 	}
 	public void setKey(String key) {
-		Key = key;
+		this.key = key;
 	}
-
-
+	public int getPoint() {
+		return point;
+	}
+	public void setPoint(int point) {
+		this.point = point;
+	}
+	
 	@Override
 	public String toString() {
-		return "UserInfo [id=" + id + ", pw=" + pw + ", name=" + name + ", email=" + email + ", Key=" + Key + "]";
+		return "UserInfo [id=" + id + ", pw=" + pw + ", name=" + name + ", email=" + email + ", Key=" + key + ", point=" + point + "]";
 	}
 
-	
-	
-	
-	
-	
 }

@@ -14,7 +14,7 @@ import javax.mail.internet.MimeMessage;
 
 import com.kh.mini.model.vo.Code;
 import com.kh.mini.view.ResultPrinter;
- 
+
 public class SendMailManager {
 	final String user = "during14days@gmail.com";
 	final String password = "during1414";
@@ -25,7 +25,6 @@ public class SendMailManager {
 		//계정 새로 팠음.
 		//메일에서 팝업 모두 설정, IMAP 사용 설정.
 		//보안에서 알수 없는 앱 허용 개방
-
 
 			//Property에 SMTP 서버 정보를 설정
 			//Map계열 구현 클래스
@@ -38,7 +37,7 @@ public class SendMailManager {
 			prop.put("mail.smtp.auth", "true"); 
 			prop.put("mail.smtp.ssl.enable", "true"); 
 			prop.put("mail.smtp.ssl.trust", "smtp.gmail.com");
-
+			
 			
 			
 		Session session = Session.getDefaultInstance(prop, new Authenticator(){

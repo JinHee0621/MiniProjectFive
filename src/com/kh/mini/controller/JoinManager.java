@@ -50,6 +50,7 @@ public class JoinManager {
 			jd.fileSave(list);
 		}
 	}
+	
 	public int duplicateId(String id) {
 		int result = 0;//기본값, 중복되는  경우 없을 때, 0 반환
 		//회원정보 전부 가져오기
