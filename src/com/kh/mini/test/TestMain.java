@@ -40,7 +40,7 @@ public class TestMain {
 			
 			g.clearRect(0, 0, gw.getWidth(), gw.getHeight());
 			
-
+			//gw.repaint();
 			gw.repaint();
 			
 			gs.render(g);
