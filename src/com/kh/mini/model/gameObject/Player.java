@@ -267,6 +267,7 @@ public class Player extends GameObject  implements Runnable{
 
 	public void setPlayerClean(int playerClean) {
 		this.playerClean = playerClean;
+		uiScene.update();
 	}
 
 	public Attack getAttack() {
@@ -293,5 +294,6 @@ public class Player extends GameObject  implements Runnable{
 
 	public void setPlayerMask(int playerMask) {
 		this.playerMask = playerMask;
+		uiScene.update();
 	}
 }
