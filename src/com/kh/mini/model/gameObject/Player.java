@@ -11,6 +11,7 @@ import com.kh.mini.model.vo.ImageClass;
 public class Player extends GameObject  implements Runnable{
 
 	private ImageClass img;
+	
 	CameraClass cam;
 	
 	private boolean checkGetAttack = false;
@@ -24,13 +25,18 @@ public class Player extends GameObject  implements Runnable{
 	
 	private double distanceMin = 5000;
 	
-	private double playerMovSpeed = 0.5;
+	private double playerMovSpeed = 1;
 	
 	private Attack attack;
 
+	private int playerClean = 10;
+	
+	private int playerMask = 5;
+
+	private UiScene uiScene;
+	
 	@Override
 	public void init() {
-		// TODO Auto-generated method stub
 		img = new ImageClass();
 		
 		img.Init("images\\charImages\\MainCharSideR.png", 90, 150, 11, 1, true);
@@ -42,14 +48,21 @@ public class Player extends GameObject  implements Runnable{
 		
 		img.setPosition(x, y);
 		img.setIsOn(true);
-		img.setMaxSpeed(50);
+		img.setMaxSpeed(500);
 		
 		this.makeCenterRect(x, y, 70, 70);
+	}
+	
+	public void addUI(UiScene uiScene) {
+		this.uiScene = uiScene;
+		uiScene.update();
 	}
 	
 	public void addObjs(GameObject[] mobs) {
 		this.objs = mobs;
 	}
+	
+	
 	@Override
 	public void update() {
 		this.makeCenterRect(x, y, 70, 70);
@@ -62,10 +75,11 @@ public class Player extends GameObject  implements Runnable{
 				nearlist = i;
 			}
 		}
-		
 		distanceMin = 5000;
+
 		playerMov();
 		img.isFrameUpdate();
+		
 		if(objs[nearlist] != null && this.isCollisionRectToRect(objs[nearlist]) == false) {
 		} else {
 			if (objs[nearlist] != null && !checkGetAttack) {
@@ -81,67 +95,130 @@ public class Player extends GameObject  implements Runnable{
 	}
 
 	public void playerMov() {
-		
-		if (key.onceKeyDown(KeyEvent.VK_Z) && !checkDoAttack) {
-			checkDoAttack = true;
-			attack = new Attack(this);
-			attack.targetMobs(objs);
-			new Thread(this).start();
-		}
+		if (playerClean > 0) {
+			if (key.onceKeyDown(KeyEvent.VK_Z) && !checkDoAttack) {
+				checkDoAttack = true;
+				attack = new Attack(this);
+				attack.targetMobs(objs);
+				new Thread(this).start();
+			}
+			if (key.stayKeyDown(KeyEvent.VK_LEFT)) {
+				img.setIsOn(true);
+				x -= playerMovSpeed;
 
-		if (key.stayKeyDown(KeyEvent.VK_LEFT)) {
-			x -= playerMovSpeed;
+				if (checkGetAttack)
+					img.changeImage("images\\charImages\\MainCharSideL_Flash.png", 90, 150, 11, 1, true);
+				else
+					img.changeImage("images\\charImages\\MainCharSideL.png", 90, 150, 11, 1, true);
+				playerFront = false;
+				playerRight = false;
+				playerLeft = true;
+				playerUp = false;
+			}
+			
+			if (key.stayKeyDown(KeyEvent.VK_RIGHT)) {
+				img.setIsOn(true);
+				x += playerMovSpeed;
 
-			if (checkGetAttack)
-				img.changeImage("images\\charImages\\MainCharSideL_Flash.png", 90, 150, 11, 1, true);
-			else
-				img.changeImage("images\\charImages\\MainCharSideL.png", 90, 150, 11, 1, true);
-			playerFront = false;
-			playerRight = false;
-			playerLeft = true;
-			playerUp = false;
-		}
-		if (key.stayKeyDown(KeyEvent.VK_RIGHT)) {
-			x += playerMovSpeed;
+				if (checkGetAttack)
+					img.changeImage("images\\charImages\\MainCharSideR_Flash.png", 90, 150, 11, 1, true);
+				else
+					img.changeImage("images\\charImages\\MainCharSideR.png", 90, 150, 11, 1, true);
 
-			if (checkGetAttack)
-				img.changeImage("images\\charImages\\MainCharSideR_Flash.png", 90, 150, 11, 1, true);
-			else
-				img.changeImage("images\\charImages\\MainCharSideR.png", 90, 150, 11, 1, true);
+				playerFront = false;
+				playerRight = true;
+				playerLeft = false;
+				playerUp = false;
+			}
+			if (key.stayKeyDown(KeyEvent.VK_DOWN)) {
+				img.setIsOn(true);
+				y += playerMovSpeed;
 
-			playerFront = false;
-			playerRight = true;
-			playerLeft = false;
-			playerUp = false;
-		}
-		if (key.stayKeyDown(KeyEvent.VK_DOWN)) {
-			y += playerMovSpeed;
+				if (checkGetAttack)
+					img.changeImage("images\\charImages\\MainCharFront_Flash.png", 75, 140, 11, 1, true);
+				else
+					img.changeImage("images\\charImages\\MainCharFront.png", 75, 140, 11, 1, true);
 
-			if (checkGetAttack)
-				img.changeImage("images\\charImages\\MainCharFront_Flash.png", 75, 140, 11, 1, true);
-			else
-				img.changeImage("images\\charImages\\MainCharFront.png", 75, 140, 11, 1, true);
-
-			playerFront = true;
-			playerRight = false;
-			playerLeft = false;
-			playerUp = false;
-
-		}
-		if (key.stayKeyDown(KeyEvent.VK_UP)) {
-			y -= playerMovSpeed;
-
-			if (checkGetAttack)
-				img.changeImage("images\\charImages\\MainCharUp_Flash.png", 75, 140, 11, 1, true);
-			else
-				img.changeImage("images\\charImages\\MainCharUp.png", 75, 140, 11, 1, true);
-			playerFront = false;
-			playerRight = false;
-			playerLeft = false;
-			playerUp = true;
+				playerFront = true;
+				playerRight = false;
+				playerLeft = false;
+				playerUp = false;
+			}
+			
+			if (key.stayKeyDown(KeyEvent.VK_UP)) {
+				img.setIsOn(true);
+				y -= playerMovSpeed;
+				if (checkGetAttack)
+					img.changeImage("images\\charImages\\MainCharUp_Flash.png", 75, 140, 11, 1, true);
+				else
+					img.changeImage("images\\charImages\\MainCharUp.png", 75, 140, 11, 1, true);
+				playerFront = false;
+				playerRight = false;
+				playerLeft = false;
+				playerUp = true;
+			}
+			
+			if(!(key.stayKeyDown(KeyEvent.VK_LEFT) || key.stayKeyDown(KeyEvent.VK_RIGHT) || key.stayKeyDown(KeyEvent.VK_DOWN) || key.stayKeyDown(KeyEvent.VK_UP))) {
+				if(!checkGetAttack) img.setIsOn(false);
+			}
 		}
 	}
 	
+	
+	@Override
+	public void release() {
+	}
+
+	@Override
+	public void render(Graphics g) {
+		img.setPosition(x - cam.getX(), y - cam.getY());
+		img.render(g);
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub	
+		if (checkGetAttack) {
+				if(playerClean > 0 && playerMask <= 0) playerClean -= 1;
+				else if(playerMask > 0) playerMask -= 1;
+				uiScene.update();
+			try {
+				if(playerFront) img.changeImage("images\\charImages\\MainCharFront_Flash.png", 75, 140, 11, 1, true);
+				if(playerRight) img.changeImage("images\\charImages\\MainCharSideR_Flash.png", 90, 150, 11, 1, true);
+				if(playerLeft) img.changeImage("images\\charImages\\MainCharSideL_Flash.png", 90, 150, 11, 1, true);
+				if(playerUp) img.changeImage("images\\charImages\\MainCharUp_Flash.png", 75, 140, 11, 1, true);
+				img.setIsOn(true);
+				Thread.sleep(1500);
+				if(playerFront) img.changeImage("images\\charImages\\MainCharFront.png", 75, 140, 11, 1, true);
+				if(playerRight) img.changeImage("images\\charImages\\MainCharSideR.png", 90, 150, 11, 1, true);
+				if(playerLeft) img.changeImage("images\\charImages\\MainCharSideL.png", 90, 150, 11, 1, true);
+				if(playerUp) img.changeImage("images\\charImages\\MainCharUp.png", 75, 140, 11, 1, true);
+				checkGetAttack = false;
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		if(checkDoAttack) {
+			try {
+				attack.setPosition(getX(), getY());
+				attack.setCam(cam);
+				Thread.sleep(1000);
+				checkDoAttack = false;
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public ImageClass getImage() {
+		return img;
+	}
+	
+	public void setCam(CameraClass cam) {
+		this.cam = cam;
+	}
 	
 	public boolean isPlayerUp() {
 		return playerUp;
@@ -183,58 +260,12 @@ public class Player extends GameObject  implements Runnable{
 		this.playerMovSpeed = playerMovSpeed;
 	}
 
-	@Override
-	public void release() {
-		// TODO Auto-generated method stub
+	public int getPlayerClean() {
+		return playerClean;
 	}
 
-	@Override
-	public void render(Graphics g) {
-		// TODO Auto-generated method stub
-		img.setPosition(x - cam.getX(), y - cam.getY());
-		img.render(g);
-	}
-
-	public ImageClass getImage() {
-		return img;
-	}
-	
-	public void setCam(CameraClass cam) {
-		this.cam = cam;
-	}
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-		
-		if (checkGetAttack) {
-			try {
-				if(playerFront) img.changeImage("images\\charImages\\MainCharFront_Flash.png", 75, 140, 11, 1, true);
-				if(playerRight) img.changeImage("images\\charImages\\MainCharSideR_Flash.png", 90, 150, 11, 1, true);
-				if(playerLeft) img.changeImage("images\\charImages\\MainCharSideL_Flash.png", 90, 150, 11, 1, true);
-				if(playerUp) img.changeImage("images\\charImages\\MainCharUp_Flash.png", 75, 140, 11, 1, true);
-				Thread.sleep(1500);
-				if(playerFront) img.changeImage("images\\charImages\\MainCharFront.png", 75, 140, 11, 1, true);
-				if(playerRight) img.changeImage("images\\charImages\\MainCharSideR.png", 90, 150, 11, 1, true);
-				if(playerLeft) img.changeImage("images\\charImages\\MainCharSideL.png", 90, 150, 11, 1, true);
-				if(playerUp) img.changeImage("images\\charImages\\MainCharUp.png", 75, 140, 11, 1, true);
-				checkGetAttack = false;
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		
-		if(checkDoAttack) {
-			try {
-				attack.setPosition(getX(), getY());
-				attack.setCam(cam);
-				Thread.sleep(1000);
-				checkDoAttack = false;
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
+	public void setPlayerClean(int playerClean) {
+		this.playerClean = playerClean;
 	}
 
 	public Attack getAttack() {
@@ -252,5 +283,14 @@ public class Player extends GameObject  implements Runnable{
 
 	public void setCheckDoAttack(boolean checkDoAttack) {
 		this.checkDoAttack = checkDoAttack;
+	}
+	
+	
+	public int getPlayerMask() {
+		return playerMask;
+	}
+
+	public void setPlayerMask(int playerMask) {
+		this.playerMask = playerMask;
 	}
 }

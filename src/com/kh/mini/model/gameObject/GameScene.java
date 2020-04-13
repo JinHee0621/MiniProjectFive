@@ -9,6 +9,8 @@ import com.kh.mini.model.vo.CameraClass;
 import com.kh.mini.model.vo.ImageClass;
 
 public class GameScene extends BaseScene {
+
+	UiScene uiScene;
 	
 	ImageClass img;
 	ImageClass img2;
@@ -33,9 +35,12 @@ public class GameScene extends BaseScene {
 	public void init() {
 		// TODO Auto-generated method stub
 		
+
+		
 		cam = new CameraClass();
 		cam.init();
 		
+	
 		bg = new ImageClass();
 		bg.Init("images\\mapImages\\MapSample.png");
 		
@@ -48,6 +53,7 @@ public class GameScene extends BaseScene {
 		
 		bgX = bg.getX();
 		bgY = bg.getY();
+		
 		p = new Player();
 
 		p.setCam(cam);
@@ -79,6 +85,11 @@ public class GameScene extends BaseScene {
 
 		p.addObjs(mobs);
 		p.init();
+		
+		uiScene = new UiScene(p);
+		uiScene.init();
+		
+		p.addUI(uiScene);
 	}
 
 	@Override
@@ -118,6 +129,7 @@ public class GameScene extends BaseScene {
 	public void render(Graphics g) {
 		// TODO Auto-generated method stub
 		p.render(g);
+		
 		if(p.isCheckDoAttack()) {
 			p.getAttack().render(g);
 		}
@@ -125,6 +137,8 @@ public class GameScene extends BaseScene {
 		for (int i = 0; i < monsterLength; i++) {
 			if(mobs[i] != null) mobs[i].render(g);
 		}
+		
+		uiScene.render(g);
 	}
 	
 	

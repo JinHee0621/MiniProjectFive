@@ -1,15 +1,12 @@
 package com.kh.mini.view;
 
+import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.event.MouseListener;
+import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
 
-import com.kh.mini.mapTool.MapTool;
 import com.kh.mini.model.vo.ImageClass;
-
-import java.awt.image.BufferStrategy;
-import java.awt.image.BufferedImage;
 
 public class GameWindow extends JFrame {
 
@@ -21,30 +18,33 @@ public class GameWindow extends JFrame {
 	
 	ImageClass img;
 	
+	int frame = 0;
+	int count = 0;
 	
 	public GameWindow() {
+		this.setSize(1408, 896);
+
+		this.setVisible(true);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
+	
 	
 	public void Init() {
 		
 	}
-	
-	int frame = 0;
-	int count = 0;
-	
+
 	public void paint(Graphics g) {
 
 	}
 	
 	public void update(Graphics g) {
-		System.out.println("¾÷µ« È£Ãâ");
 		paint(g);
 	}
 	
 	public void destroy() {
 		
 	}
-	
+//	
 	
 	
 }

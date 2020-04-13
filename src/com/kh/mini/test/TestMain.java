@@ -1,18 +1,13 @@
 package com.kh.mini.test;
 
-import java.awt.Canvas;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
-import java.awt.image.BufferedImage;
 
 import javax.swing.JFrame;
 
 import com.kh.mini.controller.KeyManager;
-import com.kh.mini.mapTool.MapChip;
-import com.kh.mini.mapTool.MapTool;
 import com.kh.mini.model.gameObject.GameScene;
+
 import com.kh.mini.view.GameWindow;
 
 public class TestMain {
@@ -26,8 +21,6 @@ public class TestMain {
 		
 		gs.init();	
 		
-		gw.setSize(1200, 760);		
-		
 		gw.addKeyListener(KeyManager.Instance());
 		
 		gw.addMouseListener(KeyManager.Instance());
@@ -36,9 +29,9 @@ public class TestMain {
 		
 		gw.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		gw.setVisible(true);		
-		
+		//gw.repaint();
 		gw.createBufferStrategy(2);
-		
+
 		while(true) {		
 		
 			BufferStrategy bs = gw.getBufferStrategy();
@@ -47,6 +40,7 @@ public class TestMain {
 			
 			g.clearRect(0, 0, gw.getWidth(), gw.getHeight());
 			
+			//gw.repaint();
 			gw.repaint();
 			
 			gs.render(g);
