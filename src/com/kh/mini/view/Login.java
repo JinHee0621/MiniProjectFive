@@ -67,7 +67,7 @@ public class Login extends JFrame {
 		panel.add(tpw);
 		tpw.setOpaque(false);
 		tpw.setBorder(javax.swing.BorderFactory.createEmptyBorder());
-		tid.setFont(new Font("Sanscerif", Font.PLAIN, 50));
+		tpw.setFont(new Font("Sanscerif", Font.PLAIN, 50));
 
 		//로그인 확인 버튼
 		btn.addActionListener(new ActionListener() {
