@@ -123,4 +123,14 @@ public class ResultPrinter extends JFrame{
 		this.add(panel);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
+	
+	   public void pwNotCorrect() {
+		      JLabel label = new JLabel(new ImageIcon(new ImageIcon("images\\titleImages\\pwNotCorrect.png")
+		            .getImage().getScaledInstance(500, 200, 0)));
+		      label.setBounds(0,0,500,200);
+		      this.add(label);
+		      JPanel panel = new JPanel();
+		      this.add(panel);
+		      setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		   }
 }
