@@ -51,15 +51,14 @@ public class JoinManager {
 		}
 	}
 	public int duplicateId(String id) {
-		int result = 0;
+		int result = 0;//기본값, 중복되는  경우 없을 때, 0 반환
 		//회원정보 전부 가져오기
 		ArrayList<UserInfo> list = jd.fileOpen();
 		
 		if(list != null) {
 			for(int i = 0; i < list.size(); i++) {
-				//일치하는 user id 를 selectedUserInfo에  담기	
 				if(list.get(i).getId().equals(id)) {
-					result = 1;
+					result = 1; //조회 후 중복값 발견시 1반환하며 메소드 종료.
 					break;
 				}
 			}

@@ -67,8 +67,7 @@ public class ResultPrinter extends JFrame{
 	}
 
 	public void emailSuccess() {
-		//인증번호 이메일 발송 완료 이미지 팝업으로 바꿔줘야함.!!!!!!!!!!!!!!!!!!!!!!!
-		JLabel label = new JLabel(new ImageIcon(new ImageIcon("images\\titleImages\\mail_success.png")
+		JLabel label = new JLabel(new ImageIcon(new ImageIcon("images\\titleImages\\email_success.png")
 				.getImage().getScaledInstance(500,200, 0)));
 		label.setBounds(0, 0,500,200);
 		this.add(label);
@@ -76,7 +75,31 @@ public class ResultPrinter extends JFrame{
 		this.add(panel);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
-	
-	
-	
+	public void codeFail() {
+		JLabel label = new JLabel(new ImageIcon(new ImageIcon("images\\titleImages\\code_fail.png")
+				.getImage().getScaledInstance(500,200, 0)));
+		label.setBounds(0, 0,500,200);
+		this.add(label);
+		JPanel panel = new JPanel();
+		this.add(panel);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+	}
+	public void idEng() {
+		JLabel label = new JLabel(new ImageIcon(new ImageIcon("images\\titleImages\\id_eng.png")
+				.getImage().getScaledInstance(500,200, 0)));
+		label.setBounds(0, 0,500,200);
+		this.add(label);
+		JPanel panel = new JPanel();
+		this.add(panel);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+	}
+	public void pwEng() {
+		JLabel label = new JLabel(new ImageIcon(new ImageIcon("images\\titleImages\\id_eng.png")
+				.getImage().getScaledInstance(500,200, 0)));
+		label.setBounds(0, 0,500,200);
+		this.add(label);
+		JPanel panel = new JPanel();
+		this.add(panel);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+	}
 }
