@@ -39,9 +39,9 @@ public class Join extends JFrame { //마우스 리스너 해서 위치 잡음
 		this.add(btn);
 
 		//인증번호보내기 버튼
-		JButton numBtn = new JButton(new ImageIcon("images\\titleImages\\mailBtn.png"));
-		numBtn.setLocation(624,518);
-		numBtn.setSize(200,70);
+		JButton numBtn = new JButton(new ImageIcon("images\\titleImages\\code_send.png"));
+		numBtn.setLocation(624,508);
+		numBtn.setSize(300,80);
 		numBtn.setContentAreaFilled(false);
 		numBtn.setBorderPainted(false);
 		this.add(numBtn);
