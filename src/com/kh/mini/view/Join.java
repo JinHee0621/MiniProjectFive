@@ -20,6 +20,9 @@ import com.kh.mini.controller.SendMailManager;
 import com.kh.mini.model.vo.UserInfo;
 
 public class Join extends JFrame { //마우스 리스너 해서 위치 잡음
+
+	//이 클래스는 건드리지 않았고, 사용하지 않았습니다.
+	
    private JFrame mf;
    private JPanel panel;   
    SendMailManager sm = new SendMailManager();
@@ -145,7 +148,7 @@ public class Join extends JFrame { //마우스 리스너 해서 위치 잡음
                }
             }
             
-            JoinManager jm = new JoinManager();
+            JoinManager jm = new JoinManager(null);
             String id = tid.getText();
             if (jm.duplicateId(id) == 1) {
                new ResultPrinter().idDuplicate();

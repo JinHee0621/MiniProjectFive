@@ -19,6 +19,8 @@ import com.kh.mini.controller.JoinManager;
 
 public class Login extends JFrame {
 
+	//이 클래스는 사용하지 않았습니다.
+	
 	private JFrame mf;
 	private JPanel panel;
 
@@ -74,7 +76,7 @@ public class Login extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JoinManager jm = new JoinManager();
+				JoinManager jm = new JoinManager(null);
 
 				if(tid.getText() == "" || tpw.getText() == "") {	
 					new ResultPrinter().checkList();	//수정 필요
