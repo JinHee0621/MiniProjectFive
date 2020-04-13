@@ -56,35 +56,8 @@ public class ImageClass {
 		this.width = img.getWidth();
 		this.height = img.getHeight();
 		
-		pt = new Point2D.Double(0 , 0);
+		pt = new Point2D.Double(0 ,0);
 		dp = new Point2D.Double(0, 0);
-		
-	}
-	
-	public void changeImage(String path, int width, int height, int maxCountX, int maxCountY, boolean isRepeat) {
-		
-		this.magnification = 1;
-		this.maxCountX = maxCountX;
-		this.maxCountY = maxCountY;
-		this.width = width;
-		this.height = height;
-		this.isRepeat = isRepeat;
-		
-		BufferedImage bigImg = null;
-		try {
-			bigImg = ImageIO.read(new File(path));		
-
-		} catch(IOException e) {
-			e.printStackTrace();
-		}		
-		
-		frameImg = new BufferedImage[maxCountX * maxCountY];
-		
-		for(int i = 0; i < maxCountY; i++) {
-			for(int j = 0; j < maxCountX; j++) {
-				frameImg[i * maxCountX + j] = bigImg.getSubimage(j * width, i * height, width, height);
-			}
-		}
 	}
 	
 	public void Init(String path, int width, int height, int maxCountX, int maxCountY, boolean isRepeat) {
@@ -107,30 +80,60 @@ public class ImageClass {
 		}		
 		
 		frameImg = new BufferedImage[maxCountX * maxCountY];
-		
-		for(int i = 0; i < maxCountY; i++) {
-			for(int j = 0; j < maxCountX; j++) {
+
+		for (int i = 0; i < maxCountY; i++) {
+			for (int j = 0; j < maxCountX; j++) {
 				frameImg[i * maxCountX + j] = bigImg.getSubimage(j * width, i * height, width, height);
 			}
 		}
+
+	}
+	public void changeImage(String path) {
 		
-		pt = new Point2D.Double(0 ,0);
-		dp = new Point2D.Double(0, 0);
+		this.magnification = 1;		
+		t.scale(magnification, magnification);			
+		try {
+			img = ImageIO.read(new File(path));
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+		
+		this.width = img.getWidth();
+		this.height = img.getHeight();
 	}
 	
+	public void changeImage(String path, int width, int height, int maxCountX, int maxCountY, boolean isRepeat) {
+		
+		this.magnification = 1;
+		this.maxCountX = maxCountX;
+		this.maxCountY = maxCountY;
+		this.width = width;
+		this.height = height;
+		this.isRepeat = isRepeat;
+		
+		BufferedImage bigImg = null;
+		try {
+			bigImg = ImageIO.read(new File(path));		
+
+		} catch(IOException e) {
+			e.printStackTrace();
+		}		
+		
+		frameImg = new BufferedImage[maxCountX * maxCountY];
+		for (int i = 0; i < maxCountY; i++) {
+			for (int j = 0; j < maxCountX; j++) {
+				frameImg[i * maxCountX + j] = bigImg.getSubimage(j * width, i * height, width, height);
+			}
+		}
+	}
+
 	
 	public void setPosition(double x, double y) {
 
-		
 		double distX = x - this.x;
 		double distY = y - this.y;
 		
-
-		t.translate(distX, distY);
-		
-/*		System.out.println(t.getTranslateX());
-		System.out.println(t.getTranslateY());*/
-		
+		t.translate(distX, distY);	
 		this.x = x;
 		this.y = y;
 	}
@@ -173,9 +176,9 @@ public class ImageClass {
 			return false;
 		}
 		
-		speed++;
+		speed+=3;
 		
-		if(speed == maxSpeed) {
+		if(speed >= maxSpeed) {
 			speed = 0;
 			frameX++;
 			
@@ -185,7 +188,6 @@ public class ImageClass {
 				frameY++;
 			}
 		}
-		
 		
 		if(isRepeat) {						
 			if(frameY == maxCountY) {
@@ -202,10 +204,8 @@ public class ImageClass {
 	
 	public void render(Graphics g) {
 		Graphics2D g2D = (Graphics2D) g;
-
 		if(frameImg != null) {
 			g2D.drawImage(frameImg[frameY * maxCountX + frameX], t, null);
-			
 		} else {
 			g2D.drawImage(img, t, null);
 		}

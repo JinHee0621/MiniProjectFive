@@ -46,7 +46,7 @@ public class Attack extends GameObject  implements Runnable{
 		if(parent.isPlayerUp()) img.Init("images\\charImages\\AttackUp.png", 90, 80, 11, 1, true);
 		if(parent.isPlayerLeft()) img.Init("images\\charImages\\AttackSideLeft.png", 80, 90, 11, 1, true);
 		if(parent.isPlayerRight()) img.Init("images\\charImages\\AttackSideRight.png", 80, 90, 11, 1, true);
-		img.setMaxSpeed(100);
+		img.setMaxSpeed(500);
 		img.setMagnification(1.0);
 		
 		x = this.getX();
