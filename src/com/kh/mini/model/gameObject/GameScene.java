@@ -1,9 +1,6 @@
 package com.kh.mini.model.gameObject;
 
 import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.event.KeyEvent;
-import java.awt.image.BufferedImage;
 
 import com.kh.mini.model.vo.CameraClass;
 import com.kh.mini.model.vo.ImageClass;
@@ -29,14 +26,15 @@ public class GameScene extends BaseScene {
 
 	public static int monsterLength = 4;
 	
-	Monster[] mobs = new Monster[monsterLength];
+	Monster[] mobs = new Monster[4];
+	
+	private GameItem item;
+	
+	private boolean popItem = false;
 	
 	@Override
 	public void init() {
 		// TODO Auto-generated method stub
-		
-
-		
 		cam = new CameraClass();
 		cam.init();
 		
@@ -78,7 +76,7 @@ public class GameScene extends BaseScene {
 		mobs[3].setCam(cam);
 		mobs[3].init();
 		
-		for(int i = 0; i < monsterLength; i++) {
+		for(int i = 0; i < mobs.length; i++) {
 			mobs[i].addObjs(mobs);
 			//자기자신을 제외하고 가까운 오브젝트를 찾아야 할것
 		}
@@ -107,7 +105,7 @@ public class GameScene extends BaseScene {
 	@Override
 	public void update() {
 		p.update();
-		for (int i = 0; i < monsterLength; i++) {
+		for (int i = 0; i < mobs.length; i++) {
 			if (mobs[i] != null) {
 				mobs[i].update();
 				if (p.isCheckDoAttack()) {
@@ -116,7 +114,11 @@ public class GameScene extends BaseScene {
 				if (mobs[i].getMonsterHp() <= 0) {
 					mobs[i] = null;
 					System.out.println(i + "번 몬스터가 주금");
-					// monsterLength--;
+					monsterLength--;
+				} 
+				
+				if(monsterLength == 0) {
+					popItem();
 				}
 			}
 		}
@@ -134,11 +136,16 @@ public class GameScene extends BaseScene {
 			p.getAttack().render(g);
 		}
 
-		for (int i = 0; i < monsterLength; i++) {
+		for (int i = 0; i < mobs.length; i++) {
 			if(mobs[i] != null) mobs[i].render(g);
 		}
 		
 		uiScene.render(g);
+		
+		if(popItem) {
+			System.out.println("아이탬 팝업");
+			item.render(g);
+		}
 	}
 	
 	
@@ -151,4 +158,13 @@ public class GameScene extends BaseScene {
 		bg2.setPosition(x, y);
 	}
 
+	public void popItem() {
+		if (!popItem) {
+			item = new GameItem("images\\ItemImage\\HandCleaner.png");
+			item.setPosition(500, 500);
+			item.init();
+			popItem = true;
+		}
+	}
+	
 }
