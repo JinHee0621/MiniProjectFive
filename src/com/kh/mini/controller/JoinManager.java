@@ -63,6 +63,7 @@ public class JoinManager {
 					break;
 				}
 			}
+			
 		}
 		return result;
 	}
