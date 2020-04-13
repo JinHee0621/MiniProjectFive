@@ -52,8 +52,7 @@ public class ResultPrinter extends JFrame{
 				.getImage().getScaledInstance(500,200, 0)));
 		label.setBounds(0, 0,500,200);
 		this.add(label);
-		JPanel panel = new JPanel();
-		this.add(panel);
+		this.repaint();
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
 	
@@ -62,8 +61,7 @@ public class ResultPrinter extends JFrame{
 				.getImage().getScaledInstance(500,200, 0)));
 		label.setBounds(0, 0,500,200);
 		this.add(label);
-		JPanel panel = new JPanel();
-		this.add(panel);
+		this.repaint();
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
 
@@ -72,8 +70,6 @@ public class ResultPrinter extends JFrame{
 				.getImage().getScaledInstance(500,200, 0)));
 		label.setBounds(0, 0,500,200);
 		this.add(label);
-		JPanel panel = new JPanel();
-		this.add(panel);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
 	
@@ -82,8 +78,6 @@ public class ResultPrinter extends JFrame{
 				.getImage().getScaledInstance(500,200, 0)));
 		label.setBounds(0, 0,500,200);
 		this.add(label);
-		JPanel panel = new JPanel();
-		this.add(panel);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
 
@@ -92,8 +86,6 @@ public class ResultPrinter extends JFrame{
 				.getImage().getScaledInstance(500,200, 0)));
 		label.setBounds(0, 0,500,200);
 		this.add(label);
-		JPanel panel = new JPanel();
-		this.add(panel);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
 	public void codeFail() {
@@ -101,8 +93,6 @@ public class ResultPrinter extends JFrame{
 				.getImage().getScaledInstance(500,200, 0)));
 		label.setBounds(0, 0,500,200);
 		this.add(label);
-		JPanel panel = new JPanel();
-		this.add(panel);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
 	public void idEng() {
@@ -110,8 +100,6 @@ public class ResultPrinter extends JFrame{
 				.getImage().getScaledInstance(500,200, 0)));
 		label.setBounds(0, 0,500,200);
 		this.add(label);
-		JPanel panel = new JPanel();
-		this.add(panel);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
 	public void pwEng() {
@@ -119,8 +107,6 @@ public class ResultPrinter extends JFrame{
 				.getImage().getScaledInstance(500,200, 0)));
 		label.setBounds(0, 0,500,200);
 		this.add(label);
-		JPanel panel = new JPanel();
-		this.add(panel);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
 	
@@ -129,8 +115,6 @@ public class ResultPrinter extends JFrame{
 		            .getImage().getScaledInstance(500, 200, 0)));
 		      label.setBounds(0,0,500,200);
 		      this.add(label);
-		      JPanel panel = new JPanel();
-		      this.add(panel);
 		      setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		   }
 }

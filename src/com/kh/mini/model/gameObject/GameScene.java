@@ -36,6 +36,7 @@ public class GameScene extends BaseScene {
 	@Override
 	public void init() {
 		// TODO Auto-generated method stub
+		
 		cam = new CameraClass();
 		cam.init();
 		

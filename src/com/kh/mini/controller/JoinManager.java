@@ -4,11 +4,18 @@ import java.util.ArrayList;
 
 import com.kh.mini.model.dao.JoinDao;
 import com.kh.mini.model.vo.UserInfo;
+import com.kh.mini.view.GameWindow;
 import com.kh.mini.view.ResultPrinter;
 
 
 public class JoinManager {
 	private JoinDao jd= new JoinDao();
+	private GameWindow gw;
+	
+	public JoinManager(GameWindow gw) {
+		this.gw = gw;
+	}
+	
 	
 	//새 회원 등록 메소드
 	public void insertMember(UserInfo userinfo) {
@@ -26,6 +33,8 @@ public class JoinManager {
 	
 	//아이디 비번 일치여부
 	public void idPwCorrect(String tid, String tpw) {
+//		gw.removeAll();
+//		gw.startGame();
 		//회원정보 전부 가져오기
 		ArrayList<UserInfo> list = jd.fileOpen();
 		
@@ -42,11 +51,14 @@ public class JoinManager {
 				}
 			}
 		}
-		
+
 		//일치하는 게시물 없으면 에러 출력
 		if(selectedUserInfo == null) {
 			new ResultPrinter().logFail();
+			System.out.println("아이디 비밀번호 불일치!");
 		}else {
+			gw.removeAll();
+			gw.startGame();
 			jd.fileSave(list);
 		}
 	}
