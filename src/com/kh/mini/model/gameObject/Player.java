@@ -36,6 +36,9 @@ public class Player extends GameObject  implements Runnable{
 
 	private UiScene uiScene; //캐릭터의 체력이나 마스크 표시를 위한 UiScene
 	
+	private String user;
+	
+
 	@Override
 	public void init() {
 		img = new ImageClass();
@@ -52,6 +55,8 @@ public class Player extends GameObject  implements Runnable{
 		img.setMaxSpeed(500);
 		
 		this.makeCenterRect(x, y, 70, 70);
+		
+		System.out.println("사용자: " + user);
 	}
 	
 	public void addUI(UiScene uiScene) {
@@ -296,4 +301,13 @@ public class Player extends GameObject  implements Runnable{
 		this.playerMask = playerMask;
 		uiScene.update();
 	}
+	
+	public String getUser() {
+		return user;
+	}
+
+	public void setUser(String user) {
+		this.user = user;
+	}
+
 }

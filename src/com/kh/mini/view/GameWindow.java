@@ -23,15 +23,23 @@ public class GameWindow extends JFrame {
 	//MapTool mt = new MapTool();
 	
 	ImageClass img;
-	
+
 	int frame = 0;
 	int count = 0;
 	
 	boolean islogin = false;
 	
-	public GameWindow(int type) {
-		if(type == 0) startTitle();
-		else if(type == 1) startGame();
+	
+	
+	public GameWindow(int type, String user) {
+		switch(type) {
+		case 0:
+			startTitle();
+			break;
+		case 1:
+			startGame(user);
+			break;
+		}
 	}
 	
 	public void startTitle() {
@@ -115,12 +123,14 @@ public class GameWindow extends JFrame {
 		}
 	}
 	
-	public void startGame() {	
+	public void startGame(String user) {	
+				
 		this.addKeyListener(KeyManager.Instance());
 		
 		this.addMouseListener(KeyManager.Instance());
 		
-		GameScene gs = new GameScene();
+		GameScene gs = new GameScene(this);
+		gs.setUser(user);
 		gs.init();
 		
 		this.setSize(1408, 896);
