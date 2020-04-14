@@ -26,19 +26,19 @@ public class Player extends GameObject  implements Runnable{
 	
 	private double distanceMin = 5000;
 	
-	private double playerMovSpeed = 1;
-	
 	private Attack attack;
-
-	private int playerClean = 10;
-	
-	private int playerMask = 5;
 
 	private UiScene uiScene; //캐릭터의 체력이나 마스크 표시를 위한 UiScene
 	
 	private String user;
 	
-	private boolean attackBullet = true;
+	private double playerMovSpeed = 1;
+	private int playerClean = 10;
+	private int playerMask = 5;
+	private int coinCount = 0;
+	private int score = 0;
+	
+	private boolean attackBullet = false;
 
 	@Override
 	public void init() {
@@ -322,4 +322,19 @@ public class Player extends GameObject  implements Runnable{
 		this.user = user;
 	}
 
+	public int getCoinCount() {
+		return coinCount;
+	}
+
+	public void setCoinCount(int coinCount) {
+		this.coinCount = coinCount;
+	}
+
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
+	}
 }

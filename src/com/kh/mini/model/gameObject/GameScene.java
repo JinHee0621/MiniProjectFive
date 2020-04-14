@@ -3,12 +3,15 @@ package com.kh.mini.model.gameObject;
 import java.awt.Graphics;
 
 import com.kh.mini.controller.SoundManager;
+import com.kh.mini.model.dao.JoinDao;
 import com.kh.mini.model.vo.CameraClass;
 import com.kh.mini.model.vo.ImageClass;
 import com.kh.mini.view.GameWindow;
 
 public class GameScene extends BaseScene {
 
+	private JoinDao jd= new JoinDao();
+	
 	GameWindow gw;
 	
 	UiScene uiScene;
@@ -45,8 +48,6 @@ public class GameScene extends BaseScene {
 	@Override
 	public void init() {
 		// TODO Auto-generated method stub
-		
-		//sound.bgmSelect("8BitNinjas");
 		
 		cam = new CameraClass();
 		cam.init();
@@ -127,8 +128,12 @@ public class GameScene extends BaseScene {
 					mobs[i].checkAttack(p.getAttack());
 				}
 				if (mobs[i].getMonsterHp() <= 0) {
-					mobs[i] = null;
+	
 					System.out.println(i + "번 몬스터가 주금");
+					p.setScore(p.getScore() + mobs[i].getGivScore());
+					
+					mobs[i] = null;
+					uiScene.update();
 					monsterLength--;
 				} 
 				
@@ -144,6 +149,7 @@ public class GameScene extends BaseScene {
 		if(p.getPlayerClean() <= 0) {
 			//sound.bgmStop();s\
 			sound.sfxSelect("gameOver");
+			jd.scoreSave(p.getUser(), p.getScore());
 			p = null;
 			gw.setVisible(false);
 			gw.dispose();

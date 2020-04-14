@@ -2,6 +2,8 @@ package com.kh.mini.model.gameObject;
 
 import java.awt.Graphics;
 
+import javax.swing.JLabel;
+
 import com.kh.mini.model.vo.ImageClass;
 
 public class UiScene extends BaseScene{
@@ -12,6 +14,15 @@ public class UiScene extends BaseScene{
 	ImageClass cleanBar;
 	
 	ImageClass maskBar;
+	
+	ImageClass weaponSlot;
+	
+	ImageClass haveCoinUi;
+	ImageClass haveCoinNumTen;
+	ImageClass haveCoinNumOne;
+	
+	ImageClass scoreUi;
+	ImageClass[] scoreNum = new ImageClass[6];
 	
 	Player player;
 	
@@ -43,6 +54,38 @@ public class UiScene extends BaseScene{
 		maskBar.setIsOn(true);
 		maskBar.setPosition(275, 50);
 		
+		weaponSlot = new ImageClass();
+		weaponSlot.Init("images\\uiImages\\WeaponUiSet\\WeaponWindow.png");
+		weaponSlot.setIsOn(true);
+		weaponSlot.setPosition(595, 50);
+		
+		haveCoinUi = new ImageClass();
+		haveCoinUi.Init("images\\uiImages\\CoinNumUI.png");
+		haveCoinUi.setIsOn(true);
+		haveCoinUi.setPosition(765, 90);
+		
+		haveCoinNumTen = new ImageClass();
+		haveCoinNumTen.Init("images\\uiImages\\NumberSet\\0.png");
+		haveCoinNumTen.setIsOn(true);
+		haveCoinNumTen.setPosition(835, 100);
+		
+		haveCoinNumOne = new ImageClass();
+		haveCoinNumOne.Init("images\\uiImages\\NumberSet\\0.png");
+		haveCoinNumOne.setIsOn(true);
+		haveCoinNumOne.setPosition(870, 100);
+		
+		scoreUi = new ImageClass();
+		scoreUi.Init("images\\uiImages\\NumberSet\\ScoreText.png");
+		scoreUi.setIsOn(true);
+		scoreUi.setPosition(1065, 50);
+		
+		for(int i = 0; i < scoreNum.length; i++) {
+			scoreNum[i] = new ImageClass();
+			scoreNum[i].Init("images\\uiImages\\NumberSet\\0.png");
+			scoreNum[i].setIsOn(true);
+			scoreNum[i].setPosition(1080 + (i * 35), 75);
+		}
+		
 	}
 
 	@Override
@@ -52,6 +95,16 @@ public class UiScene extends BaseScene{
 
 	@Override
 	public void update() {
+		int playerScore = player.getScore();
+		
+		haveCoinNumTen.changeImage("images\\uiImages\\NumberSet\\"+(player.getCoinCount()/10)+".png");
+		haveCoinNumOne.changeImage("images\\uiImages\\NumberSet\\"+(player.getCoinCount()%10)+".png");
+		
+		for(int i = 0; i < scoreNum.length ;i++) {
+			int showScore = (int) (playerScore / Math.pow(10, 5-i));
+			playerScore %= Math.pow(10, 5-i);
+			scoreNum[i].changeImage("images\\uiImages\\NumberSet\\"+showScore+".png");
+		}
 		
 		switch(player.getPlayerClean()) {
 		case 0:
@@ -124,11 +177,21 @@ public class UiScene extends BaseScene{
 	@Override
 	public void render(Graphics g) {
 		uiBackGroundImg.render(g);
+		weaponSlot.render(g);
+		
+		haveCoinUi.render(g);
+		haveCoinNumTen.render(g);
+		haveCoinNumOne.render(g);
+		
+		scoreUi.render(g);
+		for(int i = 0; i < scoreNum.length ;i++) {
+			scoreNum[i].render(g);
+		}
 		
 		cleanGuage.render(g);
 		cleanBar.render(g);
 		maskBar.render(g);
-
+		
 	}
 
 }
