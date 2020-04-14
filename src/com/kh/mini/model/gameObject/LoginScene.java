@@ -23,8 +23,10 @@ public class LoginScene extends BaseScene {
 	
 	GameWindow gw;
 	PointerInfo pointerInfo;
+	
 	JTextField tid;
 	JPasswordField tpw;
+	
 	JPanel panel;
 	
 	public LoginScene(GameWindow gw) {
@@ -44,7 +46,7 @@ public class LoginScene extends BaseScene {
 		panel.setSize(850, 350);
 		panel.setLayout(null);
 
-		gw.add(panel);
+		gw.add(panel);		
 		tid = new JTextField();
 		tid.setLocation(292, 153);
 		tid.setSize(277, 42);
@@ -97,15 +99,16 @@ public class LoginScene extends BaseScene {
 				
 				JoinManager jm = new JoinManager(gw);
 
-				if (tid.getText() == "") {
-					new ResultPrinter().checkList(); // 수정 필요
-				} else {
-//					jm.idPwCorrect(tid.getText(), tpw.getText());
-//					// System.out.println("아이디 비밀번호 불일치!");
-					gw.removeAll();
-					gw.repaint();
-					gw.startGame();
-				}
+				   if ((tid.getText().equals(""))||(tpw.getText().equals(""))) {
+		               new ResultPrinter().checkList(); // 수정 필요
+		            } else {
+		               jm.idPwCorrect(tid.getText(), tpw.getText());
+//		               // System.out.println("아이디 비밀번호 불일치!");
+//		               gw.removeAll();
+//		               gw.repaint();
+//		               gw.startGame();
+		            }
+
 				
 				//게임 실행시 실행되기는 하지만 화면 최소화 후에 키보드 입력을 받기 시작함.
 			}

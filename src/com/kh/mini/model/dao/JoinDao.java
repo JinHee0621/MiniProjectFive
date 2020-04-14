@@ -34,15 +34,17 @@ public class JoinDao {
 		}
 	}
 
+	@SuppressWarnings("unused")
 	public ArrayList<UserInfo> fileOpen() {
 		ObjectInputStream ois = null;
 		ArrayList<UserInfo> list = null;
 
 		
 		try {
+			list = new ArrayList<UserInfo>();
 			ois = new ObjectInputStream(new FileInputStream("user1.txt"));
-			list= (ArrayList<UserInfo>) ois.readObject();
 			
+			list=  (ArrayList<UserInfo>) ois.readObject();
 			
 			if(list != null) {
 				for(int i = 0 ; i < list.size(); i++) {

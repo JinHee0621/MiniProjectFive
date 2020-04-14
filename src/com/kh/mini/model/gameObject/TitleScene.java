@@ -7,13 +7,19 @@ import java.awt.event.MouseEvent;
 
 import com.kh.mini.controller.KeyManager;
 import com.kh.mini.model.vo.ImageClass;
+import com.kh.mini.view.Finish;
 import com.kh.mini.view.GameWindow;
+import com.kh.mini.view.Join;
 
 public class TitleScene extends BaseScene {
 
 	ImageClass bg;
 
 	ImageClass loginButton;
+	
+	ImageClass joinButton;
+	
+	ImageClass finishButton;
 	
 	PointerInfo pointerInfo;
 	
@@ -35,6 +41,16 @@ public class TitleScene extends BaseScene {
 		loginButton.Init("images\\titleImages\\login.png");
 		loginButton.setIsOn(true);
 		loginButton.setPosition(198, 465);
+		
+		joinButton = new ImageClass();
+		joinButton.Init("images\\titleImages\\join.png");
+		joinButton.setIsOn(true);
+		joinButton.setPosition(198, 615);
+		
+		finishButton = new ImageClass();
+		finishButton.Init("images\\titleImages\\finish.png");
+		finishButton.setIsOn(true);
+		finishButton.setPosition(198, 765);
 	}
 
 	
@@ -49,9 +65,20 @@ public class TitleScene extends BaseScene {
 		//마우스 클릭좌표를 얻는다.
 		
 		if(KeyManager.Instance().onceMouseClicked(MouseEvent.BUTTON1)) {
-			if((pointerInfo.getLocation().x >= 200 && pointerInfo.getLocation().x <= 560 ) && (pointerInfo.getLocation().y >= 470 &&pointerInfo.getLocation().y <= 600 )) {
+			System.out.println(pointerInfo.getLocation());
+			if((pointerInfo.getLocation().x >= 450 && pointerInfo.getLocation().x <= 820 ) && (pointerInfo.getLocation().y >= 500 &&pointerInfo.getLocation().y <= 670 )) {
 				gw.startLogin();
 				//로그인 이미지에서 마우스를 클릭하면 GameWindow 클래스의 startLogin을 실행한다.
+			}
+			
+			if((pointerInfo.getLocation().x >= 450 && pointerInfo.getLocation().x <= 820 ) && (pointerInfo.getLocation().y >= 680 &&pointerInfo.getLocation().y <= 810 )) {
+				//여기서는 회원가입을 실행할 것
+				new Join(gw);
+			}
+			
+			if((pointerInfo.getLocation().x >= 450 && pointerInfo.getLocation().x <= 820 ) && (pointerInfo.getLocation().y >= 820 &&pointerInfo.getLocation().y <= 950 )) {
+				//여기서는 게임이 종료됨
+				new Finish(gw);
 			}
 		}
 	}
@@ -61,6 +88,8 @@ public class TitleScene extends BaseScene {
 		//이미지 출력
 		bg.render(g);
 		loginButton.render(g);
+		joinButton.render(g);
+		finishButton.render(g);
 	}
 	
 }
