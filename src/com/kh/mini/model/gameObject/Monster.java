@@ -47,6 +47,8 @@ public class Monster extends GameObject implements Runnable{
 	
 	private int monsterHp = 3;
 	
+	private int givScore = 0;
+	
 	
 	public Monster(Player target, String path, int imgSizeX, int imgSizeY, int frameCount, int patternType , double mobSpeed, int monsterType) {
 		this.target = target;
@@ -60,7 +62,7 @@ public class Monster extends GameObject implements Runnable{
 		this.monsterType = monsterType;
 		
 		monsterHp *= monsterType;
-		
+		setGivScore(25 * monsterType);
 	}
 	
 	@Override
@@ -70,14 +72,14 @@ public class Monster extends GameObject implements Runnable{
 		img.Init(imgPath, imgSizeX, imgSizeY, frameCount, 1, true);
 		
 		img.setMagnification(1.0);
-		x = this.getX();
-		y = this.getY();
+		x = this.getX()+50;
+		y = this.getY()+50;
 		img.setPosition(x, y);
 		
 		img.setIsOn(true);
 		img.setMaxSpeed(100);
 		
-		this.makeCenterRect(x, y,100,100);
+		this.makeCenterRect(x, y,50,50);
 	}
 	public void addObjs(GameObject[] mobs) {
 		this.objs = mobs;
@@ -91,7 +93,7 @@ public class Monster extends GameObject implements Runnable{
 	public void update() {
 
 		if (monsterHp > 0) {
-			this.makeCenterRect(x, y, 100, 100);
+			this.makeCenterRect(x, y, 50, 50);
 			img.isFrameUpdate();
 
 			for (int i = 0; i <GameScene.monsterLength; i++) {
@@ -241,5 +243,13 @@ public class Monster extends GameObject implements Runnable{
 
 	public void setMonsterHp(int monsterHp) {
 		this.monsterHp = monsterHp;
+	}
+
+	public int getGivScore() {
+		return givScore;
+	}
+
+	public void setGivScore(int givScore) {
+		this.givScore = givScore;
 	}
 }

@@ -1,5 +1,6 @@
 package com.kh.mini.test;
 
+import com.kh.mini.view.GameWindow;
 import com.kh.mini.view.MainPage;
 
 public class Run {

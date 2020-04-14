@@ -52,6 +52,8 @@ public class Attack extends GameObject  implements Runnable{
 		// TODO Auto-generated method stub
 		img = new ImageClass();
 		if(attackBullet) {
+			rangeX = 50;
+			rangeY = 50;
 			bulletMovX = 0;
 			bulletMovY = 0;
 			if(parent.isPlayerFront()) {
@@ -70,6 +72,8 @@ public class Attack extends GameObject  implements Runnable{
 			img.Init("images\\charImages\\bullet.png");
 		}
 		else {
+			rangeX = 150;
+			rangeY = 150;
 			if(parent.isPlayerFront()) img.Init("images\\charImages\\AttackFront.png", 90, 80, 11, 1, true);
 			if(parent.isPlayerUp()) img.Init("images\\charImages\\AttackUp.png", 90, 80, 11, 1, true);
 			if(parent.isPlayerLeft()) img.Init("images\\charImages\\AttackSideLeft.png", 80, 90, 11, 1, true);
