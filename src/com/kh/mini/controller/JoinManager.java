@@ -45,21 +45,15 @@ public class JoinManager {
 			for(int i = 0; i < list.size(); i++) {
 				//일치하는 user id 를 selectedUserInfo에  담기	
 				if(list.get(i).getId().equals(tid) && list.get(i).getPw().equals(tpw)) {
-					selectedUserInfo = list.get(i);
-					new ResultPrinter().logSuccess();
+					gw.removeAll();
+					gw.startGame();
+					jd.fileSave(list);
+					//new ResultPrinter().logSuccess();
 					break;
+				}else {
+					new ResultPrinter().logFail();
 				}
 			}
-		}
-
-		//일치하는 게시물 없으면 에러 출력
-		if(selectedUserInfo == null) {
-			new ResultPrinter().logFail();
-			System.out.println("아이디 비밀번호 불일치!");
-		}else {
-			gw.removeAll();
-			gw.startGame();
-			jd.fileSave(list);
 		}
 	}
 	public int duplicateId(String id) {

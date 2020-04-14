@@ -78,6 +78,7 @@ public class ResultPrinter extends JFrame{
 				.getImage().getScaledInstance(500,200, 0)));
 		label.setBounds(0, 0,500,200);
 		this.add(label);
+		this.repaint();
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
 
