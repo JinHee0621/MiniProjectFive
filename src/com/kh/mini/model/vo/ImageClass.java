@@ -176,9 +176,9 @@ public class ImageClass {
 			return false;
 		}
 		
-		speed++;
+		speed+=3;
 		
-		if(speed == maxSpeed) {
+		if(speed >= maxSpeed) {
 			speed = 0;
 			frameX++;
 			

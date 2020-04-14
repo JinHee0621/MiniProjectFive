@@ -26,8 +26,11 @@ public class Attack extends GameObject  implements Runnable{
 	private double rangeX;
 	private double rangeY;
 	
+	private boolean endAttack;
+	
 	public Attack(Player parent) {
 		this.parent = parent;
+		endAttack = false;
 		rangeX = 180;
 		rangeY = 180;
 		init();
@@ -46,7 +49,7 @@ public class Attack extends GameObject  implements Runnable{
 		if(parent.isPlayerUp()) img.Init("images\\charImages\\AttackUp.png", 90, 80, 11, 1, true);
 		if(parent.isPlayerLeft()) img.Init("images\\charImages\\AttackSideLeft.png", 80, 90, 11, 1, true);
 		if(parent.isPlayerRight()) img.Init("images\\charImages\\AttackSideRight.png", 80, 90, 11, 1, true);
-		img.setMaxSpeed(500);
+		img.setMaxSpeed(1500);
 		img.setMagnification(1.0);
 		
 		x = this.getX();
@@ -61,18 +64,20 @@ public class Attack extends GameObject  implements Runnable{
 	
 	@Override
 	public void update() {
-		this.makeCenterRect(x, y, (int)rangeX, (int)rangeY);
-		img.setMaxSpeed(50);
-		img.isFrameUpdate();
-		
-		if (parent.isPlayerFront())
-			img.changeImage("images\\charImages\\AttackFront.png", 90, 80, 11, 1, true);
-		if (parent.isPlayerUp())
-			img.changeImage("images\\charImages\\AttackUp.png", 90, 80, 11, 1, true);
-		if (parent.isPlayerLeft())
-			img.changeImage("images\\charImages\\AttackSideLeft.png", 80, 90, 11, 1, true);
-		if (parent.isPlayerRight())
-			img.changeImage("images\\charImages\\AttackSideRight.png", 80, 90, 11, 1, true);
+		if (!endAttack) {
+			this.makeCenterRect(x, y, (int) rangeX, (int) rangeY);
+			img.setMaxSpeed(50);
+			img.isFrameUpdate();
+
+			if (parent.isPlayerFront())
+				img.changeImage("images\\charImages\\AttackFront.png", 90, 80, 11, 1, true);
+			if (parent.isPlayerUp())
+				img.changeImage("images\\charImages\\AttackUp.png", 90, 80, 11, 1, true);
+			if (parent.isPlayerLeft())
+				img.changeImage("images\\charImages\\AttackSideLeft.png", 80, 90, 11, 1, true);
+			if (parent.isPlayerRight())
+				img.changeImage("images\\charImages\\AttackSideRight.png", 80, 90, 11, 1, true);
+		}
 	}
 
 	@Override
@@ -91,7 +96,7 @@ public class Attack extends GameObject  implements Runnable{
 
 		if(parent.isPlayerRight()) img.setPosition(parent.getX() + 75, parent.getY() + 55);	
 		
-		img.render(g);
+		if(!endAttack) img.render(g);
 	}
 
 	public ImageClass getImage() {
@@ -106,6 +111,9 @@ public class Attack extends GameObject  implements Runnable{
 	public void run() {
 		// TODO Auto-generated method stub
 		try {
+			Thread.sleep(400);
+			endAttack = true;
+			img.setIsOn(false);
 			Thread.sleep(500);
 			rangeX = 0;
 			rangeY = 0;

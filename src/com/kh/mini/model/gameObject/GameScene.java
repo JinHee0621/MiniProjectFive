@@ -4,9 +4,12 @@ import java.awt.Graphics;
 
 import com.kh.mini.model.vo.CameraClass;
 import com.kh.mini.model.vo.ImageClass;
+import com.kh.mini.view.GameWindow;
 
 public class GameScene extends BaseScene {
 
+	GameWindow gw;
+	
 	UiScene uiScene;
 	
 	ImageClass img;
@@ -32,7 +35,12 @@ public class GameScene extends BaseScene {
 	
 	private boolean popItem = false;
 	
+	private String user;
 
+	public GameScene(GameWindow gw) {
+		this.gw = gw;
+	}
+	
 	@Override
 	public void init() {
 		// TODO Auto-generated method stub
@@ -55,7 +63,7 @@ public class GameScene extends BaseScene {
 		bgY = bg.getY();
 		
 		p = new Player();
-
+		p.setUser(user);
 		p.setCam(cam);
 
 		//(int)(Math.random() * 1000);
@@ -130,6 +138,13 @@ public class GameScene extends BaseScene {
 		if (p.isCheckDoAttack()) {
 			p.getAttack().update();
 		}
+		
+		if(p.getPlayerClean() <= 0) {
+			p = null;
+			gw.setVisible(false);
+			gw.dispose();
+			gw = new GameWindow(0,null);
+		}
 	}
 
 	@Override
@@ -203,4 +218,15 @@ public class GameScene extends BaseScene {
 		
 		p.addObjs(mobs);
 	}
+	
+
+	public String getUser() {
+		return user;
+	}
+
+
+	public void setUser(String user) {
+		this.user = user;
+	}
+
 }
