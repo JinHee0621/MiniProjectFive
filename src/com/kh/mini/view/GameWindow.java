@@ -29,8 +29,12 @@ public class GameWindow extends JFrame {
 	
 	boolean islogin = false;
 	
-	public GameWindow() {
-		
+	public GameWindow(int type) {
+		if(type == 0) startTitle();
+		else if(type == 1) startGame();
+	}
+	
+	public void startTitle() {
 		this.setSize(1408, 896);
 		this.setResizable(false);
 		this.setVisible(true);
@@ -86,6 +90,7 @@ public class GameWindow extends JFrame {
 		}
 	}
 	
+	
 	public void startLogin() {
 		
 		islogin = true;
@@ -93,6 +98,7 @@ public class GameWindow extends JFrame {
 		ls.init();
 
 		this.setLocationRelativeTo(null);
+		
 		this.addKeyListener(KeyManager.Instance());
 		
 		this.addMouseListener(KeyManager.Instance());
@@ -108,7 +114,6 @@ public class GameWindow extends JFrame {
 			ls.update();
 		}
 	}
-	
 	
 	public void startGame() {	
 		this.addKeyListener(KeyManager.Instance());

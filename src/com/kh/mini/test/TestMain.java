@@ -12,8 +12,6 @@ import com.kh.mini.view.GameWindow;
 public class TestMain {
 	@SuppressWarnings("deprecation")
 	public static void main(String[] args) {		
-		GameWindow gw = new GameWindow();
-		
+		GameWindow gw = new GameWindow(0);
 	}
-
 }

@@ -5,6 +5,8 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.MouseInfo;
 import java.awt.PointerInfo;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.MouseEvent;
 
 import javax.swing.ImageIcon;
@@ -18,7 +20,7 @@ import com.kh.mini.controller.KeyManager;
 import com.kh.mini.view.GameWindow;
 import com.kh.mini.view.ResultPrinter;
 
-public class LoginScene extends BaseScene {
+public class LoginScene extends BaseScene implements FocusListener{
 
 	
 	GameWindow gw;
@@ -99,17 +101,17 @@ public class LoginScene extends BaseScene {
 				
 				JoinManager jm = new JoinManager(gw);
 
-				   if ((tid.getText().equals(""))||(tpw.getText().equals(""))) {
-		               new ResultPrinter().checkList(); // 수정 필요
-		            } else {
-		               jm.idPwCorrect(tid.getText(), tpw.getText());
-//		               // System.out.println("아이디 비밀번호 불일치!");
-//		               gw.removeAll();
-//		               gw.repaint();
-//		               gw.startGame();
-		            }
-
-				
+				if ((tid.getText().equals("")) || (tpw.getText().equals(""))) {
+					new ResultPrinter().checkList(); // 수정 필요
+				} else {
+					gw.remove(panel);
+					gw.repaint();
+					
+					jm.idPwCorrect(tid.getText(), tpw.getText());
+					
+					gw.addKeyListener(KeyManager.Instance());
+					gw.addMouseListener(KeyManager.Instance());
+				}				
 				//게임 실행시 실행되기는 하지만 화면 최소화 후에 키보드 입력을 받기 시작함.
 			}
 		}
@@ -118,5 +120,17 @@ public class LoginScene extends BaseScene {
 	@Override
 	public void render(Graphics g) {
 		//이미지 출력
+	}
+
+	@Override
+	public void focusGained(FocusEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void focusLost(FocusEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }
