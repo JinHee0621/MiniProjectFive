@@ -2,6 +2,7 @@ package com.kh.mini.model.gameObject;
 
 import java.awt.Graphics;
 
+import com.kh.mini.controller.SoundManager;
 import com.kh.mini.model.vo.CameraClass;
 import com.kh.mini.model.vo.ImageClass;
 import com.kh.mini.view.GameWindow;
@@ -45,9 +46,10 @@ public class GameScene extends BaseScene {
 	public void init() {
 		// TODO Auto-generated method stub
 		
+		//sound.bgmSelect("8BitNinjas");
+		
 		cam = new CameraClass();
 		cam.init();
-		
 	
 		bg = new ImageClass();
 		bg.Init("images\\mapImages\\MapSample.png");
@@ -68,22 +70,22 @@ public class GameScene extends BaseScene {
 
 		//(int)(Math.random() * 1000);
 		
-		mobs[0] = new Monster(p,"images\\monsterImages\\Monster_Type_Blue.png",64,64,10,1,0.05);
+		mobs[0] = new Monster(p,"images\\monsterImages\\Monster_Type_Blue.png",64,64,10,1,0.05,1);
 		mobs[0].setPosition((int)(Math.random() * 1000), (int)(Math.random() * 1000));
 		mobs[0].setCam(cam);
 		mobs[0].init();
 		
-		mobs[1] =  new Monster(p,"images\\monsterImages\\Monster_Type_Blue.png",64,64,10,1,0.05);
+		mobs[1] =  new Monster(p,"images\\monsterImages\\Monster_Type_Blue.png",64,64,10,1,0.05,1);
 		mobs[1].setPosition((int)(Math.random() * 1000), (int)(Math.random() * 1000));
 		mobs[1].setCam(cam);
 		mobs[1].init();
 		
-		mobs[2] =  new Monster(p,"images\\monsterImages\\Monster_Type_Green.png",128,128,17,2,0.03);
+		mobs[2] =  new Monster(p,"images\\monsterImages\\Monster_Type_Green.png",128,128,17,2,0.03,3);
 		mobs[2].setPosition((int)(Math.random() * 1000), (int)(Math.random() * 1000));
 		mobs[2].setCam(cam);
 		mobs[2].init();
 		
-		mobs[3] =  new Monster(p,"images\\monsterImages\\Monster_Type_Purple.png",100,100,15,3,0.04);
+		mobs[3] =  new Monster(p,"images\\monsterImages\\Monster_Type_Purple.png",100,100,15,3,0.04,2);
 		mobs[3].setPosition((int)(Math.random() * 1000), (int)(Math.random() * 1000));
 		mobs[3].setCam(cam);
 		mobs[3].init();
@@ -140,10 +142,12 @@ public class GameScene extends BaseScene {
 		}
 		
 		if(p.getPlayerClean() <= 0) {
+			//sound.bgmStop();s\
+			sound.sfxSelect("gameOver");
 			p = null;
 			gw.setVisible(false);
 			gw.dispose();
-			gw = new GameWindow(0,null);
+			gw.showGameOver();
 		}
 	}
 
@@ -180,7 +184,7 @@ public class GameScene extends BaseScene {
 
 	public void popItem() {
 		if (!popItem) {
-			item = new GameItem("images\\ItemImage\\HandCleaner.png",this,p);
+			item = new GameItem("images\\ItemImage\\HandCleaner.png",this,p,64,64,10);
 			item.init();
 			popItem = true;
 		}
@@ -191,22 +195,22 @@ public class GameScene extends BaseScene {
 		item = null;
 		monsterLength = 4;
 		
-		mobs[0] = new Monster(p,"images\\monsterImages\\Monster_Type_Blue.png",64,64,10,1,0.05);
+		mobs[0] = new Monster(p,"images\\monsterImages\\Monster_Type_Blue.png",64,64,10,1,0.05,1);
 		mobs[0].setPosition((int)(Math.random() * 1000), (int)(Math.random() * 1000));
 		mobs[0].setCam(cam);
 		mobs[0].init();
 		
-		mobs[1] =  new Monster(p,"images\\monsterImages\\Monster_Type_Blue.png",64,64,10,1,0.05);
+		mobs[1] =  new Monster(p,"images\\monsterImages\\Monster_Type_Blue.png",64,64,10,1,0.05,1);
 		mobs[1].setPosition((int)(Math.random() * 1000), (int)(Math.random() * 1000));
 		mobs[1].setCam(cam);
 		mobs[1].init();
 		
-		mobs[2] =  new Monster(p,"images\\monsterImages\\Monster_Type_Green.png",128,128,17,2,0.03);
+		mobs[2] =  new Monster(p,"images\\monsterImages\\Monster_Type_Green.png",128,128,17,2,0.03,3);
 		mobs[2].setPosition((int)(Math.random() * 1000), (int)(Math.random() * 1000));
 		mobs[2].setCam(cam);
 		mobs[2].init();
 		
-		mobs[3] =  new Monster(p,"images\\monsterImages\\Monster_Type_Purple.png",100,100,15,3,0.04);
+		mobs[3] =  new Monster(p,"images\\monsterImages\\Monster_Type_Purple.png",100,100,15,3,0.04,2);
 		mobs[3].setPosition((int)(Math.random() * 1000), (int)(Math.random() * 1000));
 		mobs[3].setCam(cam);
 		mobs[3].init();

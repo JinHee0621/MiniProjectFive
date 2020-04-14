@@ -48,6 +48,7 @@ public class ResultPrinter extends JFrame{
 	}
 	
 	public void logFail() {
+		//gw.startLogin();
 		JLabel label = new JLabel(new ImageIcon(new ImageIcon("images\\titleImages\\login_fail.png")
 				.getImage().getScaledInstance(500,200, 0)));
 		label.setBounds(0, 0,500,200);
@@ -80,6 +81,7 @@ public class ResultPrinter extends JFrame{
 		this.add(label);
 		this.repaint();
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
 	}
 
 	public void emailSuccess() {
