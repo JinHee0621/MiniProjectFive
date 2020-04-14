@@ -5,6 +5,7 @@ import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 
 import com.kh.mini.controller.KeyManager;
+import com.kh.mini.controller.SoundManager;
 
 public abstract class GameObject {
 
@@ -18,6 +19,7 @@ public abstract class GameObject {
 	
 	protected double radius;
 	protected static final KeyManager key = KeyManager.Instance();
+	protected static final SoundManager sound = SoundManager.Instance();
 	
 	public abstract void init();
 	public abstract void update();

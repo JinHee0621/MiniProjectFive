@@ -38,6 +38,7 @@ public class Player extends GameObject  implements Runnable{
 	
 	private String user;
 	
+	private boolean attackBullet = true;
 
 	@Override
 	public void init() {
@@ -67,8 +68,14 @@ public class Player extends GameObject  implements Runnable{
 	public void addObjs(GameObject[] mobs) {
 		this.objs = mobs;
 	}
-	
-	
+	//무기 타입을 바꾸는 코드
+	public void eatGunTypeWeapon() {
+		attackBullet = true;
+	}
+	public void eatSprayTypeWeapon() {
+		attackBullet = false;
+	}
+	//--------------------------------
 	@Override
 	public void update() {
 		this.makeCenterRect(x, y, 70, 70);
@@ -103,10 +110,14 @@ public class Player extends GameObject  implements Runnable{
 	public void playerMov() {
 		if (playerClean > 0) {
 			if (key.onceKeyDown(KeyEvent.VK_Z) && !checkDoAttack) {
+				
+				sound.sfxSelect("Attack_Effect");
+				
 				checkDoAttack = true;
-				attack = new Attack(this);
+				attack = new Attack(this, attackBullet);
 				attack.targetMobs(objs);
 				new Thread(this).start();
+				
 			}
 			if (key.stayKeyDown(KeyEvent.VK_LEFT)) {
 				img.setIsOn(true);
@@ -185,6 +196,7 @@ public class Player extends GameObject  implements Runnable{
 	public void run() {
 		// TODO Auto-generated method stub	
 		if (checkGetAttack) {
+				sound.sfxSelect("PlayerHit");
 				if(playerClean > 0 && playerMask <= 0) playerClean -= 1;
 				else if(playerMask > 0) playerMask -= 1;
 				uiScene.update();

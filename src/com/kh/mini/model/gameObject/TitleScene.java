@@ -65,20 +65,22 @@ public class TitleScene extends BaseScene {
 		//마우스 클릭좌표를 얻는다.
 		
 		if(KeyManager.Instance().onceMouseClicked(MouseEvent.BUTTON1)) {
+		
 			System.out.println(pointerInfo.getLocation());
 			if((pointerInfo.getLocation().x >= 450 && pointerInfo.getLocation().x <= 820 ) && (pointerInfo.getLocation().y >= 500 &&pointerInfo.getLocation().y <= 670 )) {
+				sound.sfxSelect("ButtonClick1");
 				gw.startLogin();
 				//로그인 이미지에서 마우스를 클릭하면 GameWindow 클래스의 startLogin을 실행한다.
-			}
-			
-			if((pointerInfo.getLocation().x >= 450 && pointerInfo.getLocation().x <= 820 ) && (pointerInfo.getLocation().y >= 680 &&pointerInfo.getLocation().y <= 810 )) {
+			}else if((pointerInfo.getLocation().x >= 450 && pointerInfo.getLocation().x <= 820 ) && (pointerInfo.getLocation().y >= 680 &&pointerInfo.getLocation().y <= 810 )) {
 				//여기서는 회원가입을 실행할 것
+				sound.sfxSelect("ButtonClick1");
 				new Join(gw);
-			}
-			
-			if((pointerInfo.getLocation().x >= 450 && pointerInfo.getLocation().x <= 820 ) && (pointerInfo.getLocation().y >= 820 &&pointerInfo.getLocation().y <= 950 )) {
+			}else if((pointerInfo.getLocation().x >= 450 && pointerInfo.getLocation().x <= 820 ) && (pointerInfo.getLocation().y >= 820 &&pointerInfo.getLocation().y <= 950 )) {
 				//여기서는 게임이 종료됨
+				sound.sfxSelect("ButtonClick1");
 				new Finish(gw);
+			}else {
+				sound.sfxSelect("MouseClick1");
 			}
 		}
 	}

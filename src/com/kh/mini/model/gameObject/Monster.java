@@ -43,10 +43,12 @@ public class Monster extends GameObject implements Runnable{
 	
 	//---몬스터파라미터-------------------
 	
-	private int monsterHp = 5;
+	private int monsterType = 0;
+	
+	private int monsterHp = 3;
 	
 	
-	public Monster(Player target, String path, int imgSizeX, int imgSizeY, int frameCount, int patternType , double mobSpeed) {
+	public Monster(Player target, String path, int imgSizeX, int imgSizeY, int frameCount, int patternType , double mobSpeed, int monsterType) {
 		this.target = target;
 		this.imgPath = path;
 		this.imgSizeX = imgSizeX;
@@ -55,6 +57,10 @@ public class Monster extends GameObject implements Runnable{
 		this.patternType = patternType;
 		this.mobSpeed = mobSpeed;
 		firstSpeed = mobSpeed;
+		this.monsterType = monsterType;
+		
+		monsterHp *= monsterType;
+		
 	}
 	
 	@Override
@@ -139,6 +145,7 @@ public class Monster extends GameObject implements Runnable{
 				if (this.isCollisionRectToRect(attack) == false) {
 				} else {
 					if (!getDamage) {
+						sound.sfxSelect("MonsterHit_"+monsterType);
 						getDamage = true;
 						monsterHp -= 1;
 						System.out.println(" " + this + ", "+ monsterHp);
@@ -185,9 +192,9 @@ public class Monster extends GameObject implements Runnable{
 		try {
 			if (getDamage) {
 				mobSpeed = 0;
-				Thread.sleep(300);
+				Thread.sleep(1000);
 				getDamage = false;
-				Thread.sleep(4000);
+		
 				mobSpeed = firstSpeed;
 				checkPattern = false;
 				

@@ -102,17 +102,19 @@ public class LoginScene extends BaseScene implements FocusListener{
 				JoinManager jm = new JoinManager(gw);
 
 				if ((tid.getText().equals("")) || (tpw.getText().equals(""))) {
+					sound.sfxSelect("InputError");
 					new ResultPrinter().checkList(); // 수정 필요
-				} else {
-					gw.remove(panel);
-					gw.repaint();
 					
+				} else {
+					sound.sfxSelect("ButtonClick1");
 					jm.idPwCorrect(tid.getText(), tpw.getText());
 					
 					gw.addKeyListener(KeyManager.Instance());
 					gw.addMouseListener(KeyManager.Instance());
 				}				
 				//게임 실행시 실행되기는 하지만 화면 최소화 후에 키보드 입력을 받기 시작함.
+			}else {
+				sound.sfxSelect("MouseClick1");
 			}
 		}
 	}

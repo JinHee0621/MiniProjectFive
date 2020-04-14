@@ -45,13 +45,15 @@ public class JoinManager {
 			for(int i = 0; i < list.size(); i++) {
 				//일치하는 user id 를 selectedUserInfo에  담기	
 				if(list.get(i).getId().equals(tid) && list.get(i).getPw().equals(tpw)) {
+					gw.removeAll();
+					gw.repaint();
 					gw.setVisible(false);
 					gw = new GameWindow(1,tid);
 					jd.fileSave(list);
-					//new ResultPrinter().logSuccess();
 					break;
 				}else {
 					new ResultPrinter().logFail();
+				
 				}
 			}
 		}
