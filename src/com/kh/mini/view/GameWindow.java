@@ -93,7 +93,6 @@ public class GameWindow extends JFrame {
 			g.clearRect(0, 0, this.getWidth(), this.getHeight());
 			
 			//gw.repaint();
-			
 			this.repaint();
 			titleScene.render(g);
 			titleScene.update();
