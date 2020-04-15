@@ -1,4 +1,4 @@
-package com.kh.mini.model.gameObject;
+package com.kh.mini.model.gameObject.maps;
 
 import java.awt.Graphics;
 import java.awt.MouseInfo;
@@ -6,6 +6,10 @@ import java.awt.PointerInfo;
 import java.awt.event.MouseEvent;
 
 import com.kh.mini.controller.KeyManager;
+import com.kh.mini.model.gameObject.BaseScene;
+import com.kh.mini.model.gameObject.Monster;
+import com.kh.mini.model.gameObject.Player;
+import com.kh.mini.model.gameObject.Stuff;
 import com.kh.mini.model.vo.GameObject;
 import com.kh.mini.model.vo.ImageClass;
 import com.kh.mini.view.GameWindow;
@@ -23,7 +27,7 @@ public class MapScene extends BaseScene {
 	
 	Player p;
 
-	Monster[] mobs = new Monster[4];
+	public Monster[] mobs = new Monster[4];
 	
 	
 	public MapScene(GameWindow gw, Player p) {

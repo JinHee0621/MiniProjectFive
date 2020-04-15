@@ -4,9 +4,11 @@ import java.awt.Graphics;
 
 import com.kh.mini.controller.SoundManager;
 import com.kh.mini.model.dao.JoinDao;
+import com.kh.mini.model.gameObject.maps.MapScene;
 import com.kh.mini.model.vo.CameraClass;
 import com.kh.mini.model.vo.ImageClass;
 import com.kh.mini.view.GameWindow;
+import com.kh.mini.model.gameObject.maps.*;
 
 public class GameScene extends BaseScene {
 
