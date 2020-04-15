@@ -19,7 +19,7 @@ public class ResultPrinter extends JFrame{
 		this.setVisible(true);//없으면 프레임 안뜸.
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//콘솔도 멈추게 함.
 	}
-
+	
 	public void logSuccess() {
 		  JButton btn = new JButton(new ImageIcon("images\\titleImages\\oh_yes.png"));
 	      btn.setLocation(160,110);

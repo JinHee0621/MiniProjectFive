@@ -73,14 +73,14 @@ public class JoinDao {
 			
 			list=  (ArrayList<UserInfo>) ois.readObject();
 			
-			if(list != null) {
-				for(int i = 0 ; i < list.size(); i++) {
-					System.out.println(list.get(i));
-				}
-			}else {
-				System.out.println("게시물이 없습니다.");
-			}
-			
+//			if(list != null) {
+//				for(int i = 0 ; i < list.size(); i++) {
+//					System.out.println(list.get(i));
+//				}
+//			}else {
+//				System.out.println("없습니다.");
+//			}
+//			
 			
 		} catch (FileNotFoundException e) {
 			System.out.println("파일이 없습니다.");

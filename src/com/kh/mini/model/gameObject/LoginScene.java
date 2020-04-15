@@ -47,8 +47,8 @@ public class LoginScene extends BaseScene implements FocusListener{
 		panel = new JPanel();
 		panel.setSize(850, 350);
 		panel.setLayout(null);
-
 		gw.add(panel);		
+		
 		tid = new JTextField();
 		tid.setLocation(292, 153);
 		tid.setSize(277, 42);
@@ -65,7 +65,6 @@ public class LoginScene extends BaseScene implements FocusListener{
 		tpw.setBorder(javax.swing.BorderFactory.createEmptyBorder());
 		tpw.setFont(new Font("Sanscerif", Font.PLAIN, 50));
 		
-		
 		JLabel btn= new JLabel(new ImageIcon(new ImageIcon("images\\titleImages\\loggin.png").getImage().getScaledInstance(185, 65, 0)));
 		btn.setBackground(Color.WHITE);
 		btn.setLocation(600, 150);
@@ -76,7 +75,6 @@ public class LoginScene extends BaseScene implements FocusListener{
 		JLabel label = new JLabel(new ImageIcon(new ImageIcon("images\\titleImages\\login_pop.png").getImage().getScaledInstance(850, 350, 0)));
 		label.setBounds(0, 0, 850, 350);
 		panel.add(label);
-		
 		panel.repaint();
 		
 		//이미지를 초기화 하고 위치를 정한다.
@@ -126,13 +124,11 @@ public class LoginScene extends BaseScene implements FocusListener{
 
 	@Override
 	public void focusGained(FocusEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void focusLost(FocusEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 }

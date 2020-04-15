@@ -12,6 +12,7 @@ import com.kh.mini.controller.KeyManager;
 import com.kh.mini.model.gameObject.GameOverScene;
 import com.kh.mini.model.gameObject.GameScene;
 import com.kh.mini.model.gameObject.LoginScene;
+import com.kh.mini.model.gameObject.RankingScene;
 import com.kh.mini.model.gameObject.TitleScene;
 import com.kh.mini.model.vo.ImageClass;
 
@@ -30,7 +31,9 @@ public class GameWindow extends JFrame {
 	
 	boolean islogin = false;
 	
-	
+	public GameWindow() {	//나중에지워
+		
+	}
 	
 	public GameWindow(int type, String user) {
 		switch(type) {
@@ -226,6 +229,30 @@ public class GameWindow extends JFrame {
 		}
 	}
 	
+	public void startRanking() {
+
+		//islogin = true;
+		RankingScene rs = new RankingScene(this);
+		rs.init();
+
+		this.setLocationRelativeTo(null);
+		
+		this.addKeyListener(KeyManager.Instance());
+		
+		this.addMouseListener(KeyManager.Instance());
+		
+		//ls.setBgPosition(this.WIDTH / 2, this.HEIGHT / 2);
+		
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setVisible(true);		
+		//gw.repaint();
+		//this.createBufferStrategy(2);
+
+			//????????????/계속 실행.....	while(true) { rs.init(); }
+			rs.init();
+		
+		
+	}
 	
 	public void Init() {
 		
