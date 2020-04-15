@@ -322,6 +322,7 @@ public class Player extends GameObject  implements Runnable{
 
 	public void setPlayerClean(int playerClean) {
 		this.playerClean = playerClean;
+		if(this.playerClean > 10) this.playerClean = 10; 
 		uiScene.update();
 	}
 
@@ -349,6 +350,7 @@ public class Player extends GameObject  implements Runnable{
 
 	public void setPlayerMask(int playerMask) {
 		this.playerMask = playerMask;
+		if(this.playerMask > 7) this.playerMask = 7;
 		uiScene.update();
 	}
 	
@@ -366,6 +368,7 @@ public class Player extends GameObject  implements Runnable{
 
 	public void setCoinCount(int coinCount) {
 		this.coinCount = coinCount;
+		uiScene.update();
 	}
 
 	public int getScore() {
