@@ -112,25 +112,25 @@ public class Player extends GameObject  implements Runnable{
 		//캐릭터 문이동 제한---------------------------
 		if (x >= 640 && x + img.getWidth() <= 768 && y < 252) {
 
-			this.setPosition(576, 838 - img.getHeight());
+			this.setPosition(664, 838 - img.getHeight());
 
 		}
 		// 하단
 		if (x >= 640 && x + img.getWidth() <= 768 && y + img.getHeight() > 838) {
 
-			this.setPosition(576, 252);
+			this.setPosition(664, 252);
 
 		}
 		// 좌단
 		if (x < 194 && y + img.getHeight() <= 711 && y + img.getHeight() >= 584) {
 
-			this.setPosition(1214 - img.getWidth(), 584);
+			this.setPosition(1214 - img.getWidth(), 500);
 
 		}
 		// 우단
 		if (x + img.getWidth() > 1214 && y + img.getHeight() <= 711 && y + img.getHeight() >= 584) {
 
-			this.setPosition(194, 584);
+			this.setPosition(194, 500);
 
 		}
 		//캐릭터 벽이동 제한---------------------------
