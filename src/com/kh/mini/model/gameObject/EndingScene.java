@@ -11,60 +11,72 @@ import com.kh.mini.view.GameWindow;
 
 public class EndingScene extends BaseScene {
 
-   ImageClass bg;
+	ImageClass bg;
 
-   PointerInfo pointerInfo;
+	PointerInfo pointerInfo;
 
-   GameWindow gw;
-   
-   int cnt = 0;
+	GameWindow gw;
 
-   public EndingScene(GameWindow gw) {
-      this.gw = gw;
-   }
+	String user;
 
-   @Override
-   public void init() {
+	int cnt = 0;
 
-      bg = new ImageClass(); //이미지 클래스 할당
-      bg.Init("images\\titleImages\\finish1.png");
-      bg.setIsOn(true);
-      bg.setPosition(0, 0);
-      
-   }
-   
-   @Override
-   public void release() {
-      // TODO Auto-generated method stub
-   }
-   
-   @Override
-      public void update() {
-    
-         pointerInfo   = MouseInfo.getPointerInfo();
+	public EndingScene(GameWindow gw) {
+		this.gw = gw;
+	}
 
-         for(int i = 0; i < 5; i++) {
-            if((KeyManager.Instance().onceMouseClicked(MouseEvent.BUTTON1))&&((pointerInfo.getLocation().x >= 217 && pointerInfo.getLocation().x <= 1625) && (pointerInfo.getLocation().y >= 32 &&pointerInfo.getLocation().y <= 922))){
-               cnt += 1;
-               
-               switch(cnt) {
-               case 1 : bg.changeImage("images\\titleImages\\finish2.png");   break;
-               case 2 : bg.changeImage("images\\titleImages\\finish3.png");   break;
-               default : cnt--;            
-               }
+	@Override
+	public void init() {
 
-            }
-            
-         }
+		bg = new ImageClass(); // 이미지 클래스 할당
+		bg.Init("images\\titleImages\\finish1.png");
+		bg.setIsOn(true);
+		bg.setPosition(0, 0);
 
-      }
-   //   if((pointerInfo.getLocation().x >= 217 && pointerInfo.getLocation().x <= 1625 ) && 
-   //      (pointerInfo.getLocation().y >= 32 &&pointerInfo.getLocation().y <= 922 )) {
-   //   bg.changeImage("images\\titleImages\\finish2.png");
+	}
 
-   @Override
-   public void render(Graphics g) {
-      bg.render(g);
-   }
+	@Override
+	public void release() {
+		// TODO Auto-generated method stub
+	}
 
+	@Override
+	public void update() {
+
+		pointerInfo = MouseInfo.getPointerInfo();
+		if ((KeyManager.Instance().onceMouseClicked(MouseEvent.BUTTON1))
+				&& ((pointerInfo.getLocation().x >= 217 && pointerInfo.getLocation().x <= 1625)
+						&& (pointerInfo.getLocation().y >= 32 && pointerInfo.getLocation().y <= 922))) {
+			cnt += 1;
+
+			switch (cnt) {
+			case 1:
+				bg.changeImage("images\\titleImages\\finish2.png");
+				break;
+			case 2:
+				bg.changeImage("images\\titleImages\\finish3.png");
+				break;
+			default:
+				cnt--;
+			}
+		}
+
+	}
+	// if((pointerInfo.getLocation().x >= 217 && pointerInfo.getLocation().x <= 1625
+	// ) &&
+	// (pointerInfo.getLocation().y >= 32 &&pointerInfo.getLocation().y <= 922 )) {
+	// bg.changeImage("images\\titleImages\\finish2.png");
+
+	@Override
+	public void render(Graphics g) {
+		bg.render(g);
+	}
+
+	public String getUser() {
+		return user;
+	}
+
+	public void setUser(String user) {
+		this.user = user;
+	}
 }

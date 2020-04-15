@@ -50,7 +50,7 @@ public class JoinManager {
 	               gw.removeAll();
 	               gw.repaint();
 	               gw.setVisible(false);
-	               gw = new GameWindow(1,tid);
+	               //gw = new GameWindow(1,tid);
 	               jd.fileSave(list);
 	               break;
 	            }

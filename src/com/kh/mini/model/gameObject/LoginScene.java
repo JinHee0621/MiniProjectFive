@@ -49,6 +49,7 @@ public class LoginScene extends BaseScene implements FocusListener{
 		panel.setLayout(null);
 
 		gw.add(panel);		
+		
 		tid = new JTextField();
 		tid.setLocation(292, 153);
 		tid.setSize(277, 42);
@@ -108,7 +109,7 @@ public class LoginScene extends BaseScene implements FocusListener{
 				} else {
 					sound.sfxSelect("ButtonClick1");
 					jm.idPwCorrect(tid.getText(), tpw.getText());
-					
+					gw.startOpening(tid.getText());
 					gw.addKeyListener(KeyManager.Instance());
 					gw.addMouseListener(KeyManager.Instance());
 				}				
