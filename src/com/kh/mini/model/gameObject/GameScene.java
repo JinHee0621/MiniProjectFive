@@ -9,7 +9,6 @@ import com.kh.mini.model.vo.CameraClass;
 import com.kh.mini.model.vo.ImageClass;
 import com.kh.mini.view.GameWindow;
 import com.kh.mini.model.gameObject.maps.*;
-
 public class GameScene extends BaseScene {
 
 	private JoinDao jd= new JoinDao();
@@ -182,7 +181,8 @@ public class GameScene extends BaseScene {
 
 	public void popItem() {
 		if (!popItem) {
-			item = new GameItem("images\\ItemImage\\HandCleaner.png",this,p,64,64,10);
+			int ItemType = (int) (Math.random() * 5);
+			item = new GameItem(p,ItemType, this);
 			item.init();
 			popItem = true;
 		}

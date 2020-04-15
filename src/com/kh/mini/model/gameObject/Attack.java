@@ -23,6 +23,8 @@ public class Attack extends GameObject  implements Runnable{
 	
 	private int nearest;
 	
+	private int attackPower = 1;
+	
 	private double rangeX;
 	private double rangeY;
 	
@@ -36,8 +38,8 @@ public class Attack extends GameObject  implements Runnable{
 	public Attack(Player parent, boolean attackBullet) {
 		this.parent = parent;
 		endAttack = false;
-		rangeX = 150;
-		rangeY = 150;
+		rangeX = 200;
+		rangeY = 200;
 		this.attackBullet = attackBullet;
 		init();
 		new Thread(this).start();
@@ -176,6 +178,14 @@ public class Attack extends GameObject  implements Runnable{
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public int getAttackPower() {
+		return attackPower;
+	}
+
+	public void setAttackPower(int attackPower) {
+		this.attackPower = attackPower;
 	}
 		
 }
