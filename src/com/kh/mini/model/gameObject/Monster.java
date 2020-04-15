@@ -192,7 +192,7 @@ public class Monster extends GameObject implements Runnable{
 	public void render(Graphics g) {
 		// TODO Auto-generated method stub
 		if (monsterHp > 0) {
-			img.setPosition(this.getX(), this.getY());
+			img.setPosition(x, y);
 			img.render(g);
 		}
 	}

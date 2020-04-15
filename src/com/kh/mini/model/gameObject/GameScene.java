@@ -92,7 +92,7 @@ public class GameScene extends BaseScene {
 		uiScene = new UiScene(p);
 		uiScene.init();
 		
-		mapScene = new MapScene(gw);
+		mapScene = new MapScene(gw, p);
 		mapScene.init();
 		
 		p.addUI(uiScene);
