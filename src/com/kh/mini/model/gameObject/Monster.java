@@ -72,14 +72,14 @@ public class Monster extends GameObject implements Runnable{
 		img.Init(imgPath, imgSizeX, imgSizeY, frameCount, 1, true);
 		
 		img.setMagnification(1.0);
-		x = this.getX()+50;
-		y = this.getY()+50;
+		x = this.getX()-128;
+		y = this.getY()-128;
 		img.setPosition(x, y);
 		
 		img.setIsOn(true);
 		img.setMaxSpeed(100);
 		
-		this.makeCenterRect(x, y,50,50);
+		this.makeCenterRect(x, y,150,150);
 	}
 	public void addObjs(GameObject[] mobs) {
 		this.objs = mobs;
@@ -93,7 +93,7 @@ public class Monster extends GameObject implements Runnable{
 	public void update() {
 
 		if (monsterHp > 0) {
-			this.makeCenterRect(x, y, 50, 50);
+			this.makeCenterRect(x, y, 150, 150);
 			img.isFrameUpdate();
 
 			for (int i = 0; i <GameScene.monsterLength; i++) {
@@ -109,7 +109,23 @@ public class Monster extends GameObject implements Runnable{
 				mobPattern.start();
 				checkPattern = true;
 			}
-
+			
+			
+			
+			if (x + img.getWidth() > 1216) {
+				x = 1216 - img.getWidth();
+			}
+			if (x < 192) {
+				x = 192;
+			}
+			if (y < 328) {
+				y = 328;
+			}
+			if (y + img.getHeight() > 840) {
+				y = 840 - img.getHeight();
+			}
+			
+			
 			if (this.isCollisionRectToRect(target) == false) {
 				if (this.getX() > target.getX()) {
 					if (this.getY() > target.getY()) {

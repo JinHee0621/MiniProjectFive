@@ -53,8 +53,8 @@ public class ImageClass {
 			e.printStackTrace();
 		}
 		
-		this.width = img.getWidth();
-		this.height = img.getHeight();
+		this.setWidth(img.getWidth());
+		this.setHeight(img.getHeight());
 		
 		pt = new Point2D.Double(0 ,0);
 		dp = new Point2D.Double(0, 0);
@@ -64,8 +64,8 @@ public class ImageClass {
 		this.magnification = 1;
 		this.maxCountX = maxCountX;
 		this.maxCountY = maxCountY;
-		this.width = width;
-		this.height = height;
+		this.setWidth(width);
+		this.setHeight(height);
 		this.isRepeat = isRepeat;
 		
 		t = new AffineTransform();
@@ -98,8 +98,8 @@ public class ImageClass {
 			e.printStackTrace();
 		}
 		
-		this.width = img.getWidth();
-		this.height = img.getHeight();
+		this.setWidth(img.getWidth());
+		this.setHeight(img.getHeight());
 	}
 	
 	public void changeImage(String path, int width, int height, int maxCountX, int maxCountY, boolean isRepeat) {
@@ -107,8 +107,8 @@ public class ImageClass {
 		this.magnification = 1;
 		this.maxCountX = maxCountX;
 		this.maxCountY = maxCountY;
-		this.width = width;
-		this.height = height;
+		this.setWidth(width);
+		this.setHeight(height);
 		this.isRepeat = isRepeat;
 		
 		BufferedImage bigImg = null;
@@ -245,6 +245,22 @@ public class ImageClass {
 
 	public void setRepeat(boolean isRepeat) {
 		this.isRepeat = isRepeat;
+	}
+
+	public int getWidth() {
+		return width;
+	}
+
+	public void setWidth(int width) {
+		this.width = width;
+	}
+
+	public int getHeight() {
+		return height;
+	}
+
+	public void setHeight(int height) {
+		this.height = height;
 	}
 
 }

@@ -91,6 +91,7 @@ public class Player extends GameObject  implements Runnable{
 		distanceMin = 5000;
 
 		playerMov();
+		cam.update();
 		img.isFrameUpdate();
 		
 		if(objs[nearlist] != null && this.isCollisionRectToRect(objs[nearlist]) == false) {
@@ -108,6 +109,21 @@ public class Player extends GameObject  implements Runnable{
 	}
 
 	public void playerMov() {
+		
+		if (x + img.getWidth() > 1216) {
+			x = 1216 - img.getWidth();
+		}
+		if (x < 192) {
+			x = 192;
+		}
+		if (y < 250) {
+			y = 250;
+		}
+		if (y + img.getHeight() > 840) {
+			y = 840 - img.getHeight();
+		}
+		
+		
 		if (playerClean > 0) {
 			if (key.onceKeyDown(KeyEvent.VK_Z) && !checkDoAttack) {
 				

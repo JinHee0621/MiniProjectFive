@@ -4,9 +4,12 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 
 import com.kh.mini.controller.KeyManager;
+import com.kh.mini.model.gameObject.Player;
 
 public class CameraClass extends GameObject {
-	
+	public CameraClass() {
+	}
+
 	@Override
 	public void init() {
 		// TODO Auto-generated method stub
@@ -16,11 +19,9 @@ public class CameraClass extends GameObject {
 	public void update() {
 		// TODO Auto-generated method stub
 		if(key.stayKeyDown(KeyEvent.VK_LEFT)) {
-			
 		}
 		
 		if(key.stayKeyDown(KeyEvent.VK_RIGHT)) {
-			
 		}
 		
 		if(key.stayKeyDown(KeyEvent.VK_DOWN)) {
@@ -30,6 +31,7 @@ public class CameraClass extends GameObject {
 		if(key.stayKeyDown(KeyEvent.VK_UP)) {
 			//y = 0.005;
 		}
+		
 		
 	}
 
