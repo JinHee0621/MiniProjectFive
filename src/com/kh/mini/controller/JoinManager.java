@@ -47,10 +47,7 @@ public class JoinManager {
 	         
 	            if(list.get(i).getId().equals(tid) && list.get(i).getPw().equals(tpw)) {
 	               flag = false;
-	               gw.removeAll();
-	               gw.repaint();
-	               gw.setVisible(false);
-	               //gw = new GameWindow(1,tid);
+	               gw.startOpening(tid, list.get(i).isOpening());
 	               jd.fileSave(list);
 	               break;
 	            }

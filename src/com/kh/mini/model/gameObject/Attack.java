@@ -72,8 +72,8 @@ public class Attack extends GameObject  implements Runnable{
 			img.Init("images\\charImages\\bullet.png");
 		}
 		else {
-			rangeX = 300;
-			rangeY = 300;
+			rangeX = 120;
+			rangeY = 170;
 			if(parent.isPlayerFront()) img.Init("images\\charImages\\AttackFront.png", 90, 80, 11, 1, true);
 			if(parent.isPlayerUp()) img.Init("images\\charImages\\AttackUp.png", 90, 80, 11, 1, true);
 			if(parent.isPlayerLeft()) img.Init("images\\charImages\\AttackSideLeft.png", 80, 90, 11, 1, true);

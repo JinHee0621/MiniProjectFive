@@ -14,10 +14,11 @@ public class UserInfo implements Serializable{
 	private String email;
 	private String key;
 	private int point;
+	private boolean isOpening;
 	
 	public UserInfo() {}
 	
-	public UserInfo(String id, String pw, String name, String email, String key, int point) {
+	public UserInfo(String id, String pw, String name, String email, String key, int point, boolean isOpening) {
 		super();
 		this.id = id;
 		this.pw = pw;
@@ -25,6 +26,7 @@ public class UserInfo implements Serializable{
 		this.email = email;
 		this.key = key;
 		this.point = point;
+		this.isOpening = isOpening;
 	}
 	
 	public String getId() {
@@ -67,9 +69,20 @@ public class UserInfo implements Serializable{
 		this.point = point;
 	}
 
+	public boolean isOpening() {
+		return isOpening;
+	}
+
+	public void setOpening(boolean isOpening) {
+		this.isOpening = isOpening;
+	}
+
 	@Override
 	public String toString() {
-		return "UserInfo [id=" + id + ", pw=" + pw + ", name=" + name + ", email=" + email + ", key=" + key + ", point=" + point +"]";
+		return "UserInfo [id=" + id + ", pw=" + pw + ", name=" + name + ", email=" + email + ", key=" + key + ", point="
+				+ point + ", isOpening=" + isOpening + "]";
 	}
+
+
 
 }

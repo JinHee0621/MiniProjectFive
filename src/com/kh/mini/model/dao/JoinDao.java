@@ -34,6 +34,32 @@ public class JoinDao {
 		}
 	}
 	
+	public void openingSave(String userID, boolean isOpening) {
+		ObjectOutputStream obj = null;
+		ArrayList<UserInfo> list = fileOpen();
+		try {
+			obj = new ObjectOutputStream(new FileOutputStream("user1.txt"));
+			for(int i = 0; i < list.size(); i++) {
+				if(list.get(i).getId().equals(userID)) {
+					list.get(i).setOpening(isOpening);
+					break;
+				}
+			}
+			obj.writeObject(list);
+			obj.flush();	//내용 전송하고 비우는거
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				obj.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
 	public void scoreSave(String userID, int score) {
 		ObjectOutputStream obj = null;
 		ArrayList<UserInfo> list = fileOpen();

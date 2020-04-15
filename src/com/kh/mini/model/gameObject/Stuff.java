@@ -15,8 +15,7 @@ public class Stuff extends GameObject{
 	
 	private int imgSizeX;
 	private int imgSizeY;
-	private int frameCount;
-	
+
 	public Stuff(String path, int imgSizeX, int imgSizeY, Player player) {
 		this.player = player;
 		this.imgPath = path;
@@ -44,10 +43,10 @@ public class Stuff extends GameObject{
 	@Override
 	public void update() {
 		this.makeCenterRect(this.getX(), this.getY(), imgSizeX,imgSizeY);
+		
 		if (this.isCollisionRectToRect(player) == false) {
 		} else {
 			if (player.getX() > this.getX()) {
-				System.out.println("플레이어와 부딫힌다.");
 				player.setPosition(player.getX() + player.getPlayerMovSpeed(), player.getY());
 			} else {
 				player.setPosition(player.getX() - player.getPlayerMovSpeed(), player.getY());
@@ -59,21 +58,6 @@ public class Stuff extends GameObject{
 				player.setPosition(player.getX(), player.getY()-player.getPlayerMovSpeed());
 			}
 		}
-//		if (this.isCollisionRectToRect(instanceof Monster) == false) {
-//		} else {
-//			if (player.getX() > this.getX()) {
-//				System.out.println("플레이어와 부딫힌다.");
-//				player.setPosition(player.getX() + player.getPlayerMovSpeed(), player.getY());
-//			} else {
-//				player.setPosition(player.getX() - player.getPlayerMovSpeed(), player.getY());
-//			}
-//			
-//			if (player.getY() > this.getY()) {
-//				player.setPosition(player.getX(), player.getY()+player.getPlayerMovSpeed());
-//			} else {
-//				player.setPosition(player.getX(), player.getY()-player.getPlayerMovSpeed());
-//			}
-//		}
 		
 	}
 

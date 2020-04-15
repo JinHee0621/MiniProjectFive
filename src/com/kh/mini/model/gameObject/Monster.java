@@ -49,8 +49,9 @@ public class Monster extends GameObject implements Runnable{
 	
 	private int givScore = 0;
 	
+	private int monsterRect = 0;
 	
-	public Monster(Player target, String path, int imgSizeX, int imgSizeY, int frameCount, int patternType , double mobSpeed, int monsterType) {
+	public Monster(Player target, String path, int imgSizeX, int imgSizeY, int frameCount, int patternType , double mobSpeed, int monsterType, int monsterRect) {
 		this.target = target;
 		this.imgPath = path;
 		this.imgSizeX = imgSizeX;
@@ -60,6 +61,7 @@ public class Monster extends GameObject implements Runnable{
 		this.mobSpeed = mobSpeed;
 		firstSpeed = mobSpeed;
 		this.monsterType = monsterType;
+		this.monsterRect = monsterRect;
 		
 		monsterHp *= monsterType;
 		setGivScore(25 * monsterType);
@@ -72,14 +74,15 @@ public class Monster extends GameObject implements Runnable{
 		img.Init(imgPath, imgSizeX, imgSizeY, frameCount, 1, true);
 		
 		img.setMagnification(1.0);
-		x = this.getX()-128;
-		y = this.getY()-128;
-		img.setPosition(x, y);
+		x = this.getX();
+		y = this.getY();
+		
+		//img.setPosition(x, y);
 		
 		img.setIsOn(true);
 		img.setMaxSpeed(100);
 		
-		this.makeCenterRect(x, y,150,150);
+		//this.makeCenterRect(x, y,150,150);
 	}
 	public void addObjs(GameObject[] mobs) {
 		this.objs = mobs;
@@ -93,7 +96,7 @@ public class Monster extends GameObject implements Runnable{
 	public void update() {
 
 		if (monsterHp > 0) {
-			this.makeCenterRect(x, y, 150, 150);
+			this.makeCenterRect(x, y, monsterRect, monsterRect);
 			img.isFrameUpdate();
 
 			for (int i = 0; i <GameScene.monsterLength; i++) {
@@ -192,7 +195,7 @@ public class Monster extends GameObject implements Runnable{
 	public void render(Graphics g) {
 		// TODO Auto-generated method stub
 		if (monsterHp > 0) {
-			img.setPosition(x, y);
+			img.setPosition(x+8, y+8);
 			img.render(g);
 		}
 	}

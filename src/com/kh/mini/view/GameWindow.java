@@ -46,7 +46,7 @@ public class GameWindow extends JFrame {
 			startLogin();
 			break;
 		case 3:
-			startOpening(user);
+			startOpening(user, false);
 			break;
 		}
 	}
@@ -131,12 +131,12 @@ public class GameWindow extends JFrame {
 		}
 	}
 
-	public void startOpening(String user) {
+	public void startOpening(String user, boolean opening) {
 		this.addKeyListener(KeyManager.Instance());
 
 		this.addMouseListener(KeyManager.Instance());
 
-		OpeningScene os = new OpeningScene(this);
+		OpeningScene os = new OpeningScene(this, user, opening);
 		//EndingScene os = new EndingScene(this);
 		os.setUser(user);
 		os.init();
