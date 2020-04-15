@@ -20,7 +20,6 @@ public class PointManager {
 			System.out.println("id : " + list.get(i).getId());
 			System.out.println("name : " + list.get(i).getName());
 			System.out.println("point : " + list.get(i).getPoint());
-		}
-		
+		}	
 	}
 }
