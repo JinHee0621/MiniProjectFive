@@ -9,6 +9,7 @@ import com.kh.mini.model.vo.UserInfo;
 public class PointManager {
 
 	public void arrayListSort() {
+		
 		ArrayList<UserInfo> list = new ArrayList<UserInfo>();
 		
 		JoinDao jd = new JoinDao();
@@ -19,6 +20,7 @@ public class PointManager {
 		for(int i = 0; i < list.size(); i++) {
 			System.out.println("id : " + list.get(i).getId());
 			System.out.println("name : " + list.get(i).getName());
+
 			System.out.println("point : " + list.get(i).getPoint());
 		}	
 	}
