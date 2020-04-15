@@ -136,8 +136,8 @@ public class GameWindow extends JFrame {
 
 		this.addMouseListener(KeyManager.Instance());
 
-		//OpeningScene os = new OpeningScene(this);
-		EndingScene os = new EndingScene(this);
+		OpeningScene os = new OpeningScene(this);
+		//EndingScene os = new EndingScene(this);
 		os.setUser(user);
 		os.init();
 

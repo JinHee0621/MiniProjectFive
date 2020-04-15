@@ -6,7 +6,7 @@ import java.awt.event.KeyEvent;
 import com.kh.mini.controller.KeyManager;
 
 public class CameraClass extends GameObject {
-
+	
 	@Override
 	public void init() {
 		// TODO Auto-generated method stub
@@ -16,9 +16,11 @@ public class CameraClass extends GameObject {
 	public void update() {
 		// TODO Auto-generated method stub
 		if(key.stayKeyDown(KeyEvent.VK_LEFT)) {
+			
 		}
 		
 		if(key.stayKeyDown(KeyEvent.VK_RIGHT)) {
+			
 		}
 		
 		if(key.stayKeyDown(KeyEvent.VK_DOWN)) {
