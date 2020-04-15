@@ -54,11 +54,10 @@ public class EndingScene extends BaseScene {
                }
 
             }
-
+            
          }
 
       }
-
    //   if((pointerInfo.getLocation().x >= 217 && pointerInfo.getLocation().x <= 1625 ) && 
    //      (pointerInfo.getLocation().y >= 32 &&pointerInfo.getLocation().y <= 922 )) {
    //   bg.changeImage("images\\titleImages\\finish2.png");
