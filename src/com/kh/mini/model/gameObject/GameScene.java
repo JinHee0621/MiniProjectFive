@@ -56,38 +56,33 @@ public class GameScene extends BaseScene {
 
 		//(int)(Math.random() * 1000);
 		
-		mobs[0] = new Monster(p,"images\\monsterImages\\Monster_Type_Blue.png",64,64,10,1,0.05,1);
-		mobs[0].setPosition((int)(Math.random() * 1024) + 192, (int)(Math.random() * 640) + 328);
-		mobs[0].setCam(cam);
-		mobs[0].init();
-		
-		mobs[1] =  new Monster(p,"images\\monsterImages\\Monster_Type_Blue.png",64,64,10,1,0.05,1);
-		mobs[1].setPosition((int)(Math.random() * 1024) + 192, (int)(Math.random() * 640) + 328);
-		mobs[1].setCam(cam);
-		mobs[1].init();
-		
-		mobs[2] =  new Monster(p,"images\\monsterImages\\Monster_Type_Green.png",128,128,17,2,0.03,3);
-		mobs[2].setPosition((int)(Math.random() * 1024) + 192, (int)(Math.random() * 640) + 328);
-		mobs[2].setCam(cam);
-		mobs[2].init();
-		
-		mobs[3] =  new Monster(p,"images\\monsterImages\\Monster_Type_Purple.png",100,100,15,3,0.04,2);
-		mobs[3].setPosition((int)(Math.random() * 1024) + 192, (int)(Math.random() * 640) + 328);
-		mobs[3].setCam(cam);
-		mobs[3].init();
-		
-		System.out.println("0. " + mobs[0].getX() + " , " + mobs[0].getY());
-		System.out.println("1. " +mobs[1].getX() + " , " + mobs[1].getY());
-		System.out.println("2. " +mobs[2].getX() + " , " + mobs[2].getY());
-		System.out.println("3. " +mobs[3].getX() + " , " + mobs[3].getY());
-		
-		for(int i = 0; i < mobs.length; i++) {
-			mobs[i].addObjs(mobs);
-			//자기자신을 제외하고 가까운 오브젝트를 찾아야 할것
-		}
+//		mobs[0] = new Monster(p,"images\\monsterImages\\Monster_Type_Blue.png",64,64,10,1,0.05,1);
+//		mobs[0].setPosition((int)(Math.random() * 1024) + 192, (int)(Math.random() * 640) + 328);
+//		mobs[0].setCam(cam);
+//		mobs[0].init();
+//		
+//		mobs[1] =  new Monster(p,"images\\monsterImages\\Monster_Type_Blue.png",64,64,10,1,0.05,1);
+//		mobs[1].setPosition((int)(Math.random() * 1024) + 192, (int)(Math.random() * 640) + 328);
+//		mobs[1].setCam(cam);
+//		mobs[1].init();
+//		
+//		mobs[2] =  new Monster(p,"images\\monsterImages\\Monster_Type_Green.png",128,128,17,2,0.03,3);
+//		mobs[2].setPosition((int)(Math.random() * 1024) + 192, (int)(Math.random() * 640) + 328);
+//		mobs[2].setCam(cam);
+//		mobs[2].init();
+//		
+//		mobs[3] =  new Monster(p,"images\\monsterImages\\Monster_Type_Purple.png",100,100,15,3,0.04,2);
+//		mobs[3].setPosition((int)(Math.random() * 1024) + 192, (int)(Math.random() * 640) + 328);
+//		mobs[3].setCam(cam);
+//		mobs[3].init();
+//		
+//		for(int i = 0; i < mobs.length; i++) {
+//			mobs[i].addObjs(mobs);
+//			//자기자신을 제외하고 가까운 오브젝트를 찾아야 할것
+//		}
 
-		p.addObjs(mobs);
-		p.init();
+//		p.addObjs(mobs);
+//		p.init();
 		
 		uiScene = new UiScene(p);
 		uiScene.init();
@@ -116,18 +111,18 @@ public class GameScene extends BaseScene {
 	public void update() {
 		mapScene.update();
 		p.update();
-		for (int i = 0; i < mobs.length; i++) {
-			if (mobs[i] != null) {
-				mobs[i].update();
+		for (int i = 0; i < mapScene.mobs.length; i++) {
+			if (mapScene.mobs[i] != null) {
+				mapScene.mobs[i].update();
 				if (p.isCheckDoAttack()) {
-					mobs[i].checkAttack(p.getAttack());
+					mapScene.mobs[i].checkAttack(p.getAttack());
 				}
-				if (mobs[i].getMonsterHp() <= 0) {
+				if (mapScene.mobs[i].getMonsterHp() <= 0) {
 	
 					System.out.println(i + "번 몬스터가 주금");
-					p.setScore(p.getScore() + mobs[i].getGivScore());
+					p.setScore(p.getScore() + mapScene.mobs[i].getGivScore());
 					
-					mobs[i] = null;
+					mapScene.mobs[i] = null;
 					uiScene.update();
 					monsterLength--;
 				} 
@@ -157,16 +152,16 @@ public class GameScene extends BaseScene {
 		// TODO Auto-generated method stub
 		mapScene.render(g);
 		
-		p.render(g);
+		//p.render(g);
 		
-		if(p.isCheckDoAttack()) {
-			p.getAttack().render(g);
-		}
+//		if(p.isCheckDoAttack()) {
+//			p.getAttack().render(g);
+//		}
 
-		for (int i = 0; i < mobs.length; i++) {
-			if(mobs[i] != null) mobs[i].render(g);
-		}
-		
+//		for (int i = 0; i < mobs.length; i++) {
+//			if(mobs[i] != null) mobs[i].render(g);
+//		}
+//		
 		uiScene.render(g);
 		
 		if(popItem) {
@@ -195,33 +190,7 @@ public class GameScene extends BaseScene {
 		popItem = false;
 		item = null;
 		monsterLength = 4;
-		
-		mobs[0] = new Monster(p,"images\\monsterImages\\Monster_Type_Blue.png",64,64,10,1,0.05,1);
-		mobs[0].setPosition((int)(Math.random() * 1024) + 192, (int)(Math.random() * 640) + 328);
-		mobs[0].setCam(cam);
-		mobs[0].init();
-		
-		mobs[1] =  new Monster(p,"images\\monsterImages\\Monster_Type_Blue.png",64,64,10,1,0.05,1);
-		mobs[1].setPosition((int)(Math.random() * 1024) + 192, (int)(Math.random() * 640) + 328);
-		mobs[1].setCam(cam);
-		mobs[1].init();
-		
-		mobs[2] =  new Monster(p,"images\\monsterImages\\Monster_Type_Green.png",128,128,17,2,0.03,3);
-		mobs[2].setPosition((int)(Math.random() * 1024) + 192, (int)(Math.random() * 640) + 328);
-		mobs[2].setCam(cam);
-		mobs[2].init();
-		
-		mobs[3] =  new Monster(p,"images\\monsterImages\\Monster_Type_Purple.png",100,100,15,3,0.04,2);
-		mobs[3].setPosition((int)(Math.random() * 1024) + 192, (int)(Math.random() * 640) + 328);
-		mobs[3].setCam(cam);
-		mobs[3].init();
-		
-		for(int i = 0; i < mobs.length; i++) {
-			mobs[i].addObjs(mobs);
-			//자기자신을 제외하고 가까운 오브젝트를 찾아야 할것
-		}
-		
-		p.addObjs(mobs);
+		mapScene.monsterSpone();
 	}
 	
 

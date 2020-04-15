@@ -6,21 +6,26 @@ import java.awt.PointerInfo;
 import java.awt.event.MouseEvent;
 
 import com.kh.mini.controller.KeyManager;
+import com.kh.mini.model.dao.JoinDao;
 import com.kh.mini.model.vo.ImageClass;
 import com.kh.mini.view.Finish;
 import com.kh.mini.view.GameWindow;
 import com.kh.mini.view.Join;
 
 public class OpeningScene extends BaseScene {
+	private JoinDao jd= new JoinDao();
+	
 	ImageClass bg;
 	PointerInfo pointerInfo;
 	GameWindow gw;
 	String user;
-
+	boolean opening;
 	int cnt = 0;
 
-	public OpeningScene(GameWindow gw) {
+	public OpeningScene(GameWindow gw, String user, boolean opening) {
 		this.gw = gw;
+		this.user = user;
+		this.opening = opening;
 	}
 
 	@Override
@@ -28,11 +33,15 @@ public class OpeningScene extends BaseScene {
 		// 이미지를 초기화 하고 위치를 정한다.
 
 		// 배경 이미지 클래스 새로 할당
+		if(!opening) {
 		bg = new ImageClass();
 		bg.Init("images\\titleImages\\start1.png");
 		bg.setIsOn(true);
 		bg.setPosition(0, 0);
-
+		} else {
+			gw.dispose();
+			gw = new GameWindow(1,user);
+		}
 	}
 
 	@Override
@@ -63,6 +72,7 @@ public class OpeningScene extends BaseScene {
 				bg.changeImage("images\\titleImages\\start5.png");
 				break;
 			case 5:
+				jd.openingSave(user, true);
 				gw.dispose();
 				gw = new GameWindow(1,user);
 				break;

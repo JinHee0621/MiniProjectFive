@@ -109,7 +109,6 @@ public class LoginScene extends BaseScene implements FocusListener{
 				} else {
 					sound.sfxSelect("ButtonClick1");
 					jm.idPwCorrect(tid.getText(), tpw.getText());
-					gw.startOpening(tid.getText());
 					gw.addKeyListener(KeyManager.Instance());
 					gw.addMouseListener(KeyManager.Instance());
 				}				

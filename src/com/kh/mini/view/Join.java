@@ -171,7 +171,7 @@ public class Join extends JFrame { //마우스 리스너 해서 위치 잡음
                String email = temail.getText();
                String key = tkey.getText();
                int point = 0;
-               UserInfo userinfo = new UserInfo(id,pw,name,email,key,point);
+               UserInfo userinfo = new UserInfo(id,pw,name,email,key,point, false);
                jm.insertMember(userinfo);
                new ResultPrinter().joinSuccess();//이거 다시 써주기
                setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
