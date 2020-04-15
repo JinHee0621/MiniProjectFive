@@ -19,7 +19,6 @@ public class RankingScene extends BaseScene{
 	      this.gw = gw;
 	   }
 
-
 	   @Override
 	   public void init() {
 	      //이미지를 초기화 하고 위치를 정한다.
