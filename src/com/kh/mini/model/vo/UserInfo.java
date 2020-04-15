@@ -27,8 +27,6 @@ public class UserInfo implements Serializable{
 		this.point = point;
 	}
 	
-	
-	
 	public String getId() {
 		return id;
 	}
@@ -74,9 +72,4 @@ public class UserInfo implements Serializable{
 		return "UserInfo [id=" + id + ", pw=" + pw + ", name=" + name + ", email=" + email + ", key=" + key + ", point=" + point +"]";
 	}
 
-	
-	
-	
-	
-	
 }

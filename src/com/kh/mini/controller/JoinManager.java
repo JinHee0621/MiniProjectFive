@@ -32,32 +32,35 @@ public class JoinManager {
 	}
 	
 	//아이디 비번 일치여부
-	public void idPwCorrect(String tid, String tpw) {
-//		gw.removeAll();
-//		gw.startGame();
-		//회원정보 전부 가져오기
-		ArrayList<UserInfo> list = jd.fileOpen();
-		
-		//일치하는 UserInfo 정보를 담을 참조변수 초기화
-		UserInfo selectedUserInfo = null;
-		
-		if(list != null) {
-			for(int i = 0; i < list.size(); i++) {
-				//일치하는 user id 를 selectedUserInfo에  담기	
-				if(list.get(i).getId().equals(tid) && list.get(i).getPw().equals(tpw)) {
-					gw.removeAll();
-					gw.repaint();
-					gw.setVisible(false);
-					gw = new GameWindow(1,tid);
-					jd.fileSave(list);
-					break;
-				}else {
-					new ResultPrinter().logFail();
-				
-				}
-			}
-		}
-	}
+	   //아이디 비번 일치여부
+	   public void idPwCorrect(String tid, String tpw) {
+//	      gw.removeAll();
+//	      gw.startGame();
+	      //회원정보 전부 가져오기
+	      ArrayList<UserInfo> list = jd.fileOpen();
+	      
+
+	      boolean flag = true;
+	      
+	      if(list != null) {
+	         for(int i = 0; i < list.size(); i++) {
+	         
+	            if(list.get(i).getId().equals(tid) && list.get(i).getPw().equals(tpw)) {
+	               flag = false;
+	               gw.removeAll();
+	               gw.repaint();
+	               gw.setVisible(false);
+	               gw = new GameWindow(1,tid);
+	               jd.fileSave(list);
+	               break;
+	            }
+	         }
+	         if(flag == true) {
+	            new ResultPrinter().logFail();
+	         }
+	      }
+	   }
+	   
 	public int duplicateId(String id) {
 		int result = 0;//기본값, 중복되는  경우 없을 때, 0 반환
 		//회원정보 전부 가져오기
