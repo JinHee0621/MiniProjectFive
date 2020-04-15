@@ -16,12 +16,7 @@ public class PointManager {
 		list = jd.fileOpen();
 		
 		list.sort(new DscendingPoint());
-		System.out.println("스코어 내림차순");
-		for(int i = 0; i < list.size(); i++) {
-			System.out.println("id : " + list.get(i).getId());
-			System.out.println("name : " + list.get(i).getName());
-
-			System.out.println("point : " + list.get(i).getPoint());
-		}	
+		jd.fileSave(list);
+	
 	}
 }
