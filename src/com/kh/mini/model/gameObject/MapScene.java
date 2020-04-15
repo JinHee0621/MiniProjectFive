@@ -13,15 +13,17 @@ public class MapScene extends BaseScene {
 
 	GameWindow gw;
 	
-	ImageClass backGround;
-	PointerInfo pointerInfo;
+	Stuff something;
 	
-	double bgX;
+	ImageClass backGround; //맵 이미지를 받는 이미지 변수
+
+	double bgX; // 요 변수는 신경 X
 	double bgY;
 	
 	Player p;
 
-	public MapScene(GameWindow gw) {
+	public MapScene(GameWindow gw, Player p) {
+		this.p = p;
 		this.gw = gw;
 	}
 	
@@ -30,18 +32,20 @@ public class MapScene extends BaseScene {
 		// TODO Auto-generated method stub
 	
 		backGround = new ImageClass();
-		backGround.Init("images\\mapImages\\Map1.png");
-		
+		backGround.Init("images\\mapImages\\Map1.png"); //경로로 받아서 맵 이미지를 바꾸고 있음
+		//changeImeage
 		backGround.setPosition(64, 200);
 		
 		backGround.setIsOn(true);
 
 		bgX = backGround.getX();
 		bgY = backGround.getY();
-
-
+		
+		//맵에다가 사물 배치한것
+		something = new Stuff("images\\stuffImages\\DeskFront.png",140,85, p);
+		something.init();
+		something.setPosition(340, 460);
 	}
-
 	
 	@Override
 	public void release() {
@@ -50,16 +54,14 @@ public class MapScene extends BaseScene {
 
 	@Override
 	public void update() {
-		pointerInfo = MouseInfo.getPointerInfo();
-		if (KeyManager.Instance().onceMouseClicked(MouseEvent.BUTTON1)) {
-			System.out.println("좌표: " + pointerInfo.getLocation());
-		}
+		something.update();
 	}
 
 	@Override
 	public void render(Graphics g) {
 		// TODO Auto-generated method stub
 		backGround.render(g);
+		something.render(g);
 	}
 
 }

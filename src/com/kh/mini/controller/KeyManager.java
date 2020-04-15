@@ -7,8 +7,6 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.HashMap;
 
-import com.kh.mini.mapTool.MapChip;
-
 public class KeyManager implements KeyListener, MouseListener{
 
 	private static KeyManager inst;
@@ -88,8 +86,6 @@ public class KeyManager implements KeyListener, MouseListener{
 		// TODO Auto-generated method stub
 		if(keyMap.containsKey(MouseEvent.BUTTON1) == false || keyMap.get(MouseEvent.BUTTON1) == false)
 		{
-			MapChip.setImgPosX(e.getX());
-			MapChip.setImgPosY(e.getY());
 			
 			keyMap.put(MouseEvent.BUTTON1, true);	
 		}
@@ -101,9 +97,6 @@ public class KeyManager implements KeyListener, MouseListener{
 		// TODO Auto-generated method stub
 		if(keyMap.containsKey(MouseEvent.BUTTON1) == false || keyMap.get(MouseEvent.BUTTON1) == false)
 		{
-			
-			MapChip.setImgPosX(e.getX());
-			MapChip.setImgPosY(e.getY());
 			
 			keyMap.put(MouseEvent.BUTTON1, true);	
 		}

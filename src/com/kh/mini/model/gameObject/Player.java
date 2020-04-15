@@ -96,7 +96,7 @@ public class Player extends GameObject  implements Runnable{
 		
 		if(objs[nearlist] != null && this.isCollisionRectToRect(objs[nearlist]) == false) {
 		} else {
-			if (objs[nearlist] != null && !checkGetAttack) {
+			if ((objs[nearlist] != null && !checkGetAttack) && objs[nearlist] instanceof Monster) {
 				checkGetAttack = true;
 				new Thread(this).start();
 				if (objs[nearlist] != null && (objs[nearlist].getX() < this.getX())) {
@@ -109,7 +109,31 @@ public class Player extends GameObject  implements Runnable{
 	}
 
 	public void playerMov() {
-		
+		//캐릭터 문이동 제한---------------------------
+		if (x >= 640 && x + img.getWidth() <= 768 && y < 252) {
+
+			this.setPosition(576, 838 - img.getHeight());
+
+		}
+		// 하단
+		if (x >= 640 && x + img.getWidth() <= 768 && y + img.getHeight() > 838) {
+
+			this.setPosition(576, 252);
+
+		}
+		// 좌단
+		if (x < 194 && y + img.getHeight() <= 711 && y + img.getHeight() >= 584) {
+
+			this.setPosition(1214 - img.getWidth(), 584);
+
+		}
+		// 우단
+		if (x + img.getWidth() > 1214 && y + img.getHeight() <= 711 && y + img.getHeight() >= 584) {
+
+			this.setPosition(194, 584);
+
+		}
+		//캐릭터 벽이동 제한---------------------------
 		if (x + img.getWidth() > 1216) {
 			x = 1216 - img.getWidth();
 		}
@@ -122,7 +146,9 @@ public class Player extends GameObject  implements Runnable{
 		if (y + img.getHeight() > 840) {
 			y = 840 - img.getHeight();
 		}
-		
+
+	
+		//---------------------------------------
 		
 		if (playerClean > 0) {
 			if (key.onceKeyDown(KeyEvent.VK_Z) && !checkDoAttack) {
@@ -213,7 +239,7 @@ public class Player extends GameObject  implements Runnable{
 		// TODO Auto-generated method stub	
 		if (checkGetAttack) {
 				sound.sfxSelect("PlayerHit");
-				if(playerClean > 0 && playerMask <= 0) playerClean -= 1;
+				if(playerClean > 0 && playerMask <= 0) playerClean -= 0;
 				else if(playerMask > 0) playerMask -= 1;
 				uiScene.update();
 			try {
