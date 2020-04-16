@@ -133,13 +133,14 @@ public class GameScene extends BaseScene {
 		}
 		
 		if(p.getPlayerClean() <= 0) {
-			//sound.bgmStop();s\
+			sound.bgmStop();
 			sound.sfxSelect("gameOver");
 			jd.scoreSave(p.getUser(), p.getScore());
+			int mobType = p.getWhatTypeKillYou();
 			p = null;
 			gw.setVisible(false);
 			gw.dispose();
-			gw.showGameOver();
+			gw.showGameOver(mobType);
 		}
 		
 
