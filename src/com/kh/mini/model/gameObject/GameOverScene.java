@@ -194,6 +194,8 @@ public class GameOverScene extends BaseScene{
       case 3 : prevention3.render(g); break;
       case 4 : prevention4.render(g); break;
       case 5 : prevention5.render(g); break;
+      case 6 : prevention6.render(g); break;
+
       }
 
       switch(mobType) {
