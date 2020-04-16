@@ -49,11 +49,11 @@ public class DesktoUp12F extends BaseScene {
 
 		if (p.firstIn2fUp) {
 
-			mobs[0] = new Monster(p, "images\\monsterImages\\Monster_Type_Purple.png", 100, 100, 15, 3, 0.04, 2, 90);
+			mobs[0] = new Monster(p, "images\\monsterImages\\Monster_Type_Purple.png", 100, 100, 15, 2, 0.04, 2, 90);
 			mobs[0].setPosition((int) (Math.random() * 1024) + 192, (int) (Math.random() * 640) + 328);
 			mobs[0].init();
 
-			mobs[1] = new Monster(p, "images\\monsterImages\\Monster_Type_Purple.png", 100, 100, 15, 3, 0.04, 2, 90);
+			mobs[1] = new Monster(p, "images\\monsterImages\\Monster_Type_Purple.png", 100, 100, 15, 2, 0.04, 2, 90);
 			mobs[1].setPosition((int) (Math.random() * 1024) + 192, (int) (Math.random() * 640) + 328);
 			mobs[1].init();
 			p.setFightToMobs(true);
@@ -89,7 +89,7 @@ public class DesktoUp12F extends BaseScene {
 				}
 			}
 		}
-		if (!p.isFightToMobs()) {
+		if (!gs.popItem && !p.isFightToMobs()) {
 			//문이동
 //			 if (p.getX() >= 640 && p.getX() + 75 <= 768 && p.getY() < 252) {
 //
@@ -112,7 +112,8 @@ public class DesktoUp12F extends BaseScene {
 //		      }
 			
 			if (p.getX() >= 640 && p.getX() + 75 <= 768 && p.getY() < 252) {
-				
+				gs.changeMap(4);
+				p.setPlayerMapPos(4);
 				p.setPosition(664, 698);
 			}
 			// 하단

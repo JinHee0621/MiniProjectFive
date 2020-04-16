@@ -92,7 +92,7 @@ public class DesktoRight2F extends BaseScene {
 				}
 			}
 		}
-		if (!p.isFightToMobs()) {
+		if (!gs.popItem && !p.isFightToMobs()) {
 			if (p.getX()  < 194 && p.getY() + 140 <= 711 && p.getY() + 140 >= 584) {
 				p.setPosition(1110, 500);
 				gs.changeMap(0);

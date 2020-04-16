@@ -99,6 +99,10 @@ public class GameScene extends BaseScene {
 			map2f_4 = new DesktoUp12F(gw, this, p);
 			map2f_4.init();
 			break;
+		case 4:
+			map2f_5 = new DesktoUp22F(gw, this, p);
+			map2f_5.init();
+			break;
 		}
 	}
 	
@@ -113,7 +117,6 @@ public class GameScene extends BaseScene {
 		//p.update();
 		
 		switch(p.getPlayerMapPos()) {
-		
 		case 0:
 			map2f_1.update();
 			break;
@@ -125,6 +128,9 @@ public class GameScene extends BaseScene {
 			break;
 		case 3:
 			map2f_4.update();
+			break;
+		case 4:
+			map2f_5.update();
 			break;
 		}
 
@@ -162,6 +168,9 @@ public class GameScene extends BaseScene {
 			case 3:
 				map2f_4.render(g);
 				break;
+			case 4:
+				map2f_5.render(g);
+				break;
 		}
 		
 		//mapScene.render(g);
@@ -176,13 +185,21 @@ public class GameScene extends BaseScene {
 	
 	public void popItem() {
 		if (!popItem) {
-			int ItemType = (int) (Math.random() * 5);
+			int ItemType = (int) (Math.random() * 3);
 			item = new GameItem(p, ItemType, this);
 			item.init();
 			popItem = true;
 		}
 	}
 	
+	public void popBossItem() {
+		if (!popItem) {
+			int ItemType = (int) (Math.random() * 5);
+			item = new GameItem(p, ItemType, this);
+			item.init();
+			popItem = true;
+		}
+	}
 	public void eatItem() {
 		item = null;
 	}

@@ -53,18 +53,30 @@ public class MapScene extends BaseScene {
 		
 		//(int)(Math.random() * 1000);
 
-		mobs[0] = new Monster(p, "images\\monsterImages\\Monster_Type_Blue.png", 64, 64, 10, 1, 0.05, 1, 75);
+//		mobs[0] = new Monster(p, "images\\monsterImages\\Monster_Type_Blue.png", 64, 64, 10, 1, 0.05, 1, 75);
+//		mobs[0].setPosition((int) (Math.random() * 1024) + 192, (int) (Math.random() * 640) + 328);
+//		mobs[0].init();
+		
+		mobs[0] = new Monster(p, "images\\monsterImages\\Monster_Type_Black.png", 128, 128, 15, 1, 0.05, 4, 120);
 		mobs[0].setPosition((int) (Math.random() * 1024) + 192, (int) (Math.random() * 640) + 328);
 		mobs[0].init();
 
-		mobs[1] = new Monster(p, "images\\monsterImages\\Monster_Type_Blue.png", 64, 64, 10, 1, 0.05, 1, 75);
+//		mobs[1] = new Monster(p, "images\\monsterImages\\Monster_Type_Blue.png", 64, 64, 10, 1, 0.05, 1, 75);
+//		mobs[1].setPosition((int) (Math.random() * 1024) + 192, (int) (Math.random() * 640) + 328);
+//		mobs[1].init();
+
+		mobs[1] = new Monster(p, "images\\monsterImages\\Monster_Type_Yellow.png", 128, 128, 10, 1, 0.05, 5, 75);
 		mobs[1].setPosition((int) (Math.random() * 1024) + 192, (int) (Math.random() * 640) + 328);
 		mobs[1].init();
+		
+//		mobs[2] = new Monster(p, "images\\monsterImages\\Monster_Type_Green.png", 128, 128, 17, 2, 0.03, 3, 120);
+//		mobs[2].setPosition((int) (Math.random() * 1024) + 192, (int) (Math.random() * 640) + 328);
+//		mobs[2].init();
 
-		mobs[2] = new Monster(p, "images\\monsterImages\\Monster_Type_Green.png", 128, 128, 17, 2, 0.03, 3, 120);
+		mobs[2] = new Monster(p, "images\\monsterImages\\Monster_Person.png", 110, 150, 10, 2, 0.03, 6, 90);
 		mobs[2].setPosition((int) (Math.random() * 1024) + 192, (int) (Math.random() * 640) + 328);
 		mobs[2].init();
-
+		
 		mobs[3] = new Monster(p, "images\\monsterImages\\Monster_Type_Purple.png", 100, 100, 15, 3, 0.04, 2, 90);
 		mobs[3].setPosition((int) (Math.random() * 1024) + 192, (int) (Math.random() * 640) + 328);
 		mobs[3].init();
@@ -78,7 +90,7 @@ public class MapScene extends BaseScene {
 		p.init();
 
 		//맵에다가 사물 배치한것
-		something = new Stuff("images\\stuffImages\\DeskFront.png",140,85, p);
+		something = new Stuff("images\\stuffImages\\DeskFront.png",140,85,64,64, p);
 		something.init();
 		something.setPosition(340, 260);
 	}
