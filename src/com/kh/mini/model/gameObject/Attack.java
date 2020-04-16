@@ -118,15 +118,17 @@ public class Attack extends GameObject  implements Runnable{
 				if (parent.isPlayerRight())
 					img.changeImage("images\\charImages\\AttackSideRight.png", 80, 90, 11, 1, true);
 			}
-			
-			if (target[nearest] != null && this.isCollisionRectToRect(target[nearest]) == false) {
-				
-			} else {
-				if (target[nearest] instanceof Monster) {
-					if (this.getX() < target[nearest].getX()) {
-						this.setPosition(x - (Math.random() * 5 / 15), y - (Math.random() * 5 / 15));
-					} else {
-						this.setPosition(x + (Math.random() * 5 / 15), y + (Math.random() * 5 / 15));
+
+			if (parent.isFightToMobs()) {
+				if (target[nearest] != null && this.isCollisionRectToRect(target[nearest]) == false) {
+
+				} else {
+					if (target[nearest] instanceof Monster) {
+						if (this.getX() < target[nearest].getX()) {
+							this.setPosition(x - (Math.random() * 5 / 15), y - (Math.random() * 5 / 15));
+						} else {
+							this.setPosition(x + (Math.random() * 5 / 15), y + (Math.random() * 5 / 15));
+						}
 					}
 				}
 			}
@@ -141,7 +143,6 @@ public class Attack extends GameObject  implements Runnable{
 	@Override
 	public void render(Graphics g) {
 		// TODO Auto-generated method stub	
-		if(!endAttack) img.render(g);
 		if(attackBullet) {
 			img.setPosition(x, y+80);
 		} else {
@@ -153,7 +154,7 @@ public class Attack extends GameObject  implements Runnable{
 
 			if(parent.isPlayerRight()) img.setPosition(parent.getX() + 75, parent.getY() + 55);	
 		}
-
+		if(!endAttack) img.render(g);
 	}
 
 	public ImageClass getImage() {

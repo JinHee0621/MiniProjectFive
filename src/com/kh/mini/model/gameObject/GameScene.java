@@ -15,9 +15,15 @@ public class GameScene extends BaseScene {
 	
 	GameWindow gw;
 	
-	UiScene uiScene;
+	public UiScene uiScene;
 	
 	MapScene mapScene;
+	
+	StartDesk2F map2f_1;
+	DesktoLeft2F map2f_2;
+	DesktoRight2F map2f_3;
+	DesktoUp12F map2f_4;
+	DesktoUp22F map2f_5;
 	
 	ImageClass img;
 	ImageClass img2;
@@ -32,13 +38,21 @@ public class GameScene extends BaseScene {
 	public static int monsterLength = 4;
 	
 	Monster[] mobs = new Monster[4];
+
+	private boolean startStage2F = false;
+
+	private boolean startStage3F = false;
+
+	private boolean startStage4F = false;
 	
-	private GameItem item;
-	
-	private boolean popItem = false;
 	
 	private String user;
 
+	public boolean popItem = false;
+
+	public GameItem item;
+	
+	
 	public GameScene(GameWindow gw) {
 		this.gw = gw;
 	}
@@ -54,85 +68,66 @@ public class GameScene extends BaseScene {
 		p = new Player();
 		p.setUser(user);
 		p.setCam(cam);
-
-		//(int)(Math.random() * 1000);
-		
-//		mobs[0] = new Monster(p,"images\\monsterImages\\Monster_Type_Blue.png",64,64,10,1,0.05,1);
-//		mobs[0].setPosition((int)(Math.random() * 1024) + 192, (int)(Math.random() * 640) + 328);
-//		mobs[0].setCam(cam);
-//		mobs[0].init();
-//		
-//		mobs[1] =  new Monster(p,"images\\monsterImages\\Monster_Type_Blue.png",64,64,10,1,0.05,1);
-//		mobs[1].setPosition((int)(Math.random() * 1024) + 192, (int)(Math.random() * 640) + 328);
-//		mobs[1].setCam(cam);
-//		mobs[1].init();
-//		
-//		mobs[2] =  new Monster(p,"images\\monsterImages\\Monster_Type_Green.png",128,128,17,2,0.03,3);
-//		mobs[2].setPosition((int)(Math.random() * 1024) + 192, (int)(Math.random() * 640) + 328);
-//		mobs[2].setCam(cam);
-//		mobs[2].init();
-//		
-//		mobs[3] =  new Monster(p,"images\\monsterImages\\Monster_Type_Purple.png",100,100,15,3,0.04,2);
-//		mobs[3].setPosition((int)(Math.random() * 1024) + 192, (int)(Math.random() * 640) + 328);
-//		mobs[3].setCam(cam);
-//		mobs[3].init();
-//		
-//		for(int i = 0; i < mobs.length; i++) {
-//			mobs[i].addObjs(mobs);
-//			//자기자신을 제외하고 가까운 오브젝트를 찾아야 할것
-//		}
-
-//		p.addObjs(mobs);
-//		p.init();
-		
+		p.init();
 		uiScene = new UiScene(p);
 		uiScene.init();
 		
-		mapScene = new MapScene(gw, p);
-		mapScene.init();
+		changeMap(p.getPlayerMapPos());
 		
 		p.addUI(uiScene);
-		
 	}
 
+	public void changeMap(int mapNumber) {
+		switch(mapNumber) {
+		case 0:
+			map2f_1 = new StartDesk2F(gw,this,p);
+			map2f_1.init();
+			if(!startStage2F) {
+				sound.bgmSelect("stage2_normal");
+				startStage2F = true;
+			}
+			break;
+		case 1:
+			map2f_2 = new DesktoLeft2F(gw, this, p);
+			map2f_2.init();
+			break;
+		case 2:
+			map2f_3 = new DesktoRight2F(gw, this, p);
+			map2f_3.init();
+			break;
+		case 3:
+			map2f_4 = new DesktoUp12F(gw, this, p);
+			map2f_4.init();
+			break;
+		}
+	}
+	
 	
 	@Override
 	public void release() {
 		// TODO Auto-generated method stub
-		p.release();
-		for (int i = 0; i < monsterLength; i++) {
-			mobs[i].release();
-		}
-		if (p.isCheckDoAttack()) {
-			p.getAttack().release();
-		}
 	}
 
 	@Override
 	public void update() {
-		mapScene.update();
-		p.update();
-		for (int i = 0; i < mapScene.mobs.length; i++) {
-			if (mapScene.mobs[i] != null) {
-				mapScene.mobs[i].update();
-				if (p.isCheckDoAttack()) {
-					mapScene.mobs[i].checkAttack(p.getAttack());
-				}
-				if (mapScene.mobs[i].getMonsterHp() <= 0) {
-	
-					System.out.println(i + "번 몬스터가 주금");
-					p.setScore(p.getScore() + mapScene.mobs[i].getGivScore());
-					
-					mapScene.mobs[i] = null;
-					uiScene.update();
-					monsterLength--;
-				} 
-				
-				if(monsterLength == 0) {
-					popItem();
-				}
-			}
+		//p.update();
+		
+		switch(p.getPlayerMapPos()) {
+		
+		case 0:
+			map2f_1.update();
+			break;
+		case 1:
+			map2f_2.update();
+			break;
+		case 2:
+			map2f_3.update();
+			break;
+		case 3:
+			map2f_4.update();
+			break;
 		}
+
 		if (p.isCheckDoAttack()) {
 			p.getAttack().update();
 		}
@@ -146,31 +141,50 @@ public class GameScene extends BaseScene {
 			gw.dispose();
 			gw.showGameOver();
 		}
+		
+
 	}
 
 	@Override
 	public void render(Graphics g) {
 		// TODO Auto-generated method stub
-		mapScene.render(g);
+		switch(p.getPlayerMapPos()){
+			case 0:
+				map2f_1.render(g);
+				break;
+			case 1:
+				map2f_2.render(g);
+				break;
+			case 2:
+				map2f_3.render(g);
+				break;
+			case 3:
+				map2f_4.render(g);
+				break;
+		}
 		
-		//p.render(g);
-		
-//		if(p.isCheckDoAttack()) {
-//			p.getAttack().render(g);
-//		}
-
-//		for (int i = 0; i < mobs.length; i++) {
-//			if(mobs[i] != null) mobs[i].render(g);
-//		}
-//		
+		//mapScene.render(g);
 		uiScene.render(g);
 		
 		if(popItem) {
 			item.render(g);
 			item.update();
 		} 
+		
 	}
 	
+	public void popItem() {
+		if (!popItem) {
+			int ItemType = (int) (Math.random() * 5);
+			item = new GameItem(p, ItemType, this);
+			item.init();
+			popItem = true;
+		}
+	}
+	
+	public void eatItem() {
+		item = null;
+	}
 	
 	public void setCamera(int x, int y, int w, int h) {
 		cam.makeCenterRect(x, y, w, h);
@@ -179,21 +193,6 @@ public class GameScene extends BaseScene {
 	public void setBgPosition(int x, int y) {
 	}
 
-	public void popItem() {
-		if (!popItem) {
-			int ItemType = (int) (Math.random() * 5);
-			item = new GameItem(p,ItemType, this);
-			item.init();
-			popItem = true;
-		}
-	}
-	
-	public void eatItem() {
-		popItem = false;
-		item = null;
-		monsterLength = 4;
-		mapScene.monsterSpone();
-	}
 	
 
 	public String getUser() {

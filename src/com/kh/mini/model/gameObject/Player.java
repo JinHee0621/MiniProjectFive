@@ -22,6 +22,7 @@ public class Player extends GameObject  implements Runnable{
 	private boolean playerFront = true;
 	private boolean playerRight = false;
 	private boolean playerLeft = false;
+	
 	private boolean playerUp = false;
 	
 	private double distanceMin = 5000;
@@ -32,14 +33,28 @@ public class Player extends GameObject  implements Runnable{
 	
 	private String user;
 	
+	private int playerMapPos = 0;
+	
 	private double playerMovSpeed = 1;
 	private int playerClean = 10;
 	private int playerMask = 5;
 	private int coinCount = 0;
 	private int score = 0;
 	
+	
 	private boolean attackBullet = false;
-
+	private boolean fightToMobs = false;
+	
+	
+	//-------------------------------
+	
+	public boolean firstIn2fLeft = true;
+	public boolean firstIn2fRight = true;
+	public boolean firstIn2fUp = true;
+	public boolean firstIn2fUp2 = true;
+	
+	//-------------------------------
+	
 	@Override
 	public void init() {
 		img = new ImageClass();
@@ -48,8 +63,9 @@ public class Player extends GameObject  implements Runnable{
 		
 		img.setMagnification(1.0);
 		
-		x = 200;
-		y = 200;
+		x = 664;
+		y = 350;
+		
 		
 		img.setPosition(x, y);
 		img.setIsOn(true);
@@ -81,54 +97,37 @@ public class Player extends GameObject  implements Runnable{
 		this.makeCenterRect(x, y, 70, 70);
 		img.setMaxSpeed(50);
 		
-		int nearlist = 0;
-		for(int i = 0; i < GameScene.monsterLength; i++) {
-			if(objs[i] != null  && distanceMin > this.getDistacne(objs[i])) {
-				distanceMin = this.getDistacne(objs[i]);
-				nearlist = i;
+		if (fightToMobs) {
+			int nearlist = 0;
+			for (int i = 0; i < GameScene.monsterLength; i++) {
+				if (objs[i] != null && distanceMin > this.getDistacne(objs[i])) {
+					distanceMin = this.getDistacne(objs[i]);
+					nearlist = i;
+				}
 			}
-		}
-		distanceMin = 5000;
+			distanceMin = 5000;
 
-		playerMov();
-		cam.update();
-		img.isFrameUpdate();
-		
-		if(objs[nearlist] != null && this.isCollisionRectToRect(objs[nearlist]) == false) {
-		} else {
-			if ((objs[nearlist] != null && !checkGetAttack) && objs[nearlist] instanceof Monster) {
-				checkGetAttack = true;
-				new Thread(this).start();
-				if (objs[nearlist] != null && (objs[nearlist].getX() < this.getX())) {
-					this.setPosition(x + 8, y + 8);
-				} else {
-					this.setPosition(x - 8, y - 8);
+			if (objs[nearlist] != null && this.isCollisionRectToRect(objs[nearlist]) == false) {
+			} else {
+				if ((objs[nearlist] != null && !checkGetAttack) && objs[nearlist] instanceof Monster) {
+					checkGetAttack = true;
+					new Thread(this).start();
+					if (objs[nearlist] != null && (objs[nearlist].getX() < this.getX())) {
+						this.setPosition(x + 8, y + 8);
+					} else {
+						this.setPosition(x - 8, y - 8);
+					}
 				}
 			}
 		}
+		playerMov();
+		cam.update();
+		img.isFrameUpdate();
 	}
 
 	public void playerMov() {
 		//캐릭터 문이동 제한---------------------------
-		if (x >= 640 && x + 75 <= 768 && y < 252) {
 
-			this.setPosition(664, 698);
-		}
-		// 하단
-		if (x >= 640 && x + 75 <= 768 && y + 140 > 838) {
-
-			this.setPosition(664, 252);
-		}
-		// 좌단
-		if (x < 194 && y + 140 <= 711 && y + 140 >= 584) {
-
-			this.setPosition(1139, 500);
-		}
-		// 우단
-		if (x + 75 > 1214 && y + 140 <= 711 && y + 140 >= 584) {
-
-			this.setPosition(194, 500);
-		}
 		//캐릭터 벽이동 제한---------------------------
 		if (x + img.getWidth() > 1216) {
 			x = 1216 - img.getWidth();
@@ -377,5 +376,21 @@ public class Player extends GameObject  implements Runnable{
 
 	public void setScore(int score) {
 		this.score = score;
+	}
+
+	public boolean isFightToMobs() {
+		return fightToMobs;
+	}
+
+	public void setFightToMobs(boolean fightToMobs) {
+		this.fightToMobs = fightToMobs;
+	}
+
+	public int getPlayerMapPos() {
+		return playerMapPos;
+	}
+
+	public void setPlayerMapPos(int playerMapPos) {
+		this.playerMapPos = playerMapPos;
 	}
 }
