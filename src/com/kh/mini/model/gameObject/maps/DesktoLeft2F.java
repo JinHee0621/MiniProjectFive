@@ -16,6 +16,8 @@ public class DesktoLeft2F extends BaseScene {
 	GameWindow gw;
 	GameScene gs;
 	
+	Stuff something;
+	
 	ImageClass backGround;
 
 	double bgX;
@@ -61,6 +63,9 @@ public class DesktoLeft2F extends BaseScene {
 			p.addObjs(mobs);
 		}
 		
+		something = new Stuff("images\\stuffImages\\DeskFront.png",140,85, p);
+		something.init();
+		something.setPosition(340, 260);
 	}
 	
 	@Override
@@ -92,7 +97,7 @@ public class DesktoLeft2F extends BaseScene {
 		}
 		if (!p.isFightToMobs()) {
 			// ¿ì´Ü
-			if (p.getX()  + 90 > 1213 && p.getY() + 140 <= 711 && p.getY() + 140 >= 584) {
+			if (p.getX() + 75 > 1200 && p.getY() + 140 <= 711 && p.getY() + 140 >= 584) {
 				p.setPosition(194, 500);
 				gs.changeMap(0);
 				p.setPlayerMapPos(0);
@@ -106,7 +111,7 @@ public class DesktoLeft2F extends BaseScene {
 			p.firstIn2fLeft = false;
 			GameScene.monsterLength = mobs.length;
 		}
-		
+		something.update();	
 		p.update();
 	}
 
@@ -116,6 +121,7 @@ public class DesktoLeft2F extends BaseScene {
 		backGround.render(g);
 		
 		p.render(g);
+		something.render(g);
 		
 		for (int i = 0; i < mobs.length; i++) {
 			if(mobs[i] != null) mobs[i].render(g);

@@ -63,19 +63,21 @@ public class StartDesk2F extends BaseScene {
 		//something.update();		
 		p.update();
 		if (!p.isFightToMobs()) {
+			
+			
+			
 			if (p.getX() >= 640 && p.getX()  + 75 <= 768 && p.getY() < 252) {
 				p.setPosition(664, 698);
 				gs.changeMap(3);
 				p.setPlayerMapPos(3);
 			}
-			if (p.getX()  < 194 && p.getY() + 140 <= 711 && p.getY() + 140 >= 584) {
-				p.setPosition(1139, 500);
+			if (p.getX() < 194 && p.getY() + 140 <= 711 && p.getY() + 140 >= 584) {
+				p.setPosition(1110, 500);
 				gs.changeMap(1);
 				p.setPlayerMapPos(1);
 			}
-			// ¿ì´Ü
-			if (p.getX()  + 90 > 1213 && p.getY() + 140 <= 711 && p.getY() + 140 >= 584) {
-				p.setPosition(194, 500);
+			if (p.getX() + 75 > 1200 && p.getY() + 140 <= 711 && p.getY() + 140 >= 584) {
+				p.setPosition(220, 500);
 				gs.changeMap(2);
 				p.setPlayerMapPos(2);
 			}
