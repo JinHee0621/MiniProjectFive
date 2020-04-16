@@ -152,6 +152,7 @@ public class GameOverScene extends BaseScene{
             break;
          }
       }else {
+    	  no = 6;
     	  npc = new ImageClass();
     	  npc.Init("images\\titleImages\\npctwo.png");
     	  npc.setIsOn(true);
