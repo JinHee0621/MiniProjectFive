@@ -45,6 +45,7 @@ public class Monster extends GameObject implements Runnable{
 	
 	private int monsterType = 0;
 	
+
 	private int monsterHp = 3;
 	
 	private int givScore = 0;
@@ -271,4 +272,13 @@ public class Monster extends GameObject implements Runnable{
 	public void setGivScore(int givScore) {
 		this.givScore = givScore;
 	}
+	
+	public int getMonsterType() {
+		return monsterType;
+	}
+
+	public void setMonsterType(int monsterType) {
+		this.monsterType = monsterType;
+	}
+
 }

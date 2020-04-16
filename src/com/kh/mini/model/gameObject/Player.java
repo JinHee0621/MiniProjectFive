@@ -45,7 +45,8 @@ public class Player extends GameObject  implements Runnable{
 	private boolean attackBullet = false;
 	private boolean fightToMobs = false;
 	
-	
+	private int whatTypeKillYou = 0;
+	int nearlist = 0;
 	//-------------------------------
 	
 	public boolean firstIn2fLeft = true;
@@ -98,7 +99,6 @@ public class Player extends GameObject  implements Runnable{
 		img.setMaxSpeed(50);
 		
 		if (fightToMobs) {
-			int nearlist = 0;
 			for (int i = 0; i < GameScene.monsterLength; i++) {
 				if (objs[i] != null && distanceMin > this.getDistacne(objs[i])) {
 					distanceMin = this.getDistacne(objs[i]);
@@ -237,6 +237,7 @@ public class Player extends GameObject  implements Runnable{
 				if(playerClean > 0 && playerMask <= 0) playerClean -= 1;
 				else if(playerMask > 0) playerMask -= 1;
 				uiScene.update();
+				setWhatTypeKillYou(((Monster)objs[nearlist]).getMonsterType());
 			try {
 				if(playerFront) img.changeImage("images\\charImages\\MainCharFront_Flash.png", 75, 140, 11, 1, true);
 				if(playerRight) img.changeImage("images\\charImages\\MainCharSideR_Flash.png", 90, 150, 11, 1, true);
@@ -392,5 +393,13 @@ public class Player extends GameObject  implements Runnable{
 
 	public void setPlayerMapPos(int playerMapPos) {
 		this.playerMapPos = playerMapPos;
+	}
+
+	public int getWhatTypeKillYou() {
+		return whatTypeKillYou;
+	}
+
+	public void setWhatTypeKillYou(int whatTypeKillYou) {
+		this.whatTypeKillYou = whatTypeKillYou;
 	}
 }

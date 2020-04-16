@@ -215,7 +215,7 @@ public class GameWindow extends JFrame {
 		}
 	}
 
-	public void showGameOver() {
+	public void showGameOver(int mobType) {
 		this.setSize(1408, 896);
 		this.setResizable(false);
 		this.setVisible(true);
@@ -228,7 +228,7 @@ public class GameWindow extends JFrame {
 			e.printStackTrace();
 		}
 
-		GameOverScene gameOver = new GameOverScene(this);
+		GameOverScene gameOver = new GameOverScene(this, mobType);
 		gameOver.init();
 
 		// GameScene gs = new GameScene();

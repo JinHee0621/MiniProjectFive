@@ -26,13 +26,17 @@ public class GameOverScene extends BaseScene{
 	
 	GameWindow gw;
 	
-	public GameOverScene(GameWindow gw) {
+	int mobType;
+	
+	public GameOverScene(GameWindow gw, int mobType) {
 		this.gw = gw;
+		this.mobType = mobType;
 	}
 	
 	@Override
 	public void init() {
 		gw.setBackground(Color.BLACK);
+		System.out.println("다음과 같은 타입의 몬스터가 플레이어를 죽였다!: " + mobType);
 		uiBackGround = new ImageClass();
 		uiBackGround.Init("images\\uiImages\\GameOverUI.png");
 		uiBackGround.setIsOn(true);
