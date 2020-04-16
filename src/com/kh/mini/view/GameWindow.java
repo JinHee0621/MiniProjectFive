@@ -14,28 +14,27 @@ import com.kh.mini.model.gameObject.GameOverScene;
 import com.kh.mini.model.gameObject.GameScene;
 import com.kh.mini.model.gameObject.LoginScene;
 import com.kh.mini.model.gameObject.OpeningScene;
+import com.kh.mini.model.gameObject.RankingScene;
 import com.kh.mini.model.gameObject.TitleScene;
 import com.kh.mini.model.vo.ImageClass;
 
 public class GameWindow extends JFrame {
 
-	//BufferedImage fImg;
-	//BufferedImage bImg;
-	
+	// BufferedImage fImg;
+	// BufferedImage bImg;
+
 	BufferStrategy bs;
-	//MapTool mt = new MapTool();
-	
+	// MapTool mt = new MapTool();
+
 	ImageClass img;
 
 	int frame = 0;
 	int count = 0;
-	
+
 	boolean islogin = false;
-	
-	
-	
+
 	public GameWindow(int type, String user) {
-		switch(type) {
+		switch (type) {
 		case 0:
 			startTitle();
 			break;
@@ -50,83 +49,82 @@ public class GameWindow extends JFrame {
 			break;
 		}
 	}
-	
+
 	public void startTitle() {
 		this.setSize(1408, 896);
 		this.setResizable(false);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
-		
+
 		try {
 			this.setIconImage(ImageIO.read(new File("images\\titleImages\\monsterLogo.png")));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		TitleScene titleScene = new TitleScene(this);
 		titleScene.init();
-		
-		
-		//GameScene gs = new GameScene();
-		
-		//gs.init();	
-		
+
+		// GameScene gs = new GameScene();
+
+		// gs.init();
+
 		this.addKeyListener(KeyManager.Instance());
-		
+
 		this.addMouseListener(KeyManager.Instance());
-		
-		//gs.setBgPosition(gw.WIDTH / 2, gw.HEIGHT / 2);
-		
+
+		// gs.setBgPosition(gw.WIDTH / 2, gw.HEIGHT / 2);
+
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setVisible(true);		
-		//gw.repaint();
+		this.setVisible(true);
+		// gw.repaint();
 		this.createBufferStrategy(2);
 
-		while(true) {		
-			if(islogin) break;
-			
+		while (true) {
+			if (islogin)
+				break;
+
 			BufferStrategy bs = this.getBufferStrategy();
-			
+
 			Graphics g = bs.getDrawGraphics();
-			
+
 			g.clearRect(0, 0, this.getWidth(), this.getHeight());
-			
-			//gw.repaint();
+
+			// gw.repaint();
 			this.repaint();
 			titleScene.render(g);
 			titleScene.update();
-			//]gs.render(g);
-			
-			//gs.update(); //캐릭터의 위치를 확인하기 위해 계속 업데이트함
+			// ]gs.render(g);
+
+			// gs.update(); //캐릭터의 위치를 확인하기 위해 계속 업데이트함
 
 			g.dispose();
-			
+
 			bs.show();
 		}
 	}
-	
-	
+
 	public void startLogin() {
-		
+
 		islogin = true;
 		LoginScene ls = new LoginScene(this);
 		ls.init();
 
 		this.setLocationRelativeTo(null);
-		
-		this.addKeyListener(KeyManager.Instance());
-		
-		this.addMouseListener(KeyManager.Instance());
-		
-		//ls.setBgPosition(this.WIDTH / 2, this.HEIGHT / 2);
-		
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setVisible(true);		
-		//gw.repaint();
-		//this.createBufferStrategy(2);
 
-		while(true) {		
+		this.addKeyListener(KeyManager.Instance());
+
+		this.addMouseListener(KeyManager.Instance());
+
+		// ls.setBgPosition(this.WIDTH / 2, this.HEIGHT / 2);
+
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setVisible(true);
+		// gw.repaint();
+		// this.createBufferStrategy(2);
+
+		while (true) {
 			ls.update();
 		}
 	}
@@ -137,7 +135,7 @@ public class GameWindow extends JFrame {
 		this.addMouseListener(KeyManager.Instance());
 
 		OpeningScene os = new OpeningScene(this, user, opening);
-		//EndingScene os = new EndingScene(this);
+		// EndingScene os = new EndingScene(this);
 		os.setUser(user);
 		os.init();
 
@@ -173,121 +171,141 @@ public class GameWindow extends JFrame {
 			bs.show();
 		}
 	}
-	
-	public void startGame(String user) {	
-				
+
+	public void startGame(String user) {
+
 		this.addKeyListener(KeyManager.Instance());
-		
+
 		this.addMouseListener(KeyManager.Instance());
-		
+
 		GameScene gs = new GameScene(this);
 		gs.setUser(user);
 		gs.init();
-		
+
 		this.setSize(1408, 896);
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
-			
+
 		gs.setBgPosition(this.WIDTH / 2, this.HEIGHT / 2);
-		
+
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setVisible(true);		
-		//gw.repaint();
+		this.setVisible(true);
+		// gw.repaint();
 		this.createBufferStrategy(2);
 
-		while(true) {		
-		
+		while (true) {
+
 			BufferStrategy bs = this.getBufferStrategy();
-			
+
 			Graphics g = bs.getDrawGraphics();
-			
+
 			g.clearRect(0, 0, this.getWidth(), this.getHeight());
-			
-			//gw.repaint();
-			
+
+			// gw.repaint();
+
 			this.repaint();
 			gs.render(g);
 			gs.update();
-			
-			gs.update(); //캐릭터의 위치를 확인하기 위해 계속 업데이트함
+
+			gs.update(); // 캐릭터의 위치를 확인하기 위해 계속 업데이트함
 
 			g.dispose();
-			
+
 			bs.show();
 		}
 	}
-	
+
 	public void showGameOver() {
 		this.setSize(1408, 896);
 		this.setResizable(false);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
-		
+
 		try {
 			this.setIconImage(ImageIO.read(new File("images\\titleImages\\monsterLogo.png")));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		GameOverScene gameOver = new GameOverScene(this);
 		gameOver.init();
-		
-		
-		//GameScene gs = new GameScene();
-		
-		//gs.init();	
-		
+
+		// GameScene gs = new GameScene();
+
+		// gs.init();
+
 		this.addKeyListener(KeyManager.Instance());
-		
+
 		this.addMouseListener(KeyManager.Instance());
-		
-		//gs.setBgPosition(gw.WIDTH / 2, gw.HEIGHT / 2);
-		
+
+		// gs.setBgPosition(gw.WIDTH / 2, gw.HEIGHT / 2);
+
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setVisible(true);		
-		//gw.repaint();
+		this.setVisible(true);
+		// gw.repaint();
 		this.createBufferStrategy(2);
 
-		while(true) {		
-			if(islogin) break;
-			
+		while (true) {
+			if (islogin)
+				break;
+
 			BufferStrategy bs = this.getBufferStrategy();
-			
+
 			Graphics g = bs.getDrawGraphics();
-			
+
 			g.clearRect(0, 0, this.getWidth(), this.getHeight());
-			
-			//gw.repaint();
-			
+
+			// gw.repaint();
+
 			this.repaint();
 			gameOver.render(g);
 			gameOver.update();
-			//]gs.render(g);
-			
-			//gs.update(); //캐릭터의 위치를 확인하기 위해 계속 업데이트함
+			// ]gs.render(g);
+
+			// gs.update(); //캐릭터의 위치를 확인하기 위해 계속 업데이트함
 
 			g.dispose();
-			
+
 			bs.show();
 		}
 	}
-	
-	
+
+	public void startRanking() {
+		RankingScene rs = new RankingScene(this);
+		rs.init();
+
+		this.setLocationRelativeTo(null);
+
+		this.addKeyListener(KeyManager.Instance());
+		this.addMouseListener(KeyManager.Instance());
+
+		// ls.setBgPosition(this.WIDTH / 2, this.HEIGHT / 2);
+
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setVisible(true);
+		// gw.repaint();
+		// this.createBufferStrategy(2);
+
+		while (true) {
+			rs.init();
+		}
+	}
+
 	public void Init() {
-		
+
 	}
 
 	public void paint(Graphics g) {
 
 	}
-	
+
 	public void update(Graphics g) {
 		paint(g);
 	}
-	
+
 	public void destroy() {
-		
+
 	}
 //	
 }
