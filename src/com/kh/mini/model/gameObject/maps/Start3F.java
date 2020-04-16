@@ -47,18 +47,7 @@ public class Start3F extends BaseScene {
 		bgX = backGround.getX();
 		bgY = backGround.getY();
 
-		if (p.firstIn2fUp) {
-
-			mobs[0] = new Monster(p, "images\\monsterImages\\Monster_Type_Purple.png", 100, 100, 15, 3, 0.04, 2, 90);
-			mobs[0].setPosition((int) (Math.random() * 1024) + 192, (int) (Math.random() * 640) + 328);
-			mobs[0].init();
-
-			mobs[1] = new Monster(p, "images\\monsterImages\\Monster_Type_Purple.png", 100, 100, 15, 3, 0.04, 2, 90);
-			mobs[1].setPosition((int) (Math.random() * 1024) + 192, (int) (Math.random() * 640) + 328);
-			mobs[1].init();
-			p.setFightToMobs(true);
-			p.addObjs(mobs);
-		}
+		p.setFightToMobs(false);
 		
 	}
 	
@@ -69,26 +58,8 @@ public class Start3F extends BaseScene {
 
 	@Override
 	public void update() {
-		if (p.isFightToMobs()) {
-			for (int i = 0; i < mobs.length; i++) {
-				if (mobs[i] != null) {
-					mobs[i].addObjs(mobs);
-					mobs[i].update();
-					if (p.isCheckDoAttack()) {
-						mobs[i].checkAttack(p.getAttack());
-					}
-					if (mobs[i].getMonsterHp() <= 0) {
-
-						System.out.println(i + "번 몬스터가 주금");
-						p.setScore(p.getScore() + mobs[i].getGivScore());
-
-						mobs[i] = null;
-						gs.uiScene.update();
-						GameScene.monsterLength--;
-					}
-				}
-			}
-		}
+		
+		p.update();
 		if (!p.isFightToMobs()) {
 			//상단문
 			if (p.getX() >= 640 && p.getX()  + 75 <= 768 && p.getY() < 252) {
@@ -109,16 +80,6 @@ public class Start3F extends BaseScene {
 					p.setPlayerMapPos(6);
 			}
 		}
-		
-		if(GameScene.monsterLength == 0) {
-			p.setFightToMobs(false);
-			gs.popItem = false;
-			gs.popItem();
-			p.firstIn2fUp = false;
-			GameScene.monsterLength = mobs.length;
-		}
-		
-		p.update();
 	}
 
 	@Override
@@ -127,10 +88,6 @@ public class Start3F extends BaseScene {
 		backGround.render(g);
 		
 		p.render(g);
-		
-		for (int i = 0; i < mobs.length; i++) {
-			if(mobs[i] != null) mobs[i].render(g);
-		}
 
 		if(p.isCheckDoAttack()) {
 			p.getAttack().render(g);
