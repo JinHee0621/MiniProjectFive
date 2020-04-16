@@ -66,7 +66,7 @@ public class RankingScene extends BaseScene {
                point[i] = "";
             }
          }else {
-            for(int i = 0; i < list.size() ; i++) {
+            for(int i = 0; i < 7 ; i++) {
                name[i] = list.get(i).getName();
                id[i] = list.get(i).getId();
                point[i] = Integer.toString(list.get(i).getPoint());
