@@ -47,6 +47,8 @@ public class JoinManager {
 	         
 	            if(list.get(i).getId().equals(tid) && list.get(i).getPw().equals(tpw)) {
 	               flag = false;
+	               gw.removeAll();
+	               gw.repaint();
 	               gw.startOpening(tid, list.get(i).isOpening());
 	               jd.fileSave(list);
 	               break;

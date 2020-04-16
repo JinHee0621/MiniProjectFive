@@ -234,7 +234,7 @@ public class Player extends GameObject  implements Runnable{
 		// TODO Auto-generated method stub	
 		if (checkGetAttack) {
 				sound.sfxSelect("PlayerHit");
-				if(playerClean > 0 && playerMask <= 0) playerClean -= 0;
+				if(playerClean > 0 && playerMask <= 0) playerClean -= 1;
 				else if(playerMask > 0) playerMask -= 1;
 				uiScene.update();
 			try {

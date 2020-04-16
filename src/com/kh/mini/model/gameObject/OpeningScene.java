@@ -23,6 +23,7 @@ public class OpeningScene extends BaseScene {
 	int cnt = 0;
 
 	public OpeningScene(GameWindow gw, String user, boolean opening) {
+		
 		this.gw = gw;
 		this.user = user;
 		this.opening = opening;
@@ -33,14 +34,15 @@ public class OpeningScene extends BaseScene {
 		// 이미지를 초기화 하고 위치를 정한다.
 
 		// 배경 이미지 클래스 새로 할당
-		if(!opening) {
-		bg = new ImageClass();
-		bg.Init("images\\titleImages\\start1.png");
-		bg.setIsOn(true);
-		bg.setPosition(0, 0);
+		if (opening) {
+			sound.bgmSelect("stage4_boss");
+			bg = new ImageClass();
+			bg.Init("images\\titleImages\\start1.png");
+			bg.setIsOn(true);
+			bg.setPosition(0, 0);
 		} else {
 			gw.dispose();
-			gw = new GameWindow(1,user);
+			gw = new GameWindow(1, user);
 		}
 	}
 
@@ -57,7 +59,7 @@ public class OpeningScene extends BaseScene {
 				&& ((pointerInfo.getLocation().x >= 217 && pointerInfo.getLocation().x <= 1625)
 						&& (pointerInfo.getLocation().y >= 32 && pointerInfo.getLocation().y <= 922))) {
 			cnt += 1;
-
+			sound.sfxSelect("ButtonClick1");
 			switch (cnt) {
 			case 1:
 				bg.changeImage("images\\titleImages\\start2.png");
@@ -73,6 +75,7 @@ public class OpeningScene extends BaseScene {
 				break;
 			case 5:
 				jd.openingSave(user, true);
+				sound.bgmStop();
 				gw.dispose();
 				gw = new GameWindow(1,user);
 				break;
@@ -80,35 +83,6 @@ public class OpeningScene extends BaseScene {
 				cnt--;
 			}
 		}
-//		for (int i = 0; i < 5; i++) {
-//			if ((KeyManager.Instance().onceMouseClicked(MouseEvent.BUTTON1))
-//					&& ((pointerInfo.getLocation().x >= 217 && pointerInfo.getLocation().x <= 1625)
-//							&& (pointerInfo.getLocation().y >= 32 && pointerInfo.getLocation().y <= 922))) {
-//				cnt += 1;
-//
-//				switch (cnt) {
-//				case 1:
-//					bg.changeImage("images\\titleImages\\start2.png");
-//					break;
-//				case 2:
-//					bg.changeImage("images\\titleImages\\start3.png");
-//					break;
-//				case 3:
-//					bg.changeImage("images\\titleImages\\start4.png");
-//					break;
-//				case 4:
-//					bg.changeImage("images\\titleImages\\start5.png");
-//					break;
-//				case 5:
-//					gw.dispose();
-//					gw = new GameWindow(1,user);
-//					break;
-//				default:
-//					cnt--;
-//				}
-//
-//			}
-
 	}
 
 	@Override
