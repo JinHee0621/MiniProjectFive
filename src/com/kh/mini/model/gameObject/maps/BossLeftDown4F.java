@@ -63,7 +63,6 @@ public class BossLeftDown4F extends BaseScene {
 	
 	@Override
 	public void release() {
-		// TODO Auto-generated method stub
 	}
 
 	@Override
