@@ -38,9 +38,10 @@ public class Attack extends GameObject  implements Runnable{
 	public Attack(Player parent, boolean attackBullet) {
 		this.parent = parent;
 		endAttack = false;
-		rangeX = 200;
-		rangeY = 200;
+		rangeX = 250;
+		rangeY = 250;
 		this.attackBullet = attackBullet;
+		attackPower = parent.getPlayerPower();
 		init();
 		new Thread(this).start();
 	}
@@ -60,22 +61,22 @@ public class Attack extends GameObject  implements Runnable{
 			bulletMovY = 0;
 			if(parent.isPlayerFront()) {
 				bulletMovX = 0;
-				bulletMovY = 1;
+				bulletMovY = parent.getGunShotSpeed();
 			}else if(parent.isPlayerUp()) {
 				bulletMovX = 0;
-				bulletMovY = -1;
+				bulletMovY = -parent.getGunShotSpeed();
 			}else if(parent.isPlayerLeft()) {
-				bulletMovX = -1;
+				bulletMovX = -parent.getGunShotSpeed();
 				bulletMovY = 0;
 			}else if(parent.isPlayerRight()) {
-				bulletMovX = 1;
+				bulletMovX = parent.getGunShotSpeed();
 				bulletMovY = 0;
 			}
 			img.Init("images\\charImages\\bullet.png");
 		}
 		else {
-			rangeX = 120;
-			rangeY = 170;
+			rangeX = parent.getPlayerRange();
+			rangeY = parent.getPlayerRange();
 			if(parent.isPlayerFront()) img.Init("images\\charImages\\AttackFront.png", 90, 80, 11, 1, true);
 			if(parent.isPlayerUp()) img.Init("images\\charImages\\AttackUp.png", 90, 80, 11, 1, true);
 			if(parent.isPlayerLeft()) img.Init("images\\charImages\\AttackSideLeft.png", 80, 90, 11, 1, true);
@@ -101,12 +102,15 @@ public class Attack extends GameObject  implements Runnable{
 			img.setMaxSpeed(50);
 			img.isFrameUpdate();
 			if(attackBullet) {
-				for (int i = 0; i <GameScene.monsterLength; i++) {
-					if (target[i] != null && (this.getDistacne(target[i]) != 0 && distanceMin > this.getDistacne(target[i]))) {
-						distanceMin = this.getDistacne(target[i]);
-						nearest = i;
+					if (parent.isFightToMobs()) {
+						for (int i = 0; i < GameScene.monsterLength; i++) {
+							if (target[i] != null && (this.getDistacne(target[i]) != 0
+									&& distanceMin > this.getDistacne(target[i]))) {
+								distanceMin = this.getDistacne(target[i]);
+								nearest = i;
+							}
+						}
 					}
-				}
 				this.setPosition(x + bulletMovX, y + bulletMovY);
 			} else {
 				if (parent.isPlayerFront())
@@ -118,7 +122,6 @@ public class Attack extends GameObject  implements Runnable{
 				if (parent.isPlayerRight())
 					img.changeImage("images\\charImages\\AttackSideRight.png", 80, 90, 11, 1, true);
 			}
-
 			if (parent.isFightToMobs()) {
 				if (target[nearest] != null && this.isCollisionRectToRect(target[nearest]) == false) {
 
@@ -172,10 +175,9 @@ public class Attack extends GameObject  implements Runnable{
 			Thread.sleep(500);
 			endAttack = true;
 			img.setIsOn(false);
-			Thread.sleep(600);
 			rangeX = 0;
 			rangeY = 0;
-			this.makeCenterRect(x, y, 0, 0);
+			this.makeCenterRect(0, 0, 0, 0);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
