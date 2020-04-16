@@ -117,8 +117,11 @@ public class GameItem extends GameObject {
 
 		if (player != null && this.isCollisionRectToRect(player) == false) {
 		} else {
+
+			System.out.println("æ∆¿Ã≈∆ »πµÊ");
 			if (!shop) {
 				gameScene.popItem = false;
+				sound.sfxSelect("eatItem");
 				gameScene.eatItem();
 				switch (itemType) {
 				case 0:
@@ -148,13 +151,14 @@ public class GameItem extends GameObject {
 				case 7:
 					player.setWeaponType(2);
 					player.setGunShotSpeed(1);
+					player.setPlayerPower(player.getPlayerPower() + 1);
 					player.eatGunTypeWeapon();
 					player.getUiScene().getWeaponUi();
 					break;
 				case 8:
 					player.setWeaponType(3);
 					player.setGunShotSpeed(2);
-					player.setPlayerPower(player.getPlayerPower() + 1);
+					player.setPlayerPower(player.getPlayerPower() + 2);
 					player.eatGunTypeWeapon();
 					player.getUiScene().getWeaponUi();
 					break;
@@ -196,8 +200,9 @@ public class GameItem extends GameObject {
 						player.setPlayerPower(player.getPlayerPower() + 1);
 						player.eatGunTypeWeapon();
 						break;
-						
+
 					}
+					sound.sfxSelect("eatItem");
 					player.setCoinCount(player.getCoinCount() - price);
 					purchaseItem = true;
 				} else {
@@ -228,7 +233,8 @@ public class GameItem extends GameObject {
 		img.setPosition(this.getX(), this.getY());
 		if (shop) {
 			itemBase.render(g);
-			if(!purchaseItem)img.render(g);
+			if (!purchaseItem)
+				img.render(g);
 			itemPrice.render(g);
 		} else {
 			img.render(g);

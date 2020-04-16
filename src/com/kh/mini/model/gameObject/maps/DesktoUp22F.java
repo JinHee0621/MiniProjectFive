@@ -49,7 +49,7 @@ public class DesktoUp22F extends BaseScene {
 
 		if (p.firstIn2fUp2) {
 
-			mobs[0] = new Monster(p, "images\\monsterImages\\Monster_Type_Green.png", 128, 128, 17, 3, 0.03, 3, 120);
+			mobs[0] = new Monster(p, "images\\monsterImages\\Monster_Type_Green.png", 128, 128, 17, 3, 0.03, 3, 150);
 			mobs[0].setPosition((int) (Math.random() * 1024) + 192, (int) (Math.random() * 640) + 328);
 			mobs[0].init();
 			p.setFightToMobs(true);
@@ -106,7 +106,11 @@ public class DesktoUp22F extends BaseScene {
 //
 //		         p.setPosition(220, 500);
 //		      }
-
+			if (p.getX() >= 640 && p.getX() + 75 <= 768 && p.getY() < 252) {
+				gs.changeMap(5);
+				p.setPlayerMapPos(5);
+				p.setPosition(664, 698);
+			}
 			if (p.getX() >= 640 && p.getX() + 75 <= 768 && p.getY() + 140 > 838) {
 				gs.changeMap(3);
 				p.setPlayerMapPos(3);
