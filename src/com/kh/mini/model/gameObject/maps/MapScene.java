@@ -39,6 +39,8 @@ public class MapScene extends BaseScene {
 	public void init() {
 		// TODO Auto-generated method stub
 	
+		
+		
 		backGround = new ImageClass();
 		backGround.Init("images\\mapImages\\Map1.png"); //경로로 받아서 맵 이미지를 바꾸고 있음
 		//changeImeage

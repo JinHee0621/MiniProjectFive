@@ -2,6 +2,7 @@ package com.kh.mini.model.gameObject;
 
 import java.awt.Graphics;
 
+import com.kh.mini.model.gameObject.maps.DesktoLeft2F;
 import com.kh.mini.model.vo.GameObject;
 import com.kh.mini.model.vo.ImageClass;
 
@@ -66,9 +67,10 @@ public class GameItem  extends GameObject {
 	public void update() {
 		this.makeCenterRect(x, y, 70, 70);
 		img.isFrameUpdate();
-		
+
 		if (player != null && this.isCollisionRectToRect(player) == false) {
 		} else {
+			gameScene.popItem = false;
 			gameScene.eatItem();
 			switch (itemType) {
 			case 0:
