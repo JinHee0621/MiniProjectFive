@@ -63,7 +63,7 @@ public class DesktoLeft2F extends BaseScene {
 			p.addObjs(mobs);
 		}
 		
-		something = new Stuff("images\\stuffImages\\DeskFront.png",140,85, p);
+		something = new Stuff("images\\stuffImages\\DeskFront.png",140,85,64,64, p);
 		something.init();
 		something.setPosition(340, 260);
 	}
@@ -95,7 +95,7 @@ public class DesktoLeft2F extends BaseScene {
 				}
 			}
 		}
-		if (!p.isFightToMobs()) {
+		if (!gs.popItem && !p.isFightToMobs()) {
 			// ¿ì´Ü
 			if (p.getX() + 75 > 1200 && p.getY() + 140 <= 711 && p.getY() + 140 >= 584) {
 				p.setPosition(194, 500);
@@ -119,10 +119,8 @@ public class DesktoLeft2F extends BaseScene {
 	public void render(Graphics g) {
 		// TODO Auto-generated method stub
 		backGround.render(g);
-		
-		p.render(g);
 		something.render(g);
-		
+		p.render(g);
 		for (int i = 0; i < mobs.length; i++) {
 			if(mobs[i] != null) mobs[i].render(g);
 		}

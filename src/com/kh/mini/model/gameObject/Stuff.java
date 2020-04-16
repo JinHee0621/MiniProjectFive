@@ -16,11 +16,17 @@ public class Stuff extends GameObject{
 	private int imgSizeX;
 	private int imgSizeY;
 
-	public Stuff(String path, int imgSizeX, int imgSizeY, Player player) {
+	private int imgBoundX;
+	private int imgBoundY;
+
+	
+	public Stuff(String path, int imgSizeX, int imgSizeY,int imgBoundX, int imgBoundY, Player player) {
 		this.player = player;
 		this.imgPath = path;
 		this.imgSizeX = imgSizeX;
 		this.imgSizeY = imgSizeY;
+		this.imgBoundX = imgBoundX;
+		this.imgBoundY = imgBoundY;
 	}
 	
 	@Override
@@ -33,7 +39,7 @@ public class Stuff extends GameObject{
 		x = this.getX();
 		y = this.getY();
 		
-		img.setPosition(x-64, y+64);
+		img.setPosition(x-imgBoundX, y+imgBoundY);
 		
 		img.setIsOn(true);
 		img.setMaxSpeed(100);
@@ -68,7 +74,7 @@ public class Stuff extends GameObject{
 
 	@Override
 	public void render(Graphics g) {
-		img.setPosition(x-64, y+64);
+		img.setPosition(x-imgBoundX, y+imgBoundY);
 		img.render(g);
 	}
 

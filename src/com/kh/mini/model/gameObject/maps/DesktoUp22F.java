@@ -21,7 +21,7 @@ public class DesktoUp22F extends BaseScene {
 	
 	Player p;
 
-	public Monster[] mobs = new Monster[3];
+	public Monster[] mobs = new Monster[1];
 	
 	private boolean firstIn = true;
 	
@@ -47,19 +47,11 @@ public class DesktoUp22F extends BaseScene {
 		bgX = backGround.getX();
 		bgY = backGround.getY();
 
-		if (p.firstIn2fUp) {
+		if (p.firstIn2fUp2) {
 
-			mobs[0] = new Monster(p, "images\\monsterImages\\Monster_Type_Purple.png", 100, 100, 15, 3, 0.04, 2, 90);
+			mobs[0] = new Monster(p, "images\\monsterImages\\Monster_Type_Green.png", 128, 128, 17, 3, 0.03, 3, 120);
 			mobs[0].setPosition((int) (Math.random() * 1024) + 192, (int) (Math.random() * 640) + 328);
 			mobs[0].init();
-
-			mobs[1] = new Monster(p, "images\\monsterImages\\Monster_Type_Purple.png", 100, 100, 15, 3, 0.04, 2, 90);
-			mobs[1].setPosition((int) (Math.random() * 1024) + 192, (int) (Math.random() * 640) + 328);
-			mobs[1].init();
-			
-			mobs[2] = new Monster(p, "images\\monsterImages\\Monster_Type_Green.png", 128, 128, 17, 2, 0.03, 3, 120);
-			mobs[2].setPosition((int) (Math.random() * 1024) + 192, (int) (Math.random() * 640) + 328);
-			mobs[2].init();
 			p.setFightToMobs(true);
 			p.addObjs(mobs);
 		}
@@ -93,7 +85,7 @@ public class DesktoUp22F extends BaseScene {
 				}
 			}
 		}
-		if (!p.isFightToMobs()) {
+		if (!gs.popItem && !p.isFightToMobs()) {
 			//문이동
 //			 if (p.getX() >= 640 && p.getX() + 75 <= 768 && p.getY() < 252) {
 //
@@ -114,15 +106,10 @@ public class DesktoUp22F extends BaseScene {
 //
 //		         p.setPosition(220, 500);
 //		      }
-			
-			if (p.getX() >= 640 && p.getX() + 75 <= 768 && p.getY() < 252) {
-				
-				p.setPosition(664, 698);
-			}
-			// 하단
+
 			if (p.getX() >= 640 && p.getX() + 75 <= 768 && p.getY() + 140 > 838) {
-				gs.changeMap(0);
-				p.setPlayerMapPos(0);
+				gs.changeMap(3);
+				p.setPlayerMapPos(3);
 				p.setPosition(664, 252);
 			}
 			
@@ -132,7 +119,7 @@ public class DesktoUp22F extends BaseScene {
 			p.setFightToMobs(false);
 			gs.popItem = false;
 			gs.popItem();
-			p.firstIn2fUp = false;
+			p.firstIn2fUp2 = false;
 			GameScene.monsterLength = mobs.length;
 		}
 		

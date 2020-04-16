@@ -112,6 +112,7 @@ public class Player extends GameObject  implements Runnable{
 				if ((objs[nearlist] != null && !checkGetAttack) && objs[nearlist] instanceof Monster) {
 					checkGetAttack = true;
 					new Thread(this).start();
+					
 					if (objs[nearlist] != null && (objs[nearlist].getX() < this.getX())) {
 						this.setPosition(x + 8, y + 8);
 					} else {
@@ -402,4 +403,13 @@ public class Player extends GameObject  implements Runnable{
 	public void setWhatTypeKillYou(int whatTypeKillYou) {
 		this.whatTypeKillYou = whatTypeKillYou;
 	}
+	
+	public UiScene getUiScene() {
+		return uiScene;
+	}
+
+	public void setUiScene(UiScene uiScene) {
+		this.uiScene = uiScene;
+	}
+
 }

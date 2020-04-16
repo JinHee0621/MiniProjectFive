@@ -44,7 +44,6 @@ public class Monster extends GameObject implements Runnable{
 	//---몬스터파라미터-------------------
 	
 	private int monsterType = 0;
-	
 
 	private int monsterHp = 3;
 	
@@ -52,7 +51,10 @@ public class Monster extends GameObject implements Runnable{
 	
 	private int monsterRect = 0;
 	
+	private boolean isShopMaster = false;
+	
 	public Monster(Player target, String path, int imgSizeX, int imgSizeY, int frameCount, int patternType , double mobSpeed, int monsterType, int monsterRect) {
+		isShopMaster = false;
 		this.target = target;
 		this.imgPath = path;
 		this.imgSizeX = imgSizeX;
@@ -65,14 +67,33 @@ public class Monster extends GameObject implements Runnable{
 		this.monsterRect = monsterRect;
 		
 		monsterHp *= monsterType;
+		if(monsterType == 6) {
+			monsterHp /= 2;
+		}
+		
 		setGivScore(25 * monsterType);
 	}
-	
+
+	public Monster(Player target, String path) {
+		this.target = target;
+		this.imgPath = path;
+		this.imgSizeX = 100;
+		this.imgSizeY = 150;
+		mobSpeed = 0;
+		monsterType = 99;
+		isShopMaster = true;
+		monsterHp = 5000;
+	}
 	@Override
 	public void init() {
 		// TODO Auto-generated method stub
 		img = new ImageClass();
-		img.Init(imgPath, imgSizeX, imgSizeY, frameCount, 1, true);
+		
+		if(isShopMaster) {
+			img.Init(imgPath);
+		} else {
+			img.Init(imgPath, imgSizeX, imgSizeY, frameCount, 1, true);
+		}
 		
 		img.setMagnification(1.0);
 		x = this.getX();
@@ -81,7 +102,8 @@ public class Monster extends GameObject implements Runnable{
 		//img.setPosition(x, y);
 		
 		img.setIsOn(true);
-		img.setMaxSpeed(100);
+		if(monsterType == 6) img.setMaxSpeed(50);
+		else img.setMaxSpeed(100);
 		
 		//this.makeCenterRect(x, y,150,150);
 	}
@@ -96,7 +118,7 @@ public class Monster extends GameObject implements Runnable{
 	@Override
 	public void update() {
 
-		if (monsterHp > 0) {
+		if (monsterHp > 0 && !isShopMaster) {
 			this.makeCenterRect(x, y, monsterRect, monsterRect);
 			img.isFrameUpdate();
 
@@ -181,7 +203,18 @@ public class Monster extends GameObject implements Runnable{
 					}
 				}
 			}
-		} else {
+		}else if(monsterHp > 0 && isShopMaster) {
+			this.makeCenterRect(x, y, monsterRect, monsterRect);
+			
+			if (this.isCollisionRectToRect(target) == false) {
+			} else {
+				target.setPlayerMask(0);
+				target.setPlayerClean(0);
+				target.getUiScene().update();
+				target.setWhatTypeKillYou(this.monsterType);
+			}
+		}
+		else {
 			mobSpeed = 0;
 			this.makeCenterRect(x, y, 0, 0);
 		}
@@ -226,12 +259,6 @@ public class Monster extends GameObject implements Runnable{
 				if (doPattern >= 50) {
 					switch (patternType) {
 					case 2:
-						mobSpeed = 0;
-						Thread.sleep(1000);
-						mobSpeed = 4;
-						break;
-
-					case 3:
 						for (int i = 0; i < 25; i++) {
 							mobSpeed += 0.025;
 							Thread.sleep(100);
@@ -240,6 +267,35 @@ public class Monster extends GameObject implements Runnable{
 						mobSpeed = 0;
 						Thread.sleep(500);
 						break;
+					case 3:
+						mobSpeed = 6;
+						Thread.sleep(100);
+						mobSpeed = 0;
+						break;
+					case 4:
+						for(int i = 0; i < 3; i++) {
+							this.setPosition(x - (Math.random() * 150), y - (Math.random() * 150));
+							Thread.sleep(500);
+						}
+						break;
+					case 5:
+						mobSpeed = 0.25;
+						Thread.sleep(2500);
+						monsterHp += 1;
+						break;		
+					case 6:
+						mobSpeed = 5;
+						Thread.sleep(200);
+						mobSpeed = 4;
+						Thread.sleep(200);
+						mobSpeed = 2;
+						Thread.sleep(200);
+						mobSpeed = 1;
+						Thread.sleep(200);
+						mobSpeed = 0;
+						break;
+						
+						
 					default:
 						break;
 					}
@@ -279,6 +335,13 @@ public class Monster extends GameObject implements Runnable{
 
 	public void setMonsterType(int monsterType) {
 		this.monsterType = monsterType;
+	}
+	
+	public boolean isShopMaster() {
+		return isShopMaster;
+	}
+	public void setShopMaster(boolean isShopMaster) {
+		this.isShopMaster = isShopMaster;
 	}
 
 }
