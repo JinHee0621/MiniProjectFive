@@ -92,7 +92,7 @@ public class DesktoLeft2F extends BaseScene {
 		}
 		if (!p.isFightToMobs()) {
 			// ¿ì´Ü
-			if (p.getX()  + 75 > 1213 && p.getY() + 140 <= 711 && p.getY() + 140 >= 584) {
+			if (p.getX()  + 90 > 1213 && p.getY() + 140 <= 711 && p.getY() + 140 >= 584) {
 				p.setPosition(194, 500);
 				gs.changeMap(0);
 				p.setPlayerMapPos(0);

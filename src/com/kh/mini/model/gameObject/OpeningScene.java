@@ -34,7 +34,7 @@ public class OpeningScene extends BaseScene {
 		// 이미지를 초기화 하고 위치를 정한다.
 
 		// 배경 이미지 클래스 새로 할당
-		if (opening) {
+		if (!opening) {
 			sound.bgmSelect("stage4_boss");
 			bg = new ImageClass();
 			bg.Init("images\\titleImages\\start1.png");
