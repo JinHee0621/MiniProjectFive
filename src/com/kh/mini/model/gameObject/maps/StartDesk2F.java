@@ -74,7 +74,7 @@ public class StartDesk2F extends BaseScene {
 				p.setPlayerMapPos(1);
 			}
 			// ¿ì´Ü
-			if (p.getX()  + 75 > 1214 && p.getY() + 140 <= 711 && p.getY() + 140 >= 584) {
+			if (p.getX()  + 75 > 1213 && p.getY() + 140 <= 711 && p.getY() + 140 >= 584) {
 				p.setPosition(194, 500);
 				gs.changeMap(2);
 				p.setPlayerMapPos(2);
