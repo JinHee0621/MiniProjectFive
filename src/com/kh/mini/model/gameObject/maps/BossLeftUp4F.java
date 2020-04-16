@@ -48,7 +48,6 @@ public class BossLeftUp4F extends BaseScene {
 		bgY = backGround.getY();
 		
 		
-		//boolean변수 필요
 		if (p.firstIn4fLeftUp) {
 			mobs[0] = new Monster(p, "", 0, 0, 0, 0, 0, 0, 0);
 			mobs[0].setPosition((int) (Math.random() * 1024) + 192, (int) (Math.random() * 768) + 200);
@@ -109,7 +108,7 @@ public class BossLeftUp4F extends BaseScene {
 			p.setFightToMobs(false);
 			gs.popItem = false;
 			gs.popItem();
-			p.firstIn2fLeft = false;
+			p.firstIn4fLeftUp = false;
 			GameScene.monsterLength = mobs.length;
 		}
 		something.update();	

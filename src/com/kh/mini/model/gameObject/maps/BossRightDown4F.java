@@ -110,7 +110,7 @@ public class BossRightDown4F extends BaseScene {
 			p.setFightToMobs(false);
 			gs.popItem = false;
 			gs.popItem();
-			p.firstIn2fLeft = false;
+			p.firstIn4fRightDown = false;
 			GameScene.monsterLength = mobs.length;
 		}
 		something.update();	

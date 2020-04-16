@@ -53,6 +53,14 @@ public class Player extends GameObject  implements Runnable{
 	public boolean firstIn2fRight = true;
 	public boolean firstIn2fUp = true;
 	public boolean firstIn2fUp2 = true;
+	public boolean firstIn3fLeft = true;
+	public boolean firstIn3fUp = true;
+	public boolean firstIn3fIntersection = true;
+	public boolean firstIn3fIntersectionUp = true;
+	public boolean firstIn4fLeftDown = true;
+	public boolean firstIn4fRightDown = true;
+	public boolean firstIn4fLeftUp = true;
+	public boolean firstIn4fRightUp = true;
 	
 	//-------------------------------
 	
