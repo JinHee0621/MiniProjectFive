@@ -172,7 +172,7 @@ public class Attack extends GameObject  implements Runnable{
 	public void run() {
 		// TODO Auto-generated method stub
 		try {
-			Thread.sleep(500);
+			Thread.sleep(300);
 			endAttack = true;
 			img.setIsOn(false);
 			rangeX = 0;

@@ -73,7 +73,7 @@ public class MapScene extends BaseScene {
 //		mobs[2].setPosition((int) (Math.random() * 1024) + 192, (int) (Math.random() * 640) + 328);
 //		mobs[2].init();
 
-		mobs[2] = new Monster(p, "images\\monsterImages\\Monster_Person.png", 110, 150, 10, 2, 0.03, 6, 90);
+		mobs[2] = new Monster(p, "images\\monsterImages\\Monster_Person.png", 100, 150, 11, 2, 0.03, 6, 90);
 		mobs[2].setPosition((int) (Math.random() * 1024) + 192, (int) (Math.random() * 640) + 328);
 		mobs[2].init();
 		

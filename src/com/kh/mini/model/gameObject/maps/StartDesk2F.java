@@ -57,7 +57,7 @@ public class StartDesk2F extends BaseScene {
 		mobs[0].setPosition(950, 240);
 		mobs[0].init();
 		
-		item = new GameItem(p, 7, true, 3, 650, 550);
+		item = new GameItem(p, 3, true, 3, 650, 550);
 		item.init();
 		//최초지점은 설정.
 		//문을 넘어간 경우 다음맵에서 setPosition은 ?

@@ -38,8 +38,8 @@ public class Player extends GameObject  implements Runnable{
 	private double playerMovSpeed = 1;
 	private int playerClean = 10;
 	private int playerMask = 5;
-	private int playerRange = 180;
-	private int playerPower = 1;
+	private int playerRange = 190;
+	private int playerPower = 10;
 	private int gunShotSpeed;
 	
 	private int coinCount = 3;
@@ -53,12 +53,15 @@ public class Player extends GameObject  implements Runnable{
 	private int whatTypeKillYou = 0;
 	int nearlist = 0;
 	//-------------------------------
-	
+
 	public boolean firstIn2fLeft = true;
 	public boolean firstIn2fRight = true;
 	public boolean firstIn2fUp = true;
 	public boolean firstIn2fUp2 = true;
-	
+	public boolean firstIn3fLeft = true;
+	public boolean firstIn3fUp = true;
+	public boolean firstIn3fIntersection = true;
+	public boolean firstIn3fIntersectionUp = true;
 	public boolean firstIn4fRightUp = true;
 	public boolean firstIn4fRightDown = true;
 	public boolean firstIn4fLeftUp = true;
@@ -122,7 +125,14 @@ public class Player extends GameObject  implements Runnable{
 				if ((objs[nearlist] != null && !checkGetAttack) && objs[nearlist] instanceof Monster) {
 					checkGetAttack = true;
 					new Thread(this).start();
-					
+					sound.sfxSelect("PlayerHit");
+					if (playerClean > 0 && playerMask <= 0)
+						playerClean -= 1;
+					else if (playerMask > 0)
+						playerMask -= 1;
+					uiScene.update();
+					setWhatTypeKillYou(((Monster) objs[nearlist]).getMonsterType());
+
 					if (objs[nearlist] != null && (objs[nearlist].getX() < this.getX())) {
 						this.setPosition(x + 8, y + 8);
 					} else {
@@ -244,18 +254,13 @@ public class Player extends GameObject  implements Runnable{
 	public void run() {
 		// TODO Auto-generated method stub	
 		if (checkGetAttack) {
-				sound.sfxSelect("PlayerHit");
-				if(playerClean > 0 && playerMask <= 0) playerClean -= 1;
-				else if(playerMask > 0) playerMask -= 1;
-				uiScene.update();
-				setWhatTypeKillYou(((Monster)objs[nearlist]).getMonsterType());
 			try {
 				if(playerFront) img.changeImage("images\\charImages\\MainCharFront_Flash.png", 75, 140, 11, 1, true);
 				if(playerRight) img.changeImage("images\\charImages\\MainCharSideR_Flash.png", 90, 150, 11, 1, true);
 				if(playerLeft) img.changeImage("images\\charImages\\MainCharSideL_Flash.png", 90, 150, 11, 1, true);
 				if(playerUp) img.changeImage("images\\charImages\\MainCharUp_Flash.png", 75, 140, 11, 1, true);
 				img.setIsOn(true);
-				Thread.sleep(1500);
+				Thread.sleep(2000);
 				if(playerFront) img.changeImage("images\\charImages\\MainCharFront.png", 75, 140, 11, 1, true);
 				if(playerRight) img.changeImage("images\\charImages\\MainCharSideR.png", 90, 150, 11, 1, true);
 				if(playerLeft) img.changeImage("images\\charImages\\MainCharSideL.png", 90, 150, 11, 1, true);
@@ -270,7 +275,7 @@ public class Player extends GameObject  implements Runnable{
 			try {
 				attack.setPosition(getX(), getY());
 				attack.setCam(cam);
-				Thread.sleep(1000);
+				Thread.sleep(800);
 				checkDoAttack = false;
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
