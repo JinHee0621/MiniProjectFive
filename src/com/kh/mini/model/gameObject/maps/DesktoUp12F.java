@@ -112,7 +112,8 @@ public class DesktoUp12F extends BaseScene {
 //		      }
 			
 			if (p.getX() >= 640 && p.getX() + 75 <= 768 && p.getY() < 252) {
-				
+				p.setPlayerMapPos(4);
+				p.setPlayerMapPos(4);
 				p.setPosition(664, 698);
 			}
 			// ÇÏ´Ü
