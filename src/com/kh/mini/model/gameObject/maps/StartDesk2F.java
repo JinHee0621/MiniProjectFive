@@ -29,6 +29,7 @@ public class StartDesk2F extends BaseScene {
 	Player p;
 	public Monster[] mobs = new Monster[1];
 	
+	boolean purchaseItem = false;
 	
 	public StartDesk2F(GameWindow gw,GameScene gs ,Player p) {
 		this.p = p;
@@ -56,7 +57,7 @@ public class StartDesk2F extends BaseScene {
 		mobs[0].setPosition(950, 240);
 		mobs[0].init();
 		
-		item = new GameItem(p, 3, true, 3, 650, 550);
+		item = new GameItem(p, 7, true, 3, 650, 550);
 		item.init();
 		//최초지점은 설정.
 		//문을 넘어간 경우 다음맵에서 setPosition은 ?
@@ -77,6 +78,7 @@ public class StartDesk2F extends BaseScene {
 		//something.update();		
 		p.update();
 		something.update();	
+		item.update();
 		
 		for (int i = 0; i < mobs.length; i++) {
 			if (mobs[i] != null) {
@@ -119,7 +121,6 @@ public class StartDesk2F extends BaseScene {
 		p.render(g);
 		
 		item.render(g);
-		item.update();
 		
 		if(p.isCheckDoAttack()) {
 			p.getAttack().render(g);

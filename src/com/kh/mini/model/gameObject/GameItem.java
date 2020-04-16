@@ -11,7 +11,9 @@ public class GameItem extends GameObject {
 	private Player player;
 
 	private ImageClass img;
-
+	private ImageClass itemBase;
+	private ImageClass itemPrice;
+	
 	private String imgPath;
 	private int imgX;
 	private int imgY;
@@ -19,6 +21,7 @@ public class GameItem extends GameObject {
 	private int itemType;
 
 	private boolean shop;
+	private boolean purchaseItem = false;
 	private int price;
 
 	private int itemPosX;
@@ -47,6 +50,8 @@ public class GameItem extends GameObject {
 	@Override
 	public void init() {
 		img = new ImageClass();
+		itemBase = new ImageClass();
+		itemPrice = new ImageClass();
 		// img.Init("images\\charImages\\MainCharSideR.png", 90, 150, 11, 1, true);
 		switch (itemType) {
 		case 0:
@@ -67,6 +72,15 @@ public class GameItem extends GameObject {
 		case 5:
 			img.Init("images\\ItemImage\\Mask3.png", 64, 64, 13, 1, true);
 			break;
+		case 6:
+			img.Init("images\\ItemImage\\spray.png", 64, 64, 10, 1, true);
+			break;
+		case 7:
+			img.Init("images\\ItemImage\\WeaponType2.png", 64, 64, 18, 1, true);
+			break;
+		case 8:
+			img.Init("images\\ItemImage\\WeaponType3.png", 64, 64, 18, 1, true);
+			break;
 		}
 		// img.Init(imgPath,imgX,imgY,imgFrame,1,true);
 		// item = new GameItem("images\\ItemImage\\HandCleaner.png",this,p,64,64,10,1);
@@ -81,9 +95,17 @@ public class GameItem extends GameObject {
 			img.setMagnification(1.0);
 			img.setIsOn(true);
 			img.setMaxSpeed(100);
+			
+			itemBase.Init("images\\ItemImage\\itemBase.png");
+			itemPrice.Init("images\\ItemImage\\payTack_"+price+"coin.png");
+			
+			
 			x = itemPosX;
 			y = itemPosY;
 			img.setPosition(x, y);
+			itemBase.setPosition(x, y + 30);
+			itemPrice.setPosition(x + 12, y + 30);
+			
 		}
 		this.makeCenterRect(x, y, 70, 70);
 	}
@@ -117,9 +139,28 @@ public class GameItem extends GameObject {
 				case 5:
 					player.setPlayerMask(player.getPlayerMask() + 7);
 					break;
+				case 6:
+					player.setWeaponType(1);
+					player.eatSprayTypeWeapon();
+					player.setPlayerRange(player.getPlayerRange() + 10);
+					player.getUiScene().getWeaponUi();
+					break;
+				case 7:
+					player.setWeaponType(2);
+					player.setGunShotSpeed(1);
+					player.eatGunTypeWeapon();
+					player.getUiScene().getWeaponUi();
+					break;
+				case 8:
+					player.setWeaponType(3);
+					player.setGunShotSpeed(2);
+					player.setPlayerPower(player.getPlayerPower() + 1);
+					player.eatGunTypeWeapon();
+					player.getUiScene().getWeaponUi();
+					break;
 				}
 			} else {
-				if (player.getCoinCount() > price) {
+				if (player.getCoinCount() >= price && !purchaseItem) {
 					switch (itemType) {
 					case 0:
 						player.setCoinCount(player.getCoinCount() + 1);
@@ -139,8 +180,26 @@ public class GameItem extends GameObject {
 					case 5:
 						player.setPlayerMask(player.getPlayerMask() + 7);
 						break;
+					case 6:
+						player.setWeaponType(1);
+						player.eatSprayTypeWeapon();
+						player.setPlayerRange(player.getPlayerRange() + 10);
+						break;
+					case 7:
+						player.setWeaponType(2);
+						player.setGunShotSpeed(1);
+						player.eatGunTypeWeapon();
+						break;
+					case 8:
+						player.setWeaponType(3);
+						player.setGunShotSpeed(2);
+						player.setPlayerPower(player.getPlayerPower() + 1);
+						player.eatGunTypeWeapon();
+						break;
+						
 					}
 					player.setCoinCount(player.getCoinCount() - price);
+					purchaseItem = true;
 				} else {
 					if (player.getX() > this.getX()) {
 						player.setPosition(player.getX() + player.getPlayerMovSpeed(), player.getY());
@@ -167,7 +226,21 @@ public class GameItem extends GameObject {
 	@Override
 	public void render(Graphics g) {
 		img.setPosition(this.getX(), this.getY());
-		img.render(g);
+		if (shop) {
+			itemBase.render(g);
+			if(!purchaseItem)img.render(g);
+			itemPrice.render(g);
+		} else {
+			img.render(g);
+		}
+	}
+
+	public boolean isPurchaseItem() {
+		return purchaseItem;
+	}
+
+	public void setPurchaseItem(boolean purchaseItem) {
+		this.purchaseItem = purchaseItem;
 	}
 
 }

@@ -190,10 +190,10 @@ public class Monster extends GameObject implements Runnable{
 				} else {
 					if (!getDamage) {
 						sound.sfxSelect("MonsterHit_"+monsterType);
+
 						getDamage = true;
-						monsterHp -= attack.getAttackPower();
-						System.out.println(" " + this + ", "+ monsterHp);
 						mobPattern = new Thread(this);
+						monsterHp -= attack.getAttackPower();
 						mobPattern.start();
 					}
 					if (this.getX() < attack.getX()) {
@@ -253,7 +253,7 @@ public class Monster extends GameObject implements Runnable{
 				mobSpeed = firstSpeed;
 				checkPattern = false;
 				
-			} else if(checkPattern && monsterHp > 0){
+			} else if(checkPattern && monsterHp > 0 && !getDamage){
 				Thread.sleep(500);
 				int doPattern = (int) (Math.random() * 100) + 1;
 				if (doPattern >= 50) {

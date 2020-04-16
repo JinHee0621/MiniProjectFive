@@ -17,6 +17,8 @@ public class UiScene extends BaseScene{
 	
 	ImageClass weaponSlot;
 	
+	ImageClass weaponType;
+	
 	ImageClass haveCoinUi;
 	ImageClass haveCoinNumTen;
 	ImageClass haveCoinNumOne;
@@ -59,6 +61,12 @@ public class UiScene extends BaseScene{
 		weaponSlot.setIsOn(true);
 		weaponSlot.setPosition(595, 50);
 		
+		weaponType = new ImageClass();
+		weaponType.Init("images\\uiImages\\WeaponUiSet\\UI_WeaponType1.png");
+		getWeaponUi();
+		weaponType.setIsOn(true);
+		weaponType.setPosition(625, 85);
+		
 		haveCoinUi = new ImageClass();
 		haveCoinUi.Init("images\\uiImages\\CoinNumUI.png");
 		haveCoinUi.setIsOn(true);
@@ -88,6 +96,16 @@ public class UiScene extends BaseScene{
 		
 	}
 
+	public void getWeaponUi() {
+		if(player.getWeaponType() == 1) {
+			weaponType.changeImage("images\\uiImages\\WeaponUiSet\\UI_WeaponType1.png");
+		} else if(player.getWeaponType() == 2) {
+			weaponType.changeImage("images\\uiImages\\WeaponUiSet\\UI_WeaponType2.png");
+		}else if(player.getWeaponType() == 3) {
+			weaponType.changeImage("images\\uiImages\\WeaponUiSet\\UI_WeaponType3.png");
+		}
+	}
+	
 	@Override
 	public void release() {
 		
@@ -96,7 +114,7 @@ public class UiScene extends BaseScene{
 	@Override
 	public void update() {
 		int playerScore = player.getScore();
-		
+		getWeaponUi();
 		haveCoinNumTen.changeImage("images\\uiImages\\NumberSet\\"+(player.getCoinCount()/10)+".png");
 		haveCoinNumOne.changeImage("images\\uiImages\\NumberSet\\"+(player.getCoinCount()%10)+".png");
 		
@@ -191,7 +209,7 @@ public class UiScene extends BaseScene{
 		cleanGuage.render(g);
 		cleanBar.render(g);
 		maskBar.render(g);
-		
+		weaponType.render(g);
 	}
 
 }

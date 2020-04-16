@@ -38,10 +38,15 @@ public class Player extends GameObject  implements Runnable{
 	private double playerMovSpeed = 1;
 	private int playerClean = 10;
 	private int playerMask = 5;
-	private int coinCount = 0;
+	private int playerRange = 180;
+	private int playerPower = 1;
+	private int gunShotSpeed;
+	
+	private int coinCount = 3;
 	private int score = 0;
 	
 	
+	private int weaponType = 1;
 	private boolean attackBullet = false;
 	private boolean fightToMobs = false;
 	
@@ -53,6 +58,11 @@ public class Player extends GameObject  implements Runnable{
 	public boolean firstIn2fRight = true;
 	public boolean firstIn2fUp = true;
 	public boolean firstIn2fUp2 = true;
+	
+	public boolean firstIn4fRightUp = true;
+	public boolean firstIn4fRightDown = true;
+	public boolean firstIn4fLeftUp = true;
+	public boolean firstIn4fLeftDown = true;
 	
 	//-------------------------------
 	
@@ -410,6 +420,38 @@ public class Player extends GameObject  implements Runnable{
 
 	public void setUiScene(UiScene uiScene) {
 		this.uiScene = uiScene;
+	}
+
+	public int getWeaponType() {
+		return weaponType;
+	}
+
+	public void setWeaponType(int weaponType) {
+		this.weaponType = weaponType;
+	}
+
+	public int getPlayerRange() {
+		return playerRange;
+	}
+
+	public void setPlayerRange(int playerRange) {
+		this.playerRange = playerRange;
+	}
+
+	public int getPlayerPower() {
+		return playerPower;
+	}
+
+	public void setPlayerPower(int playerPower) {
+		this.playerPower = playerPower;
+	}
+
+	public int getGunShotSpeed() {
+		return gunShotSpeed;
+	}
+
+	public void setGunShotSpeed(int gunShotSpeed) {
+		this.gunShotSpeed = gunShotSpeed;
 	}
 
 }
