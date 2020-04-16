@@ -24,6 +24,15 @@ public class GameScene extends BaseScene {
 	DesktoRight2F map2f_3;
 	DesktoUp12F map2f_4;
 	DesktoUp22F map2f_5;
+	Start3F map3f_1;
+	StarttoLeft3F map3f_2;
+	StarttoUp3F map3f_3;
+	Intersection3F map3f_4;
+	IntersectiontoUp3F map3f_5;
+	BossLeftDown4F map4f_1;
+	BossRightDown4F map4f_2;
+	BossLeftUp4F map4f_3;
+	BossRightUp4F map4f_4;
 	
 	ImageClass img;
 	ImageClass img2;
@@ -98,6 +107,48 @@ public class GameScene extends BaseScene {
 		case 3:
 			map2f_4 = new DesktoUp12F(gw, this, p);
 			map2f_4.init();
+			break;
+		case 4:
+			map2f_5 = new DesktoUp22F(gw, this, p);
+			map2f_5.init();
+			break;
+			
+		case 5:
+			map3f_1 = new Start3F(gw, this, p);
+			map3f_1.init();
+			break;
+		case 6:
+			map3f_2 = new StarttoLeft3F(gw, this, p);
+			map3f_2.init();
+			break;
+		case 7:
+			map3f_3 = new StarttoUp3F(gw, this, p);
+			map3f_3.init();
+			break;
+		case 8:
+			map3f_4 = new Intersection3F(gw, this, p);
+			map3f_4.init();
+			break;
+		case 9:
+			map3f_5 = new IntersectiontoUp3F(gw, this, p);
+			map3f_5.init();
+			break;
+			
+		case 10:
+			map4f_1 = new BossLeftDown4F(gw, this, p);
+			map4f_1.init();
+			break;
+		case 11:
+			map4f_2 = new BossRightDown4F(gw, this, p);
+			map4f_2.init();
+			break;
+		case 12:
+			map4f_3 = new BossLeftUp4F(gw, this, p);
+			map4f_3.init();
+			break;
+		case 13:
+			map4f_4 = new BossRightUp4F(gw, this, p);
+			map4f_4.init();
 			break;
 		}
 	}
