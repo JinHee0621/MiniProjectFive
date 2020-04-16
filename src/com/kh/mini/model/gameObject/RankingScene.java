@@ -1,8 +1,11 @@
 package com.kh.mini.model.gameObject;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.MouseInfo;
 import java.awt.PointerInfo;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -10,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import com.kh.mini.controller.KeyManager;
 import com.kh.mini.controller.PointManager;
 import com.kh.mini.model.dao.JoinDao;
 import com.kh.mini.model.vo.UserInfo;
@@ -36,21 +40,19 @@ public class RankingScene extends BaseScene {
    @Override
    public void init() {
       
-      //회원 정보를 포인트 기준으로 내림차순 하여 파일에 다시 저장한다.
          PointManager pm = new PointManager();
          pm.arrayListSort();
 
-         //저장한 정보를 불러온다.
+
          ArrayList<UserInfo> list = new ArrayList<UserInfo>(); 
          JoinDao jd = new JoinDao();
          list = jd.fileOpen();
 
-         //각 정보를 담을 배열.
+
          String[] name = new String[7]; 
          String[] id = new String[7]; 
          String[] point = new String[7];
-         //1위부터 7위까지 정보
-         //각각 이름배열, id배열, 포인트 배열에 순서대로 저장.
+
 
          if(list.size() < 7) {
             for(int i = 0; i < list.size() ; i++) {
@@ -71,7 +73,7 @@ public class RankingScene extends BaseScene {
             }
          }
       
-      //이미지를 초기화 하고 위치를 정한다.
+
       gw.setSize(950,770);
       gw.setTitle("Ranking");
       gw.setResizable(false);
@@ -251,6 +253,25 @@ public class RankingScene extends BaseScene {
       point7.setHorizontalAlignment(JLabel.CENTER);
       panel.add(point7);
       
+      JLabel back= new JLabel(new ImageIcon(new ImageIcon("images\\titleImages\\back.png").getImage().getScaledInstance(185, 65, 0)));
+      back.setBackground(Color.WHITE);
+      back.setLocation(10, 10);
+      back.setSize(200, 90);
+      
+      panel.add(back);
+      
+      pointerInfo	= MouseInfo.getPointerInfo();
+		//���콺 Ŭ����ǥ�� ��´�.
+		
+		if(KeyManager.Instance().onceMouseClicked(MouseEvent.BUTTON1)) {
+		
+			System.out.println(pointerInfo.getLocation());
+			if((pointerInfo.getLocation().x >= 506 && pointerInfo.getLocation().x <= 690 ) && (pointerInfo.getLocation().y >= 185 &&pointerInfo.getLocation().y <= 249 )) {
+				sound.sfxSelect("ButtonClick1");
+				gw.startTitle();
+			} 
+		}
+  
       JLabel bg = new JLabel(new ImageIcon(new ImageIcon("images\\titleImages\\ranking.png").getImage().getScaledInstance(950, 770, 0)));
       bg.setBounds(0, 0, 950, 770);
       panel.add(bg);

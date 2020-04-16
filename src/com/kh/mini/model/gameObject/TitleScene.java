@@ -21,6 +21,8 @@ public class TitleScene extends BaseScene {
 	
 	ImageClass finishButton;
 	
+	ImageClass rankingButton;
+	
 	PointerInfo pointerInfo;
 	
 	GameWindow gw;
@@ -51,6 +53,12 @@ public class TitleScene extends BaseScene {
 		finishButton.Init("images\\titleImages\\finish.png");
 		finishButton.setIsOn(true);
 		finishButton.setPosition(198, 765);
+		
+		rankingButton = new ImageClass();
+		rankingButton.Init("images\\titleImages\\rankingBtn.png");
+		rankingButton.setIsOn(true);
+		rankingButton.setPosition(1150, 765);
+		
 	}
 
 	
@@ -79,7 +87,10 @@ public class TitleScene extends BaseScene {
 				//여기서는 게임이 종료됨
 				sound.sfxSelect("ButtonClick1");
 				new Finish(gw);
-			}else {
+			}else if((pointerInfo.getLocation().x >= 1405 && pointerInfo.getLocation().x <= 1605 ) && (pointerInfo.getLocation().y >= 828 &&pointerInfo.getLocation().y <= 918 )){
+				sound.sfxSelect("ButtonClick1");
+				gw.startRanking();
+			} else {
 				sound.sfxSelect("MouseClick1");
 			}
 		}
@@ -92,6 +103,7 @@ public class TitleScene extends BaseScene {
 		loginButton.render(g);
 		joinButton.render(g);
 		finishButton.render(g);
+		rankingButton.render(g);
 	}
 	
 }
