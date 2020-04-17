@@ -7,6 +7,7 @@ import com.kh.mini.model.gameObject.GameScene;
 import com.kh.mini.model.gameObject.Monster;
 import com.kh.mini.model.gameObject.Player;
 import com.kh.mini.model.gameObject.Stuff;
+import com.kh.mini.model.gameObject.UiScene;
 import com.kh.mini.model.vo.ImageClass;
 import com.kh.mini.view.GameWindow;
 
@@ -97,18 +98,21 @@ public class BossLeftDown4F extends BaseScene {
 					p.setPosition(p.getX(), 698);
 					gs.changeMap(12);
 					p.setPlayerMapPos(12);
+					UiScene.miniMap.changeImage("images\\miniMapImages\\12.4FLeftUp.png");
 			}
 			//10좌측하단 문
 			if (p.getX() >= 640 && p.getX() + 75 <= 768 && p.getY() + 140 > 838) {
 					p.setPosition(664, 252);
 					gs.changeMap(9);
 					p.setPlayerMapPos(9);
+					UiScene.miniMap.changeImage("images\\miniMapImages\\9.3FIntersectiontoUp.png");
 			}
 			//10우단라인				
 			if (p.getX() + 75 > 1328 && p.getY() + 140 <= 840 && p.getY() >= 456) {
 					p.setPosition(220, p.getY());
 					gs.changeMap(11);
 					p.setPlayerMapPos(11);
+					UiScene.miniMap.changeImage("images\\miniMapImages\\11.4FRightDown.png");
 			}
 		}
 		if(GameScene.monsterLength == 0) {

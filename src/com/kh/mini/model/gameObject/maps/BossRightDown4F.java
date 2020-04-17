@@ -7,6 +7,7 @@ import com.kh.mini.model.gameObject.GameScene;
 import com.kh.mini.model.gameObject.Monster;
 import com.kh.mini.model.gameObject.Player;
 import com.kh.mini.model.gameObject.Stuff;
+import com.kh.mini.model.gameObject.UiScene;
 import com.kh.mini.model.vo.ImageClass;
 import com.kh.mini.view.GameWindow;
 
@@ -98,12 +99,14 @@ public class BossRightDown4F extends BaseScene {
 					p.setPosition(p.getX(), 698);
 					gs.changeMap(13);
 					p.setPlayerMapPos(13);
+					UiScene.miniMap.changeImage("images\\miniMapImages\\13.4RightUp.png");
 			}
 			//11¡¬¥‹∂Û¿Œ
 			if (p.getX() < 66 && p.getY() + 140 <= 838 && p.getY() >= 456) {
 					p.setPosition(1110, p.getY());
 					gs.changeMap(10);
 					p.setPlayerMapPos(10);
+					UiScene.miniMap.changeImage("images\\miniMapImages\\10.4FLeftDown.png");
 			}
 		}
 		if(GameScene.monsterLength == 0) {
