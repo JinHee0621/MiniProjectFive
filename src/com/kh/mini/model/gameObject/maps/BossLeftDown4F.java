@@ -16,19 +16,12 @@ public class BossLeftDown4F extends BaseScene {
 	GameScene gs;
 	
 	ImageClass backGround;
-
-	Stuff something;
 	
 	double bgX;
 	double bgY;
 	
 	Player p;
-	public Monster[] mobs = new Monster[2];
-	
-	private boolean firstIn = true;
-	
-	private boolean popItem = false;
-	
+	public Monster[] mobs = new Monster[1];
 	
 	public BossLeftDown4F(GameWindow gw,GameScene gs, Player p) {
 		this.p = p;
@@ -51,13 +44,9 @@ public class BossLeftDown4F extends BaseScene {
 		
 		//boolean변수 필요
 		if (p.firstIn4fLeftDown) {
-			mobs[0] = new Monster(p, "", 0, 0, 0, 0, 0, 0, 0);
-			mobs[0].setPosition((int) (Math.random() * 1024) + 192, (int) (Math.random() * 768) + 200);
+			mobs[0] = new Monster(p, "images\\monsterImages\\Monster_Type_Black.png", 128, 128, 15, 4, 0.05, 4, 120);
+			mobs[0].setPosition((int) (Math.random() * 1024) + 192, (int) (Math.random() * 640) + 328);
 			mobs[0].init();
-			
-			mobs[1] = new Monster(p, "", 0, 0, 0, 0, 0, 0, 0);
-			mobs[1].setPosition((int) (Math.random() * 1024) + 192, (int) (Math.random() * 768) + 200);
-			mobs[1].init();
 			
 			p.setFightToMobs(true);
 			p.addObjs(mobs);
@@ -94,7 +83,7 @@ public class BossLeftDown4F extends BaseScene {
 		
 		if(!p.isFightToMobs()) {
 			//10좌측상단라인
-			if (p.getX() >= 192 && p.getX()  + 75 <= 1088 && p.getY() < 202) {
+			if (p.getX() >= 192 && p.getX()  + 75 <= 1088 && p.getY() < 252) {
 					p.setPosition(p.getX(), 698);
 					gs.changeMap(12);
 					p.setPlayerMapPos(12);
@@ -108,7 +97,7 @@ public class BossLeftDown4F extends BaseScene {
 					UiScene.miniMap.changeImage("images\\miniMapImages\\9.3FIntersectiontoUp.png");
 			}
 			//10우단라인				
-			if (p.getX() + 75 > 1328 && p.getY() + 140 <= 840 && p.getY() >= 456) {
+			if (p.getX() + 194 > 1204 && p.getY() + 140 <= 840 && p.getY() >= 456) {
 					p.setPosition(220, p.getY());
 					gs.changeMap(11);
 					p.setPlayerMapPos(11);
@@ -119,10 +108,9 @@ public class BossLeftDown4F extends BaseScene {
 			p.setFightToMobs(false);
 			gs.popItem = false;
 			gs.popItem();
-			p.firstIn2fLeft = false;
+			p.firstIn4fLeftDown = false;
 			GameScene.monsterLength = mobs.length;
 		}
-		something.update();	
 		p.update();
 	}
 
@@ -132,8 +120,6 @@ public class BossLeftDown4F extends BaseScene {
 		backGround.render(g);
 
 		p.render(g);
-		something.render(g);
-
 		for (int i = 0; i < mobs.length; i++) {
 			if(mobs[i] != null) mobs[i].render(g);
 		}

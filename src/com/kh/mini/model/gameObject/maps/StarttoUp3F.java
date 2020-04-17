@@ -49,15 +49,15 @@ public class StarttoUp3F extends BaseScene {
 
 		if (p.firstIn3fUp) {
 
-			mobs[0] =  new Monster(p, "images\\monsterImages\\Monster_Person.png", 100, 150, 11, 2, 0.03, 6, 90);
+			mobs[0] =  new Monster(p, "images\\monsterImages\\Monster_Person.png", 100, 150, 11, 6, 0.03, 6, 90);
 			mobs[0].setPosition((int) (Math.random() * 1024) + 192, (int) (Math.random() * 640) + 328);
 			mobs[0].init();
 
-			mobs[1] = new Monster(p, "images\\monsterImages\\Monster_Type_Black.png", 128, 128, 15, 1, 0.05, 4, 120);
+			mobs[1] = new Monster(p, "images\\monsterImages\\Monster_Type_Black.png", 128, 128, 15, 4, 0.05, 4, 120);
 			mobs[1].setPosition((int) (Math.random() * 1024) + 192, (int) (Math.random() * 640) + 328);
 			mobs[1].init();
 			
-			mobs[2] = new Monster(p, "images\\monsterImages\\Monster_Type_Black.png", 128, 128, 15, 1, 0.05, 4, 120);
+			mobs[2] = new Monster(p, "images\\monsterImages\\Monster_Type_Black.png", 128, 128, 15, 4, 0.05, 4, 120);
 			mobs[2].setPosition((int) (Math.random() * 1024) + 192, (int) (Math.random() * 640) + 328);
 			mobs[2].init();
 			

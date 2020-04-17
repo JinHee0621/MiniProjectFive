@@ -26,7 +26,13 @@ public class UiScene extends BaseScene{
 	ImageClass scoreUi;
 	ImageClass[] scoreNum = new ImageClass[6];
 	
+	ImageClass bossUi;
+	ImageClass bossHealth;
+	boolean meetBoss = false;
+	
 	Player player;
+	
+	Monster bossMonster;
 	
 	public static ImageClass miniMap;
 	
@@ -34,6 +40,22 @@ public class UiScene extends BaseScene{
 		this.player = player;
 	}
 	
+	public void bossMonsterCheck(Monster bossMonster) {
+		this.bossMonster = bossMonster;
+		
+		bossUi = new ImageClass();
+		bossUi.Init("images\\uiImages\\BossGuage\\BossGuage.png");
+		bossUi.setIsOn(true);
+		bossUi.setPosition(450, 150);
+		
+		bossHealth = new ImageClass();
+		bossHealth.Init("images\\uiImages\\BossGuage\\Boss_0.png");
+		bossHealth.setIsOn(true);
+		bossHealth.setPosition(bossUi.getX(),bossUi.getY());
+		meetBoss = true;
+		
+		update();
+	}
 	
 	@Override
 	public void init() {
@@ -111,6 +133,10 @@ public class UiScene extends BaseScene{
 		}
 	}
 	
+	public void resetMeetBoss() {
+		meetBoss = false;
+	}
+	
 	@Override
 	public void release() {
 		
@@ -129,6 +155,14 @@ public class UiScene extends BaseScene{
 			scoreNum[i].changeImage("images\\uiImages\\NumberSet\\"+showScore+".png");
 		}
 		
+		if(meetBoss) {
+			if(bossMonster.getMonsterHp() <= 0) {
+				bossHealth.changeImage("images\\uiImages\\BossGuage\\Boss_0.png");
+			} else {
+				bossHealth.changeImage("images\\uiImages\\BossGuage\\Boss_"+bossMonster.getMonsterHp()+".png");
+			}
+		}
+			
 		switch(player.getPlayerClean()) {
 		case 0:
 			cleanBar.changeImage("images\\uiImages\\HealthBar_0.png");
@@ -215,7 +249,11 @@ public class UiScene extends BaseScene{
 		cleanBar.render(g);
 		maskBar.render(g);
 		weaponType.render(g);
-		
+		if (meetBoss) {
+
+			bossUi.render(g);
+			bossHealth.render(g);
+		}
 		miniMap.render(g);
 	}
 

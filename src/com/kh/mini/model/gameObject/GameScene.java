@@ -219,6 +219,14 @@ public class GameScene extends BaseScene {
 			gw.dispose();
 			gw.showGameOver(mobType);
 		}
+		
+		if (p.getPlayerMapPos() == 14) {
+			sound.bgmStop();
+			jd.scoreSave(p.getUser(), p.getScore());
+			gw.setVisible(false);
+			gw.dispose();
+			gw.startEnding(p.getUser());
+		}
 
 	}
 
@@ -291,7 +299,7 @@ public class GameScene extends BaseScene {
 	
 	public void popBossItem() {
 		if (!popItem) {
-			int ItemType = (int) (Math.random() * 5);
+			int ItemType = (int) (Math.random() * 7);
 			item = new GameItem(p, ItemType, this);
 			item.init();
 			popItem = true;

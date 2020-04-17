@@ -35,7 +35,7 @@ public class OpeningScene extends BaseScene {
 
 		// 배경 이미지 클래스 새로 할당
 		if (!opening) {
-			sound.bgmSelect("stage4_boss");
+			sound.bgmSelect("opening");
 			bg = new ImageClass();
 			bg.Init("images\\titleImages\\start1.png");
 			bg.setIsOn(true);

@@ -49,11 +49,11 @@ public class Intersection3F extends BaseScene {
 
 		if (p.firstIn3fIntersection) {
 
-			mobs[0] = new Monster(p, "images\\monsterImages\\Monster_Type_Yellow.png", 128, 128, 10, 1, 0.05, 5, 75);
+			mobs[0] = new Monster(p, "images\\monsterImages\\Monster_Type_Yellow.png", 128, 128, 10, 5, 0.05, 5, 75);
 			mobs[0].setPosition((int) (Math.random() * 1024) + 192, (int) (Math.random() * 640) + 328);
 			mobs[0].init();
 
-			mobs[1] = new Monster(p, "images\\monsterImages\\Monster_Type_Yellow.png", 128, 128, 10, 1, 0.05, 5, 75);
+			mobs[1] = new Monster(p, "images\\monsterImages\\Monster_Type_Yellow.png", 128, 128, 10, 5, 0.05, 5, 75);
 			mobs[1].setPosition((int) (Math.random() * 1024) + 192, (int) (Math.random() * 640) + 328);
 			mobs[1].init();
 			p.setFightToMobs(true);

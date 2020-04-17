@@ -110,6 +110,8 @@ public class DesktoUp22F extends BaseScene {
 				gs.changeMap(5);
 				p.setPlayerMapPos(5);
 				p.setPosition(664, 698);
+				sound.bgmStop();
+				sound.bgmSelect("stage3_normal");
 				UiScene.miniMap.changeImage("images\\miniMapImages\\5.3FDesk.png");
 			}
 			if (p.getX() >= 640 && p.getX() + 75 <= 768 && p.getY() + 140 > 838) {
@@ -124,7 +126,7 @@ public class DesktoUp22F extends BaseScene {
 		if(GameScene.monsterLength == 0) {
 			p.setFightToMobs(false);
 			gs.popItem = false;
-			gs.popItem();
+			gs.popBossItem();
 			p.firstIn2fUp2 = false;
 			GameScene.monsterLength = mobs.length;
 		}

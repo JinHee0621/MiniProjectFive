@@ -3,6 +3,7 @@ package com.kh.mini.model.gameObject.maps;
 import java.awt.Graphics;
 
 import com.kh.mini.model.gameObject.BaseScene;
+import com.kh.mini.model.gameObject.BossMonster;
 import com.kh.mini.model.gameObject.GameScene;
 import com.kh.mini.model.gameObject.Monster;
 import com.kh.mini.model.gameObject.Player;
@@ -52,7 +53,7 @@ public class DesktoUp12F extends BaseScene {
 			mobs[0] = new Monster(p, "images\\monsterImages\\Monster_Type_Purple.png", 100, 100, 15, 2, 0.04, 2, 90);
 			mobs[0].setPosition((int) (Math.random() * 1024) + 192, (int) (Math.random() * 640) + 328);
 			mobs[0].init();
-
+			
 			mobs[1] = new Monster(p, "images\\monsterImages\\Monster_Type_Purple.png", 100, 100, 15, 2, 0.04, 2, 90);
 			mobs[1].setPosition((int) (Math.random() * 1024) + 192, (int) (Math.random() * 640) + 328);
 			mobs[1].init();

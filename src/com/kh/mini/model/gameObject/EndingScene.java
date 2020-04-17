@@ -21,13 +21,14 @@ public class EndingScene extends BaseScene {
 
 	int cnt = 0;
 
-	public EndingScene(GameWindow gw) {
+	public EndingScene(GameWindow gw, String user) {
 		this.gw = gw;
+		this.user = user;
 	}
 
 	@Override
 	public void init() {
-
+		sound.bgmSelect("ending");
 		bg = new ImageClass(); // 이미지 클래스 할당
 		bg.Init("images\\titleImages\\finish1.png");
 		bg.setIsOn(true);
@@ -56,8 +57,17 @@ public class EndingScene extends BaseScene {
 			case 2:
 				bg.changeImage("images\\titleImages\\finish3.png");
 				break;
+			case 3:
+				bg.changeImage("images\\titleImages\\credit.png");
+				break;
+			case 4:
+				gw.dispose();
+				sound.bgmStop();
+				gw = new GameWindow(0, null);
+				break;
 			default:
 				cnt--;
+				break;
 			}
 		}
 

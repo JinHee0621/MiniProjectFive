@@ -95,6 +95,7 @@ public class StartDesk2F extends BaseScene {
 				gs.changeMap(3);
 				p.setPlayerMapPos(3);
 				UiScene.miniMap.changeImage("images\\miniMapImages\\3.2FDesktoUp.png");
+//				gw.startEnding(p.getUser());
 			}
 			if (p.getX() < 194 && p.getY() + 140 <= 711 && p.getY() + 140 >= 584) {
 				p.setPosition(1110, 500);

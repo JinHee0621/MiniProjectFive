@@ -128,6 +128,49 @@ public class GameWindow extends JFrame {
 			ls.update();
 		}
 	}
+	
+	public void startEnding(String user) {
+		this.addKeyListener(KeyManager.Instance());
+
+		this.addMouseListener(KeyManager.Instance());
+
+		EndingScene os = new EndingScene(this, user);
+		// EndingScene os = new EndingScene(this);
+		os.setUser(user);
+		os.init();
+
+		this.setSize(1408, 896);
+		this.setResizable(false);
+		this.setLocationRelativeTo(null);
+
+		// os.setBgPosition(this.WIDTH / 2, this.HEIGHT / 2);
+
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setVisible(true);
+		// gw.repaint();
+		this.createBufferStrategy(2);
+
+		while (true) {
+
+			BufferStrategy bs = this.getBufferStrategy();
+
+			Graphics g = bs.getDrawGraphics();
+
+			g.clearRect(0, 0, this.getWidth(), this.getHeight());
+
+			// gw.repaint();
+
+			this.repaint();
+			os.render(g);
+			os.update();
+
+			os.update(); // 캐릭터의 위치를 확인하기 위해 계속 업데이트함
+
+			g.dispose();
+
+			bs.show();
+		}
+	}
 
 	public void startOpening(String user, boolean opening) {
 		this.addKeyListener(KeyManager.Instance());

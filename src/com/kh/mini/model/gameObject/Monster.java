@@ -25,7 +25,7 @@ public class Monster extends GameObject implements Runnable{
 	
 	Attack attack;
 	
-	private double distanceMin = 5000;
+	double distanceMin = 5000;
 	
 	private GameObject[] objs;
 	
@@ -39,21 +39,24 @@ public class Monster extends GameObject implements Runnable{
 	
 	double firstSpeed = 0.05;
 	
-	private int nearest;
+	int nearest;
 	
 	//---몬스터파라미터-------------------
 	
 	private int monsterType = 0;
 
-	private int monsterHp = 2;
+	int monsterHp = 2;
 	
 	private int givScore = 0;
 	
-	private int monsterRect = 0;
+	int monsterRect = 0;
 	
-	private boolean isShopMaster = false;
+	boolean isShopMaster = false;
 	
 	public boolean isBoss = false;
+	
+	int monsterBoundX = 0;
+	int monsterBoundY = 0;
 	
 	public Monster(Player target, String path, int imgSizeX, int imgSizeY, int frameCount, int patternType , double mobSpeed, int monsterType, int monsterRect) {
 		isShopMaster = false;
@@ -67,6 +70,28 @@ public class Monster extends GameObject implements Runnable{
 		firstSpeed = mobSpeed;
 		this.monsterType = monsterType;
 		this.monsterRect = monsterRect;
+		
+		monsterHp *= monsterType;
+		if(monsterType == 6) {
+			monsterHp /= 2;
+		}
+		setGivScore(25 * monsterType);
+	}
+	
+	public Monster(Player target, String path, int imgSizeX, int imgSizeY, int frameCount, int patternType , double mobSpeed, int monsterType, int monsterRect, int monsterBoundX, int monsterBoundY) {
+		isShopMaster = false;
+		this.target = target;
+		this.imgPath = path;
+		this.imgSizeX = imgSizeX;
+		this.imgSizeY = imgSizeY;
+		this.frameCount = frameCount;
+		this.patternType = patternType;
+		this.mobSpeed = mobSpeed;
+		firstSpeed = mobSpeed;
+		this.monsterType = monsterType;
+		this.monsterRect = monsterRect;
+		this.monsterBoundX = monsterBoundX;
+		this.monsterBoundY = monsterBoundY;
 		
 		monsterHp *= monsterType;
 		if(monsterType == 6) {
@@ -110,6 +135,10 @@ public class Monster extends GameObject implements Runnable{
 	}
 	public void addObjs(GameObject[] mobs) {
 		this.objs = mobs;
+	}
+	
+	public GameObject[] getObjs() {
+		return objs;
 	}
 	
 	public void checkAttack(Attack attack) {
@@ -194,7 +223,6 @@ public class Monster extends GameObject implements Runnable{
 
 						getDamage = true;
 						monsterHp -= attack.getAttackPower();
-						System.out.println("데미지를 입음" + this.monsterHp);
 						mobPattern = new Thread(this);
 						mobPattern.start();
 					}
@@ -231,7 +259,7 @@ public class Monster extends GameObject implements Runnable{
 	public void render(Graphics g) {
 		// TODO Auto-generated method stub
 		if (monsterHp > 0) {
-			img.setPosition(x+8, y+8);
+			img.setPosition(x+monsterBoundX, y+monsterBoundY);
 			img.render(g);
 		}
 	}
@@ -278,9 +306,9 @@ public class Monster extends GameObject implements Runnable{
 					case 4:
 						for (int i = 0; i < 4; i++) {
 							this.setPosition((int) (Math.random() * 1024) + 192, (int) (Math.random() * 640) + 328);
-							Thread.sleep(300);
+							Thread.sleep(100);
 						}
-						Thread.sleep(2000);
+						Thread.sleep(10000);
 						break;
 					case 5:
 						mobSpeed = 0.25;
@@ -289,14 +317,15 @@ public class Monster extends GameObject implements Runnable{
 						break;		
 					case 6:
 						mobSpeed = 5;
-						Thread.sleep(500);
-						mobSpeed = 4;
-						Thread.sleep(500);
-						mobSpeed = 2;
-						Thread.sleep(400);
-						mobSpeed = 1;
 						Thread.sleep(300);
+						mobSpeed = 4;
+						Thread.sleep(200);
+						mobSpeed = 2;
+						Thread.sleep(200);
+						mobSpeed = 1;
+						Thread.sleep(1500);
 						mobSpeed = 0;
+						Thread.sleep(500);
 						break;
 					default:
 						break;

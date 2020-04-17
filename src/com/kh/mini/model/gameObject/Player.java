@@ -35,14 +35,14 @@ public class Player extends GameObject  implements Runnable{
 	
 	private int playerMapPos = 0;
 	
-	private double playerMovSpeed = 1;
+	private double playerMovSpeed = 1.5;
 	private int playerClean = 10;
 	private int playerMask = 5;
 	private int playerRange = 190;
 	private int playerPower = 10;
 	private int gunShotSpeed;
 	
-	private int coinCount = 3;
+	private int coinCount = 30;
 	private int score = 0;
 	
 	

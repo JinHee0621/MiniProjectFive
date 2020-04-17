@@ -65,7 +65,7 @@ public class IntersectiontoUp3F extends BaseScene {
 			mobs[3].setPosition((int) (Math.random() * 1024) + 192, (int) (Math.random() * 640) + 328);
 			mobs[3].init();
 			
-			mobs[4] = new Monster(p, "images\\monsterImages\\Monster_Type_Yellow.png", 128, 128, 10, 1, 0.05, 5, 75);
+			mobs[4] = new Monster(p, "images\\monsterImages\\Monster_Type_Yellow.png", 128, 128, 10, 5, 0.05, 5, 75);
 			mobs[4].setPosition((int) (Math.random() * 1024) + 192, (int) (Math.random() * 640) + 328);
 			mobs[4].init();
 			
@@ -105,10 +105,12 @@ public class IntersectiontoUp3F extends BaseScene {
 		if (!p.isFightToMobs()) {
 			//상단문
 			if (p.getX() >= 640 && p.getX()  + 75 <= 768 && p.getY() < 252) {
-					p.setPosition(664, 698);
-					gs.changeMap(10);
-					p.setPlayerMapPos(10);
-					UiScene.miniMap.changeImage("images\\miniMapImages\\10.4FLeftDown.png");
+				sound.bgmStop();
+				sound.bgmSelect("stage4_boss");
+				p.setPosition(664, 698);
+				gs.changeMap(10);
+				p.setPlayerMapPos(10);
+				UiScene.miniMap.changeImage("images\\miniMapImages\\10.4FLeftDown.png");
 			}
 			//하단문
 			if (p.getX() >= 640 && p.getX() + 75 <= 768 && p.getY() + 140 > 838) {
@@ -122,7 +124,7 @@ public class IntersectiontoUp3F extends BaseScene {
 		if(GameScene.monsterLength == 0) {
 			p.setFightToMobs(false);
 			gs.popItem = false;
-			gs.popItem();
+			gs.popBossItem();
 			p.firstIn3fIntersectionUp = false;
 			GameScene.monsterLength = mobs.length;
 		}

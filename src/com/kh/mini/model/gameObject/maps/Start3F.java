@@ -36,6 +36,8 @@ public class Start3F extends BaseScene {
 	
 	public GameItem item2;
 	
+	public GameItem item3;
+	
 	//private GameItem item;
 	
 	public Start3F(GameWindow gw, GameScene gs,Player p) {
@@ -64,11 +66,14 @@ public class Start3F extends BaseScene {
 		mobs[0].setPosition(950, 240);
 		mobs[0].init();
 		
-		item = new GameItem(p, 4, true, 5, 950, 550);
+		item = new GameItem(p, 4, true, 5, 750, 550);
 		item.init();
 		
-		item2 = new GameItem(p, 6, true, 5, 1050, 550);
+		item2 = new GameItem(p, 6, true, 5, 900, 550);
 		item2.init();
+		
+		item3 = new GameItem(p, 8, true, 6, 1050, 550);
+		item3.init();
 		
 		p.setFightToMobs(false);
 		
@@ -87,6 +92,7 @@ public class Start3F extends BaseScene {
 		something.update();	
 		item.update();
 		item2.update();
+		item3.update();
 		
 		if (!p.isFightToMobs()) {
 			//상단문
@@ -98,10 +104,12 @@ public class Start3F extends BaseScene {
 			}
 			//하단문
 			if (p.getX() >= 640 && p.getX() + 75 <= 768 && p.getY() + 140 > 838) {
-					p.setPosition(664, 252);
-					gs.changeMap(4);
-					p.setPlayerMapPos(4);
-					UiScene.miniMap.changeImage("images\\miniMapImages\\4.2FDesktoUp2.png");
+				sound.bgmStop();
+				sound.bgmSelect("stage2_normal");
+				p.setPosition(664, 252);
+				gs.changeMap(4);
+				p.setPlayerMapPos(4);
+				UiScene.miniMap.changeImage("images\\miniMapImages\\4.2FDesktoUp2.png");
 			}
 			//좌단문
 			if (p.getX() < 194 && p.getY() + 140 <= 711 && p.getY() + 140 >= 584) {
@@ -128,6 +136,7 @@ public class Start3F extends BaseScene {
 		
 		item.render(g);
 		item2.render(g);
+		item3.render(g);
 		
 		if(p.isCheckDoAttack()) {
 			p.getAttack().render(g);

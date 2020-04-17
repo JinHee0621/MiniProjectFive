@@ -16,14 +16,12 @@ public class BossLeftUp4F extends BaseScene {
 	GameScene gs;
 	
 	ImageClass backGround;
-
-	Stuff something;
 	
 	double bgX;
 	double bgY;
 	
 	Player p;
-	public Monster[] mobs = new Monster[2];
+	public Monster[] mobs = new Monster[3];
 	
 	private boolean firstIn = true;
 	
@@ -51,13 +49,17 @@ public class BossLeftUp4F extends BaseScene {
 		
 		//boolean변수 필요
 		if (p.firstIn4fLeftUp) {
-			mobs[0] = new Monster(p, "", 0, 0, 0, 0, 0, 0, 0);
-			mobs[0].setPosition((int) (Math.random() * 1024) + 192, (int) (Math.random() * 768) + 200);
+			mobs[0] = new Monster(p, "images\\monsterImages\\Monster_Person.png", 100, 150, 11, 6, 0.03, 6, 90);
+			mobs[0].setPosition((int) (Math.random() * 1024) + 192, (int) (Math.random() * 640) + 328);
 			mobs[0].init();
 			
-			mobs[1] = new Monster(p, "", 0, 0, 0, 0, 0, 0, 0);
-			mobs[1].setPosition((int) (Math.random() * 1024) + 192, (int) (Math.random() * 768) + 200);
+			mobs[1] = new Monster(p, "images\\monsterImages\\Monster_Person.png", 100, 150, 11, 6, 0.03, 6, 90);
+			mobs[1].setPosition((int) (Math.random() * 1024) + 192, (int) (Math.random() * 640) + 328);
 			mobs[1].init();
+			
+			mobs[2] = new Monster(p, "images\\monsterImages\\Monster_Person.png", 100, 150, 11, 6, 0.03, 6, 90);
+			mobs[2].setPosition((int) (Math.random() * 1024) + 192, (int) (Math.random() * 640) + 328);
+			mobs[2].init();
 			
 			p.setFightToMobs(true);
 			p.addObjs(mobs);
@@ -94,28 +96,27 @@ public class BossLeftUp4F extends BaseScene {
 		
 		if(!p.isFightToMobs()) {
 			//12좌측하단라인
-			if (p.getX() >= 192 && p.getX() + 75 <= 1088 && p.getY() + 140 > 966) {
+			if (p.getX() >= 192 && p.getX() + 75 <= 1088 && p.getY() + 140 > 838) {
 					p.setPosition(p.getX(), 252);
 					gs.changeMap(10);
 					p.setPlayerMapPos(10);
 					UiScene.miniMap.changeImage("images\\miniMapImages\\10.4FLeftDown.png");
 			}
 			//12우단라인				
-			if (p.getX() + 75 > 1328 && p.getY() + 140 <= 712 && p.getY() >= 456) {
+			if (p.getX() + 75 > 1204 && p.getY() + 140 <= 712 && p.getY() >= 200) {
 					p.setPosition(220, p.getY());
 					gs.changeMap(13);
 					p.setPlayerMapPos(13);
-					UiScene.miniMap.changeImage("images\\miniMapImages\\13.4RightUp.png");
+					UiScene.miniMap.changeImage("images\\miniMapImages\\13.4FRightUp.png");
 			}
 		}
 		if(GameScene.monsterLength == 0) {
 			p.setFightToMobs(false);
 			gs.popItem = false;
 			gs.popItem();
-			p.firstIn2fLeft = false;
+			p.firstIn4fLeftUp = false;
 			GameScene.monsterLength = mobs.length;
 		}
-		something.update();	
 		p.update();
 	}
 
@@ -125,7 +126,6 @@ public class BossLeftUp4F extends BaseScene {
 		backGround.render(g);
 
 		p.render(g);
-		something.render(g);
 
 		for (int i = 0; i < mobs.length; i++) {
 			if(mobs[i] != null) mobs[i].render(g);
