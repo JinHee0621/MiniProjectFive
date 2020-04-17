@@ -115,7 +115,7 @@ public class BossRightDown4F extends BaseScene {
 			}
 			//11¡¬¥‹∂Û¿Œ
 			if (p.getX() < 194 && p.getY() + 140 <= 838 && p.getY() >= 456) {
-					p.setPosition(1110, p.getY());
+					p.setPosition(1010, p.getY());
 					gs.changeMap(10);
 					p.setPlayerMapPos(10);
 					UiScene.miniMap.changeImage("images\\miniMapImages\\10.4FLeftDown.png");
