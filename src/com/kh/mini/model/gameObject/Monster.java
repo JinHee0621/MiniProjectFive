@@ -31,13 +31,13 @@ public class Monster extends GameObject implements Runnable{
 	
 	private Thread mobPattern; 
 	
-	private boolean checkPattern = false;
+	boolean checkPattern = false;
 	
-	private boolean getDamage = false;
+	boolean getDamage = false;
 	
-	private double mobSpeed= 0.5;
+	double mobSpeed= 0.5;
 	
-	private double firstSpeed = 0.05;
+	double firstSpeed = 0.05;
 	
 	private int nearest;
 	
@@ -52,6 +52,8 @@ public class Monster extends GameObject implements Runnable{
 	private int monsterRect = 0;
 	
 	private boolean isShopMaster = false;
+	
+	public boolean isBoss = false;
 	
 	public Monster(Player target, String path, int imgSizeX, int imgSizeY, int frameCount, int patternType , double mobSpeed, int monsterType, int monsterRect) {
 		isShopMaster = false;
@@ -70,7 +72,6 @@ public class Monster extends GameObject implements Runnable{
 		if(monsterType == 6) {
 			monsterHp /= 2;
 		}
-		
 		setGivScore(25 * monsterType);
 	}
 
@@ -193,6 +194,7 @@ public class Monster extends GameObject implements Runnable{
 
 						getDamage = true;
 						monsterHp -= attack.getAttackPower();
+						System.out.println("데미지를 입음" + this.monsterHp);
 						mobPattern = new Thread(this);
 						mobPattern.start();
 					}
@@ -256,7 +258,7 @@ public class Monster extends GameObject implements Runnable{
 			} else if(checkPattern && monsterHp > 0 && !getDamage){
 				Thread.sleep(500);
 				int doPattern = (int) (Math.random() * 100) + 1;
-				if (doPattern >= 50) {
+				if (doPattern >= 50 && monsterType != 7) {
 					switch (patternType) {
 					case 2:
 						for (int i = 0; i < 25; i++) {
@@ -274,13 +276,11 @@ public class Monster extends GameObject implements Runnable{
 						Thread.sleep(4000);
 						break;
 					case 4:
-						for (int i = 0; i < 25; i++) {
-							mobSpeed -= 0.045;
-							Thread.sleep(100);
+						for (int i = 0; i < 4; i++) {
+							this.setPosition((int) (Math.random() * 1024) + 192, (int) (Math.random() * 640) + 328);
+							Thread.sleep(300);
 						}
-						Thread.sleep(500);
-						mobSpeed = 1;
-						Thread.sleep(500);
+						Thread.sleep(2000);
 						break;
 					case 5:
 						mobSpeed = 0.25;
@@ -298,8 +298,6 @@ public class Monster extends GameObject implements Runnable{
 						Thread.sleep(300);
 						mobSpeed = 0;
 						break;
-						
-						
 					default:
 						break;
 					}
