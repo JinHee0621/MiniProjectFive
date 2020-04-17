@@ -7,6 +7,7 @@ import com.kh.mini.model.gameObject.GameScene;
 import com.kh.mini.model.gameObject.Monster;
 import com.kh.mini.model.gameObject.Player;
 import com.kh.mini.model.gameObject.Stuff;
+import com.kh.mini.model.gameObject.UiScene;
 import com.kh.mini.model.vo.ImageClass;
 import com.kh.mini.view.GameWindow;
 
@@ -97,12 +98,14 @@ public class BossRightUp4F extends BaseScene {
 					p.setPosition(p.getX(), 252);
 					gs.changeMap(11);
 					p.setPlayerMapPos(11);
+					UiScene.miniMap.changeImage("images\\miniMapImages\\11.4FRightDown.png");
 			}
 			//13좌단라인
 			if (p.getX() < 66 && p.getY() + 140 <= 712 && p.getY() >= 456) {
 					p.setPosition(1110, p.getY());
 					gs.changeMap(12);
 					p.setPlayerMapPos(12);
+					UiScene.miniMap.changeImage("images\\miniMapImages\\12.4FLeftUp.png");
 			}
 			//13우측상단문
 			if (p.getX() >= 640 && p.getX() + 75 <= 768 && p.getY() + 140 > 838) {
