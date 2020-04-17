@@ -28,6 +28,7 @@ public class UiScene extends BaseScene{
 	
 	Player player;
 	
+	public static ImageClass miniMap;
 	
 	public UiScene(Player player) {
 		this.player = player;
@@ -87,13 +88,17 @@ public class UiScene extends BaseScene{
 		scoreUi.setIsOn(true);
 		scoreUi.setPosition(1065, 50);
 		
+		miniMap = new ImageClass();
+		miniMap.Init("images\\miniMapImages\\0.2FDesk.png");
+		miniMap.setIsOn(true);
+		miniMap.setPosition(958, 180);
+		
 		for(int i = 0; i < scoreNum.length; i++) {
 			scoreNum[i] = new ImageClass();
 			scoreNum[i].Init("images\\uiImages\\NumberSet\\0.png");
 			scoreNum[i].setIsOn(true);
 			scoreNum[i].setPosition(1080 + (i * 35), 75);
 		}
-		
 	}
 
 	public void getWeaponUi() {
@@ -210,6 +215,8 @@ public class UiScene extends BaseScene{
 		cleanBar.render(g);
 		maskBar.render(g);
 		weaponType.render(g);
+		
+		miniMap.render(g);
 	}
 
 }

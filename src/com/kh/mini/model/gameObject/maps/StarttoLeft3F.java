@@ -6,7 +6,7 @@ import com.kh.mini.model.gameObject.BaseScene;
 import com.kh.mini.model.gameObject.GameScene;
 import com.kh.mini.model.gameObject.Monster;
 import com.kh.mini.model.gameObject.Player;
-import com.kh.mini.model.gameObject.Stuff;
+import com.kh.mini.model.gameObject.UiScene;
 import com.kh.mini.model.vo.ImageClass;
 import com.kh.mini.view.GameWindow;
 
@@ -95,12 +95,14 @@ public class StarttoLeft3F extends BaseScene {
 					p.setPosition(664, 698);
 					gs.changeMap(8);
 					p.setPlayerMapPos(8);
+					UiScene.miniMap.changeImage("images\\miniMapImages\\8.3FIntersection.png");
 			}
 			//¿ì´Ü¹®			
 			if (p.getX() + 75 > 1200 && p.getY() + 140 <= 711 && p.getY() + 140 >= 584) {
 					p.setPosition(220, 500);
 					gs.changeMap(5);
 					p.setPlayerMapPos(5);
+					UiScene.miniMap.changeImage("images\\miniMapImages\\5.3FDesk.png");
 			}
 		}
 		

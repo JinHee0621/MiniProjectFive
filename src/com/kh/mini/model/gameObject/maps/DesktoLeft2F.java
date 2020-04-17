@@ -8,6 +8,7 @@ import com.kh.mini.model.gameObject.GameScene;
 import com.kh.mini.model.gameObject.Monster;
 import com.kh.mini.model.gameObject.Player;
 import com.kh.mini.model.gameObject.Stuff;
+import com.kh.mini.model.gameObject.UiScene;
 import com.kh.mini.model.vo.ImageClass;
 import com.kh.mini.view.GameWindow;
 
@@ -101,6 +102,7 @@ public class DesktoLeft2F extends BaseScene {
 				p.setPosition(194, 500);
 				gs.changeMap(0);
 				p.setPlayerMapPos(0);
+				UiScene.miniMap.changeImage("images\\miniMapImages\\0.2FDesk.png");
 			}
 		}
 		

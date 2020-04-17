@@ -6,7 +6,7 @@ import com.kh.mini.model.gameObject.BaseScene;
 import com.kh.mini.model.gameObject.GameScene;
 import com.kh.mini.model.gameObject.Monster;
 import com.kh.mini.model.gameObject.Player;
-import com.kh.mini.model.gameObject.Stuff;
+import com.kh.mini.model.gameObject.UiScene;
 import com.kh.mini.model.vo.ImageClass;
 import com.kh.mini.view.GameWindow;
 
@@ -108,12 +108,14 @@ public class IntersectiontoUp3F extends BaseScene {
 					p.setPosition(664, 698);
 					gs.changeMap(10);
 					p.setPlayerMapPos(10);
+					UiScene.miniMap.changeImage("images\\miniMapImages\\10.4FLeftDown.png");
 			}
 			//ÇÏ´Ü¹®
 			if (p.getX() >= 640 && p.getX() + 75 <= 768 && p.getY() + 140 > 838) {
 					p.setPosition(664, 252);
 					gs.changeMap(8);
 					p.setPlayerMapPos(8);
+					UiScene.miniMap.changeImage("images\\miniMapImages\\8.3FIntersection.png");
 			}
 		}
 		

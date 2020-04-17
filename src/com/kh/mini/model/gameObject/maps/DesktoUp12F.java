@@ -6,7 +6,7 @@ import com.kh.mini.model.gameObject.BaseScene;
 import com.kh.mini.model.gameObject.GameScene;
 import com.kh.mini.model.gameObject.Monster;
 import com.kh.mini.model.gameObject.Player;
-import com.kh.mini.model.gameObject.Stuff;
+import com.kh.mini.model.gameObject.UiScene;
 import com.kh.mini.model.vo.ImageClass;
 import com.kh.mini.view.GameWindow;
 
@@ -115,12 +115,14 @@ public class DesktoUp12F extends BaseScene {
 				gs.changeMap(4);
 				p.setPlayerMapPos(4);
 				p.setPosition(664, 698);
+				UiScene.miniMap.changeImage("images\\miniMapImages\\4.2FDesktoUp2.png");
 			}
 			// го╢э
 			if (p.getX() >= 640 && p.getX() + 75 <= 768 && p.getY() + 140 > 838) {
 				gs.changeMap(0);
 				p.setPlayerMapPos(0);
 				p.setPosition(664, 252);
+				UiScene.miniMap.changeImage("images\\miniMapImages\\0.2FDesk.png");
 			}
 			
 		}

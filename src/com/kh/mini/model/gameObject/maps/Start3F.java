@@ -8,6 +8,7 @@ import com.kh.mini.model.gameObject.GameScene;
 import com.kh.mini.model.gameObject.Monster;
 import com.kh.mini.model.gameObject.Player;
 import com.kh.mini.model.gameObject.Stuff;
+import com.kh.mini.model.gameObject.UiScene;
 import com.kh.mini.model.vo.ImageClass;
 import com.kh.mini.view.GameWindow;
 
@@ -93,18 +94,21 @@ public class Start3F extends BaseScene {
 					p.setPosition(664, 698);
 					gs.changeMap(7);
 					p.setPlayerMapPos(7);
+					UiScene.miniMap.changeImage("images\\miniMapImages\\7.3FDesktoUp.png");
 			}
 			//하단문
 			if (p.getX() >= 640 && p.getX() + 75 <= 768 && p.getY() + 140 > 838) {
 					p.setPosition(664, 252);
 					gs.changeMap(4);
 					p.setPlayerMapPos(4);
+					UiScene.miniMap.changeImage("images\\miniMapImages\\4.2FDesktoUp2.png");
 			}
 			//좌단문
 			if (p.getX() < 194 && p.getY() + 140 <= 711 && p.getY() + 140 >= 584) {
 					p.setPosition(1110, 500);
 					gs.changeMap(6);
 					p.setPlayerMapPos(6);
+					UiScene.miniMap.changeImage("images\\miniMapImages\\6.3FDesktoLeft.png");
 			}
 		}
 	}

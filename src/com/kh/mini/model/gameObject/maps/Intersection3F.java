@@ -6,7 +6,7 @@ import com.kh.mini.model.gameObject.BaseScene;
 import com.kh.mini.model.gameObject.GameScene;
 import com.kh.mini.model.gameObject.Monster;
 import com.kh.mini.model.gameObject.Player;
-import com.kh.mini.model.gameObject.Stuff;
+import com.kh.mini.model.gameObject.UiScene;
 import com.kh.mini.model.vo.ImageClass;
 import com.kh.mini.view.GameWindow;
 
@@ -95,18 +95,21 @@ public class Intersection3F extends BaseScene {
 					p.setPosition(664, 698);
 					gs.changeMap(9);
 					p.setPlayerMapPos(9);
+					UiScene.miniMap.changeImage("images\\miniMapImages\\9.3FIntersectiontoUp.png");
 			}
 			//하단문
 			if (p.getX() >= 640 && p.getX() + 75 <= 768 && p.getY() + 140 > 838) {
 					p.setPosition(664, 252);
 					gs.changeMap(6);
 					p.setPlayerMapPos(6);
+					UiScene.miniMap.changeImage("images\\miniMapImages\\6.3FDesktoLeft.png");
 			}
 			//우단문			
 			if (p.getX() + 75 > 1200 && p.getY() + 140 <= 711 && p.getY() + 140 >= 584) {
 					p.setPosition(220, 500);
 					gs.changeMap(7);
 					p.setPlayerMapPos(7);
+					UiScene.miniMap.changeImage("images\\miniMapImages\\7.3FDesktoUp.png");
 			}
 		}
 		
